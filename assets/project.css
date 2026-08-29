@@ -33,8 +33,10 @@
   --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --radius: 3px;
-  --measure: 68ch;
-  --maxw: 1180px;      /* wider than the main site: embeds need room */
+  /* One column width for the whole page. Prose and embeds share it, so the
+     left and right edges line up all the way down. Narrower than 1180px
+     because at that width the body text would be uncomfortably long to read. */
+  --maxw: 940px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -100,7 +102,7 @@ header.bar {
 .proj-head h1 {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.08;
-  letter-spacing: -0.012em; margin: 16px 0 0; max-width: 26ch;
+  letter-spacing: -0.012em; margin: 16px 0 0; max-width: 22ch;
 }
 .proj-head h1 em { color: var(--gold); }
 .proj-head .byline {
@@ -124,7 +126,7 @@ header.bar {
 /* ----------------------------------------------------------------------------
    PROSE
    ---------------------------------------------------------------------------- */
-.prose { max-width: var(--measure); }
+.prose { max-width: none; }
 .prose p { margin: 0 0 1.35em; }
 .prose p:last-child { margin-bottom: 0; }
 .prose a { color: var(--blue); border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
@@ -150,8 +152,8 @@ h3.sub {
 /* ----------------------------------------------------------------------------
    EMBEDS
    Tableau's modern web component sizes itself from the element's width. Figures
-   are allowed to run wider than the prose measure, because the visualisations
-   need the room; captions stay narrow so they remain readable.
+   Tableau's classic viz_v1.js embeds size themselves from the container width,
+   so figures fill the column exactly as the prose does.
    ---------------------------------------------------------------------------- */
 /* No frame: the visualisations are white and the page is white, so a border
    would only draw a box around nothing. The embeds sit directly on the page. */
@@ -166,7 +168,7 @@ figure.viz object.tableauViz { width: 100%; }
 figure.viz img { width: 100%; height: auto; display: block; }
 figure.viz figcaption {
   font-family: var(--mono); font-size: 12px; line-height: 1.65;
-  color: var(--text-faint); margin-top: 14px; max-width: 70ch;
+  color: var(--text-faint); margin-top: 14px;
 }
 
 /* Voyant and other iframes: responsive box rather than a fixed pixel size */
@@ -183,7 +185,7 @@ figure.fig { margin: 44px 0; }
 figure.fig img { width: 100%; height: auto; display: block; }
 figure.fig figcaption {
   font-family: var(--mono); font-size: 12px; color: var(--text-faint);
-  margin-top: 12px; max-width: 70ch;
+  margin-top: 12px;
 }
 
 /* ----------------------------------------------------------------------------
@@ -234,6 +236,9 @@ figure.fig figcaption {
 .pager a .t { color: var(--text); }
 .pager a:hover .t { color: var(--gold); }
 .pager a.next { text-align: right; margin-left: auto; }
+/* .up carries a top margin for standalone use elsewhere; inside the pager it
+   must sit on the same baseline as the next link. */
+.pager .up { margin: 0; }
 
 /* link back up to the project's own homepage */
 .up {
@@ -251,7 +256,7 @@ figure.fig figcaption {
 .biblio p i { color: var(--text); font-style: italic; }
 .biblio a { color: var(--blue); overflow-wrap: anywhere; }
 
-.about { max-width: var(--measure); color: var(--text-dim); font-size: 0.99rem; }
+.about { color: var(--text-dim); font-size: 0.99rem; }
 .about p { margin: 0 0 1.2em; }
 .about a { color: var(--blue); border-bottom: 1px solid var(--line); }
 
