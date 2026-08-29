@@ -347,17 +347,23 @@
   .side-note a { color: var(--blue); border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
   .side-note a:hover { border-color: var(--blue); }
 
-  /* Interests read as a list rather than a run-on line. Markers are gold and
-     hung outside the text so the wrapped lines stay flush with each other. */
+  /* Interests read as a list rather than a run-on line. Markers are small gold
+     dots hung outside the text so wrapped lines stay flush with each other.
+     Drawn as a bordered box rather than a bullet character so the size is
+     exact and does not shift with the font. */
   .side-note .fact-list { list-style: none; margin: 4px 0 0; padding: 0; }
   .side-note .fact-list li { position: relative; padding-left: 15px; margin-bottom: 6px; line-height: 1.6; }
   .side-note .fact-list li:last-child { margin-bottom: 0; }
   .side-note .fact-list li::before {
-    content: "—";
+    content: "";
     position: absolute;
-    left: 0;
-    color: var(--gold);
-    opacity: 0.65;
+    left: 1px;
+    top: 0.68em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.8;
   }
 
   /* ==========================================================================
