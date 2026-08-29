@@ -182,8 +182,8 @@
      convention the mark is asserting. */
   .nav-links a {
     font-family: var(--mono);
-    font-size: 12.5px;
-    letter-spacing: 0.03em;
+    font-size: 14px;
+    letter-spacing: 0.02em;
     color: var(--text-dim);
     padding: 8px 11px;
     border-radius: var(--radius);
@@ -195,7 +195,9 @@
 
   .menu-btn { display: none; }
 
-  @media (max-width: 820px) {
+  /* Raised from 820px: the larger nav type makes the row wider, so it needs to
+     collapse into the menu a little sooner. */
+  @media (max-width: 900px) {
     .nav-links {
       position: fixed;
       inset: 66px 0 auto 0;
