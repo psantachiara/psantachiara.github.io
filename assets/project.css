@@ -73,6 +73,15 @@ header.bar {
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--line);
+  transition: transform .32s var(--ease);
+  will-change: transform;
+}
+/* Applied by assets/project.js while the reader is scrolling down. 101% rather
+   than 100% so the bottom border clears the top of the viewport too. */
+header.bar.bar--hidden { transform: translateY(-101%); }
+@media (prefers-reduced-motion: reduce) {
+  header.bar { transition: none; }
+  header.bar.bar--hidden { transform: none; }
 }
 .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .bar .brand {
@@ -255,6 +264,18 @@ figure.fig figcaption {
 .biblio p { padding-left: 2.4em; text-indent: -2.4em; margin: 0 0 1.2em; color: var(--text-dim); }
 .biblio p i { color: var(--text); font-style: italic; }
 .biblio a { color: var(--blue); overflow-wrap: anywhere; }
+
+/* a short list of research questions or claims, set apart from the prose */
+.qlist { list-style: none; margin: 0; padding: 0; max-width: none; }
+.qlist li {
+  position: relative; padding-left: 26px; margin-bottom: 16px;
+  font-size: 1.17rem; line-height: 1.55; color: var(--text);
+}
+.qlist li:last-child { margin-bottom: 0; }
+.qlist li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+}
 
 .about { color: var(--text-dim); font-size: 0.99rem; }
 .about p { margin: 0 0 1.2em; }
