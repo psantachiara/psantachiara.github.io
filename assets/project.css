@@ -119,12 +119,17 @@ header.bar.bar--hidden { transform: translateY(-101%); }
   margin: 22px 0 0; letter-spacing: 0.03em;
 }
 
-/* credits block: class, quarter, instructor */
+/* Credits block. The class field holds far more text than the others, so it
+   spans the full width on its own row and the remaining three sit beneath it.
+   That way nothing wraps into a ragged second line under a short first one. */
 .credits {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 26px 34px; margin: 40px 0 0;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px 34px; margin: 40px 0 0;
   padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
+.credits .full { grid-column: 1 / -1; }
+@media (max-width: 720px) { .credits { grid-template-columns: 1fr; } }
+
 .credits div .k {
   display: block; font-family: var(--mono); font-size: 11px;
   letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
