@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Medium — Museum Acquisitions and Collection Development</title>
+<meta name="description" content="A text analysis of MoMA's composite medium data field, using Voyant Tools." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/project.css" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/">ps<span class="dot">:</span></a>
+    <nav>
+      <a href="index.html">← Project homepage</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="proj-head">
+    <span class="label">MoMA Open Data · 06</span>
+    <h1>Medium</h1>
+  </div>
+
+  <section class="band">
+    <div class="prose lead">
+      <p>This analysis concentrates on the <em>medium</em> data field. In contrast to other fields which have been considered and studied as part of this project, and in fact in contrast to all other fields featured in MoMA’s datasets, the data contained in <em>medium</em> is composite; in other words, combinations of keywords may describe a given work of art. Because of this, the methods of analysis and visualization used here differ considerably from those employed in other sections of this project.</p>
+    </div>
+
+    <div class="frame">
+      <iframe src="https://voyant-tools.org/tool/DocumentTerms/?stopList=stop.en.txt&amp;corpus=3a9f92bcde84c21db12f54d496a97a3d"
+              title="Document terms: frequency ranking of words in the medium field" loading="lazy"></iframe>
+      <p class="note">Voyant Tools · Document Terms</p>
+    </div>
+
+    <div class="prose lead">
+      <p>The list above displays a ranking of the words that occur most frequently in the <em>medium</em> data field. As explained above, this does not mean that the most popular medium in the collection is “print;” rather, it means that the word, be it alone or accompanied by others, is the one that occurs most often across the collection.</p>
+
+      <p>The word cloud below is an alternative way of expressing this distribution, the dimension of the word being a reflection of the frequency with which it appears in the field.</p>
+    </div>
+
+    <div class="frame">
+      <iframe src="https://voyant-tools.org/tool/Cirrus/?stopList=stop.en.txt&amp;visible=300&amp;corpus=3a9f92bcde84c21db12f54d496a97a3d"
+              title="Cirrus word cloud of the medium field" loading="lazy"></iframe>
+      <p class="note">Voyant Tools · Cirrus</p>
+    </div>
+
+    <div class="prose lead">
+      <p>The TermsBerry below starts getting at the issue of context and relations, as it maps both frequency and co-occurrence of single terms. The number of terms and amount of context represented may be customized.</p>
+    </div>
+
+    <div class="frame">
+      <iframe src="https://voyant-tools.org/tool/TermsBerry/?stopList=stop.en.txt&amp;corpus=3a9f92bcde84c21db12f54d496a97a3d"
+              title="TermsBerry: frequency and co-occurrence of terms in the medium field" loading="lazy"></iframe>
+      <p class="note">Voyant Tools · TermsBerry</p>
+    </div>
+
+    <div class="prose lead">
+      <p>Similarly, the links panel below allows to display relations through network structures, and in addition to select a few terms in order to illuminate the relationships in which they partake. In other words, we can now see the relations that are instantiated by co-occurrence – indeed, relational frequency – rather than absolute frequency.</p>
+    </div>
+
+    <div class="frame">
+      <iframe src="https://voyant-tools.org/tool/CollocatesGraph/?stopList=stop.en.txt&amp;query=paper&amp;query=pencil&amp;query=ink&amp;query=watercolor&amp;query=print&amp;query=silver&amp;query=gelatin&amp;query=albumen&amp;query=printed&amp;query=chromogenic&amp;context=7&amp;corpus=3a9f92bcde84c21db12f54d496a97a3d"
+              title="Collocates graph of selected terms in the medium field" loading="lazy"></iframe>
+      <p class="note">Voyant Tools · Collocates Graph</p>
+    </div>
+
+    <div class="prose lead">
+      <p>The analysis showcased here allows for the identification of the most popular media to be identified. An important caveat listed above is that an account of frequency is, in this context, unable to accurately depict the distribution of these data. However, TermsBerry and links confer specificity and accuracy to the analysis in its entirety by providing context to those frequency distributions. For example, because the second most popular individual word, silver, co-occurs most often with the words print, gelatin and albumen, we can evince that these combinations are in fact some of the most frequent medium types featured in the museum’s collection.</p>
+    </div>
+
+  </section>
+
+  <div class="pager">
+    <a class="prev" href="nationality.html"><span class="dir">Previous</span><span class="t">← Nationality</span></a>
+    <a class="next" href="index.html"><span class="dir">Up</span><span class="t">Project homepage →</span></a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Pietro Santachiara</span>
+    <span><a href="/#/portfolio">DH Portfolio</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
