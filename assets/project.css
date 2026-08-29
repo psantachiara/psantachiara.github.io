@@ -102,7 +102,7 @@ header.bar {
 .proj-head h1 {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.08;
-  letter-spacing: -0.012em; margin: 16px 0 0; max-width: 22ch;
+  letter-spacing: -0.012em; margin: 16px 0 0;
 }
 .proj-head h1 em { color: var(--gold); }
 .proj-head .byline {
@@ -251,7 +251,7 @@ figure.fig figcaption {
 /* ----------------------------------------------------------------------------
    BIBLIOGRAPHY + ABOUT
    ---------------------------------------------------------------------------- */
-.biblio { font-family: var(--mono); font-size: 13.5px; line-height: 1.75; max-width: 80ch; }
+.biblio { font-family: var(--mono); font-size: 13.5px; line-height: 1.75; }
 .biblio p { padding-left: 2.4em; text-indent: -2.4em; margin: 0 0 1.2em; color: var(--text-dim); }
 .biblio p i { color: var(--text); font-style: italic; }
 .biblio a { color: var(--blue); overflow-wrap: anywhere; }
