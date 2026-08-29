@@ -485,11 +485,9 @@
     transition: border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
   }
   .proj:hover { border-color: rgba(216,178,106,0.4); background: var(--bg-elev-2); transform: translateY(-3px); }
-  .proj.featured { grid-column: 1 / -1; }
   .proj .meta-line { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); line-height: 1.6; }
   .proj .meta-line .yr { color: var(--gold); }
   .proj h4 { font-family: var(--display); font-weight: 400; font-size: 1.85rem; line-height: 1.1; margin: 16px 0 10px; }
-  .proj.featured h4 { font-size: 2.3rem; }
   .proj p { margin: 0; color: var(--text-dim); font-size: 1rem; line-height: 1.7; max-width: 62ch; }
   /* contributor list, between the title and the description. Uses the same
      Authors component as the publications page, so the name highlighting is
@@ -850,11 +848,10 @@ const CV = [
 ];
 
 /* --- DIGITAL HUMANITIES PORTFOLIO ---------------------------------------
-   Set featured: true on one project to give it the full-width card.
+   All cards are the same size, laid out two per row.
    ------------------------------------------------------------------------ */
 const PROJECTS = [
   {
-    featured: true,
     year: "2024",
     title: "The Lives of Historic Broadway Theaters: Making Modernity",
     people: ["Hayes, N.", "Lee, D.", "Lim, R.", "Luong, S.", "Santachiara, P.", "Stocco, H.", "Zuberi, I."],
@@ -1423,7 +1420,7 @@ function PortfolioPage() {
       <${Reveal}>
         <div class="proj-grid" style=${{ marginTop: "34px" }}>
           ${PROJECTS.map((p, i) => html`
-            <a class=${"proj " + (p.featured ? "featured" : "")} key=${i} href=${p.url}>
+            <a class="proj" key=${i} href=${p.url}>
               <div class="meta-line"><span class="yr">${p.year}</span></div>
               <h4>${p.title}</h4>
               ${p.people ? html`<div class="people"><${Authors} list=${p.people} /></div>` : null}
