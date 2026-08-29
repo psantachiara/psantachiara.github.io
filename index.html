@@ -150,12 +150,15 @@
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--line);
   }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  /* The mark is centred on the bar itself, not merely placed between the other
+     elements: taken out of flow and pinned to 50%, so the width of the nav
+     links on the right cannot pull it off centre. */
+  .nav .wrap { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 24px; }
 
-  /* The mark is a namespace prefix declaration, so it is set in the monospace
-     face rather than the display serif — the code register is what makes the
-     trailing colon read as syntax instead of as a stray character. */
   .brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: var(--mono);
     font-size: 19px;
     font-weight: 500;
@@ -166,10 +169,10 @@
   .brand .dot { color: var(--gold); }
 
   .nav-links { display: flex; align-items: center; gap: 2px; }
-  /* Nav items are QNames: a dimmed prefix followed by the property's local
-     name. Lowercase and untracked, because RDF property names are — the
-     small-caps treatment used elsewhere would break the convention the mark
-     is asserting. */
+  /* Nav items are the local names of the properties declared by the ps: mark
+     at the centre of the bar. Lowercase and untracked, because RDF property
+     names are — the small-caps treatment used elsewhere would break the
+     convention the mark is asserting. */
   .nav-links a {
     font-family: var(--mono);
     font-size: 12.5px;
@@ -180,11 +183,8 @@
     transition: color .25s var(--ease), background .25s var(--ease);
     white-space: nowrap;
   }
-  .nav-links a .px { color: var(--text-faint); transition: color .25s var(--ease); }
   .nav-links a:hover { color: var(--text); background: rgba(236,233,226,0.05); }
-  .nav-links a:hover .px { color: var(--text-dim); }
   .nav-links a.active { color: var(--gold-soft); }
-  .nav-links a.active .px { color: var(--gold); opacity: 0.7; }
 
   .menu-btn { display: none; }
 
@@ -1223,7 +1223,7 @@ function Nav({ path }) {
       <nav class=${"nav-links " + (open ? "open" : "")}>
         ${ROUTES.map(r => html`
           <a key=${r.path} class=${path === r.path ? "active" : ""} href=${"#" + r.path}
-             aria-label=${r.title}><span class="px">${SITE.brandShort}:</span>${r.label}</a>`)}
+             aria-label=${r.title}>${r.label}</a>`)}
       </nav>
       <button class=${"menu-btn " + (open ? "open" : "")} aria-label="Toggle navigation"
               aria-expanded=${open} onClick=${() => setOpen(o => !o)}>
