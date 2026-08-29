@@ -465,6 +465,11 @@
   /* course rows sit tighter than the dated entries elsewhere */
   .cv-role + .cv-row, .cv-role ~ .cv-row { padding: 14px 0; }
 
+  /* Individual courses are indented under their department and role. The whole
+     row shifts, date column included, so the two levels stay visibly distinct. */
+  .cv-row.nested { padding-left: 22px; }
+  @media (max-width: 720px) { .cv-row.nested { padding-left: 14px; } }
+
   /* ==========================================================================
      PORTFOLIO
      ========================================================================== */
@@ -1375,7 +1380,7 @@ function CVPage() {
               if (r.subhead) return html`<div class="cv-subhead" key=${j}>${r.subhead}</div>`;
               if (r.role)    return html`<div class="cv-role" key=${j}>${r.role}</div>`;
               return html`
-                <div class="cv-row" key=${j}>
+                <div class=${"cv-row" + (r.role === undefined && sec.heading === "Teaching" ? " nested" : "")} key=${j}>
                   <div class="when">${r.when}</div>
                   <div>
                     <h4>${r.title}</h4>
