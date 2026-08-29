@@ -341,9 +341,24 @@
   @media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 30px; } }
 
   .side-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.85; color: var(--text-dim); }
-  .side-note .pin { color: var(--gold); }
+  .side-note .pin { color: var(--gold); display: block; }
+  .side-note .fact { margin-bottom: 22px; }
+  .side-note .fact:last-child { margin-bottom: 0; }
   .side-note a { color: var(--blue); border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
   .side-note a:hover { border-color: var(--blue); }
+
+  /* Interests read as a list rather than a run-on line. Markers are gold and
+     hung outside the text so the wrapped lines stay flush with each other. */
+  .side-note .fact-list { list-style: none; margin: 4px 0 0; padding: 0; }
+  .side-note .fact-list li { position: relative; padding-left: 15px; margin-bottom: 6px; line-height: 1.6; }
+  .side-note .fact-list li:last-child { margin-bottom: 0; }
+  .side-note .fact-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    opacity: 0.65;
+  }
 
   /* ==========================================================================
      HOME — section index cards
@@ -515,9 +530,17 @@ const ABOUT = {
     "A third paragraph is optional. It might cover teaching, collaboration, or what you are working on now. You can also delete this entirely by removing the line from the file.",
   ],
   // Small monospace block in the left column
+  // A fact's value can be a plain string, or a list of strings — a list is
+  // rendered as bullets.
   facts: [
     { k: "Field",     v: "Information Studies + Digital Humanities" },
-    { k: "Interests", v: "Knowledge representation, knowledge organization, ontology, semantic web, LAM data" },
+    { k: "Interests", v: [
+      "Critical knowledge organization",
+      "Linked Open Data in libraries, archives, museums",
+      "Computational ontology modelling and the politics of description",
+      "Knowledge representation and the history of symbolic AI",
+      "History and philosophy of LIS (documentation)",
+    ] },
     { k: "Based in",  v: "Los Angeles, California" },
   ],
 };
@@ -1006,13 +1029,20 @@ function HomePage() {
           <div class="split">
             <div>
               <span class="label">About</span>
-              <p class="side-note" style=${{ marginTop: "18px" }}>
+              <div class="side-note" style=${{ marginTop: "18px" }}>
                 ${ABOUT.facts.map((f, i) => html`
-                  <span key=${i}><span class="pin">${f.k}</span><br/>${f.v}<br/><br/></span>`)}
-                <span class="pin">Links</span><br/>
-                ${SITE.links.map((l, i) => html`
-                  <span key=${"l" + i}><a href=${l.url} target="_blank" rel="noopener">${l.label}</a><br/></span>`)}
-              </p>
+                  <div class="fact" key=${i}>
+                    <span class="pin">${f.k}</span>
+                    ${Array.isArray(f.v)
+                      ? html`<ul class="fact-list">${f.v.map((item, j) => html`<li key=${j}>${item}</li>`)}</ul>`
+                      : html`<div>${f.v}</div>`}
+                  </div>`)}
+                <div class="fact">
+                  <span class="pin">Links</span>
+                  ${SITE.links.map((l, i) => html`
+                    <div key=${"l" + i}><a href=${l.url} target="_blank" rel="noopener">${l.label}</a></div>`)}
+                </div>
+              </div>
             </div>
             <div class="prose">
               <h3 class="sub">${ABOUT.heading}</h3>
