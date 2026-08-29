@@ -161,8 +161,13 @@ figure.viz {
   padding: 18px;
   overflow: hidden;
 }
-figure.viz tableau-viz,
+/* The original viz_v1.js embeds size themselves in JavaScript from the
+   container's width, so the placeholder must be a plain full-width block.
+   Do not add padding or borders to .tableauPlaceholder itself — the script
+   measures offsetWidth and would compute the height from the wrong number. */
 figure.viz > div { width: 100%; display: block; }
+figure.viz .tableauPlaceholder { width: 100%; }
+figure.viz object.tableauViz { width: 100%; }
 figure.viz img { width: 100%; height: auto; display: block; border-radius: 2px; }
 figure.viz figcaption {
   font-family: var(--mono); font-size: 12px; line-height: 1.65;
