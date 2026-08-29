@@ -33,10 +33,10 @@
   --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --radius: 3px;
-  /* One column width for the whole page. Prose and embeds share it, so the
-     left and right edges line up all the way down. Narrower than 1180px
-     because at that width the body text would be uncomfortably long to read. */
-  --maxw: 940px;
+  /* Matches the main site exactly (index.html uses --maxw: 1120px with the
+     same 34px gutter), so moving between the portfolio and the main site
+     changes only the ground colour, not the measure or the margins. */
+  --maxw: 1120px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -68,7 +68,7 @@ a { color: inherit; text-decoration: none; }
    ---------------------------------------------------------------------------- */
 header.bar {
   position: sticky; top: 0; z-index: 50;
-  height: 62px; display: flex; align-items: center;
+  height: 66px; display: flex; align-items: center;
   background: rgba(255,255,255,0.86);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
