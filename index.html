@@ -166,19 +166,25 @@
   .brand .dot { color: var(--gold); }
 
   .nav-links { display: flex; align-items: center; gap: 2px; }
+  /* Nav items are QNames: a dimmed prefix followed by the property's local
+     name. Lowercase and untracked, because RDF property names are — the
+     small-caps treatment used elsewhere would break the convention the mark
+     is asserting. */
   .nav-links a {
     font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
     color: var(--text-dim);
-    padding: 8px 13px;
+    padding: 8px 11px;
     border-radius: var(--radius);
     transition: color .25s var(--ease), background .25s var(--ease);
     white-space: nowrap;
   }
+  .nav-links a .px { color: var(--text-faint); transition: color .25s var(--ease); }
   .nav-links a:hover { color: var(--text); background: rgba(236,233,226,0.05); }
+  .nav-links a:hover .px { color: var(--text-dim); }
   .nav-links a.active { color: var(--gold-soft); }
+  .nav-links a.active .px { color: var(--gold); opacity: 0.7; }
 
   .menu-btn { display: none; }
 
@@ -681,11 +687,15 @@ const PROJECTS = [
    ██  END OF CONTENT — you should not need to edit anything below  ██
    ============================================================================ */
 
+/* Nav labels are the local names of properties in the ps: namespace. The
+   prefix is rendered separately (and dimmed) by the Nav component, so `label`
+   here is just the local part. `title` is the human-readable version used for
+   the browser tab. */
 const ROUTES = [
-  { path: "/",             label: "Home",         title: "Home" },
-  { path: "/publications", label: "Publications", title: "Publications" },
-  { path: "/cv",           label: "CV",           title: "Curriculum Vitae" },
-  { path: "/portfolio",    label: "DH Portfolio", title: "DH Portfolio" },
+  { path: "/",             label: "about",        title: "Home" },
+  { path: "/publications", label: "publications", title: "Publications" },
+  { path: "/cv",           label: "cv",           title: "Curriculum Vitae" },
+  { path: "/portfolio",    label: "dhPortfolio",  title: "DH Portfolio" },
 ];
 
 /* ---------- Scroll reveal ---------- */
@@ -1212,7 +1222,8 @@ function Nav({ path }) {
       <a class="brand" href="#/" aria-label=${SITE.givenName + " " + SITE.familyName + " — home"}>${SITE.brandShort}<span class="dot">:</span></a>
       <nav class=${"nav-links " + (open ? "open" : "")}>
         ${ROUTES.map(r => html`
-          <a key=${r.path} class=${path === r.path ? "active" : ""} href=${"#" + r.path}>${r.label}</a>`)}
+          <a key=${r.path} class=${path === r.path ? "active" : ""} href=${"#" + r.path}
+             aria-label=${r.title}><span class="px">${SITE.brandShort}:</span>${r.label}</a>`)}
       </nav>
       <button class=${"menu-btn " + (open ? "open" : "")} aria-label="Toggle navigation"
               aria-expanded=${open} onClick=${() => setOpen(o => !o)}>
