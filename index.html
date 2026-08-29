@@ -150,15 +150,22 @@
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--line);
   }
-  /* The mark is centred on the bar itself, not merely placed between the other
-     elements: taken out of flow and pinned to 50%, so the width of the nav
-     links on the right cannot pull it off centre. */
-  .nav .wrap { position: relative; display: flex; align-items: center; justify-content: flex-end; gap: 24px; }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
+  /* The mark is a namespace prefix declaration, so it is set in the monospace
+     face rather than the display serif — the code register is what makes the
+     trailing colon read as syntax instead of as a stray character.
+
+     Flexbox centres the line box, not the glyphs. "ps:" has no ascenders, so
+     its visual mass sits well below the line box centre and the mark reads as
+     hanging low. line-height:1 removes the leading and the small negative
+     shift corrects the remainder; adjust the translateY if you change the
+     font size. */
   .brand {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    transform: translateY(-2.5px);
     font-family: var(--mono);
     font-size: 19px;
     font-weight: 500;
@@ -170,7 +177,7 @@
 
   .nav-links { display: flex; align-items: center; gap: 2px; }
   /* Nav items are the local names of the properties declared by the ps: mark
-     at the centre of the bar. Lowercase and untracked, because RDF property
+     at the left of the bar. Lowercase and untracked, because RDF property
      names are — the small-caps treatment used elsewhere would break the
      convention the mark is asserting. */
   .nav-links a {
