@@ -271,6 +271,18 @@ figure.fig figcaption {
 .biblio p i { color: var(--text); font-style: italic; }
 .biblio a { color: var(--blue); overflow-wrap: anywhere; }
 
+/* Notice for projects whose interactive components no longer function. Set in
+   the monospace face so it reads as an editorial note about the page rather
+   than as part of the project's own text. */
+.archive-note {
+  font-family: var(--mono); font-size: 13px; line-height: 1.7;
+  color: var(--text-dim);
+  border-left: 2px solid var(--gold);
+  padding: 2px 0 2px 18px;
+  margin: 0 0 8px;
+  max-width: 74ch;
+}
+
 /* a short list of research questions or claims, set apart from the prose */
 .qlist { list-style: none; margin: 0; padding: 0; max-width: none; }
 .qlist li {
