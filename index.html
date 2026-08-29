@@ -443,10 +443,27 @@
 
   .cv-row { display: grid; grid-template-columns: 150px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--line-soft); }
   @media (max-width: 720px) { .cv-row { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; } }
-  .cv-row .when { font-family: var(--mono); font-size: 12.5px; color: var(--gold); padding-top: 5px; letter-spacing: 0.04em; }
+  .cv-row .when { font-family: var(--mono); font-size: 12.5px; color: var(--gold); padding-top: 5px; letter-spacing: 0.04em; line-height: 1.65; }
   .cv-row h4 { font-family: var(--display); font-weight: 400; font-size: 1.3rem; margin: 0 0 6px; line-height: 1.25; }
   .cv-row .where { color: var(--text-dim); font-size: 0.97rem; margin: 0; }
   .cv-row .detail { color: var(--text-dim); font-size: 0.95rem; margin: 8px 0 0; }
+
+  /* Department heading inside a section, and the position type beneath it.
+     Both sit outside the date column so the courses under them stay aligned
+     with every other dated row on the page. */
+  .cv-subhead {
+    font-family: var(--display); font-weight: 400; font-size: 1.2rem;
+    color: var(--text); margin: 34px 0 0; padding-bottom: 2px;
+  }
+  .cv-section > .label + .cv-subhead { margin-top: 22px; }
+  .cv-role {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    margin: 16px 0 2px;
+  }
+  .cv-subhead + .cv-role { margin-top: 12px; }
+  /* course rows sit tighter than the dated entries elsewhere */
+  .cv-role + .cv-row, .cv-role ~ .cv-row { padding: 14px 0; }
 
   /* ==========================================================================
      PORTFOLIO
@@ -727,13 +744,13 @@ const CV = [
   {
     heading: "Education",
     rows: [
-      { when: "2027 (exp.)", title: "PhD, Information Studies", where: "University of California, Los Angeles",
+      { when: "2027 (exp.)", title: "PhD, Information Studies", where: "University of California, Los Angeles (UCLA)",
         detail: "Dissertation: From Representation to Apparatus: Rethinking Computational Ontology in Linked Open Data. Co-chairs: Jonathan Furner and Gregory H. Leazer." },
       { when: "2024", title: "Graduate Certificate in Digital Humanities", where: "UCLA" },
-      { when: "2022", title: "MLIS, Informatics Specialization", where: "UCLA" },
-      { when: "2010", title: "MSc, Communication", where: "University of Lugano (USI), Switzerland",
+      { when: "2022", title: "Master of Library and Information Science, Informatics Specialization", where: "UCLA" },
+      { when: "2010", title: "Master of Science in Communication", where: "University of Lugano (USI), Switzerland",
         detail: "Technology-Enhanced Communication for Cultural Heritage." },
-      { when: "2006", title: "BA, Communication Studies", where: "University of Modena and Reggio Emilia (UNIMORE), Italy",
+      { when: "2006", title: "Bachelor of Arts in Communication Studies", where: "University of Modena and Reggio Emilia (UNIMORE), Italy",
         detail: "Mass Media and Digital Publishing concentrations." },
     ],
   },
@@ -742,8 +759,8 @@ const CV = [
     rows: [
       { when: "2024", title: "Graduate Student Researcher", where: "DataX, UCLA",
         detail: "PIs: Noopur Raval, Safiya Noble, Sarah Roberts." },
-      { when: "2022", title: "LEADING Data Science Fellow", where: "Department of Digital Humanities, Haverford College",
-        detail: "PI: Bret Mulligan. IMLS Laura Bush 21st Century Librarian programme (RE-246450-OLS-20)." },
+      { when: "2022", title: "LEADING Data Science Fellow", where: "Drexel University College of Computing & Informatics",
+        detail: "Laura Bush 21st Century Librarian (LB21) National Digital Infrastructures and Initiatives project, supported by the Institute of Museum and Library Services (IMLS) RE-246450-OLS-20." },
       { when: "2021", title: "Graduate Summer Research Mentorship", where: "Department of Information Studies, UCLA",
         detail: "PI: Johanna Drucker." },
       { when: "2020", title: "Graduate Student Researcher", where: "Department of Information Studies, UCLA",
@@ -760,13 +777,29 @@ const CV = [
   },
   {
     heading: "Teaching",
+    // rows marked `subhead` are department headings, `role` marks a position;
+    // both are labels rather than entries and render without a date column.
     rows: [
-      { when: "2024 \u2013 2026", title: "Introduction to Digital Humanities (DGTHUM101)", where: "Teaching Assistant \u00b7 Department of Digital Humanities, UCLA" },
-      { when: "2026", title: "Internet and Society (INFSTD30)", where: "Teaching Assistant \u00b7 Department of Information Studies, UCLA" },
-      { when: "2024", title: "Artificial Intelligence and Justice (INFSTD180)", where: "Teaching Assistant \u00b7 Department of Information Studies, UCLA" },
-      { when: "2024", title: "Critical Data and Decoloniality (10CW)", where: "Teaching Fellow, primary instructor \u00b7 Cluster in Data, Justice, and Society, UCLA" },
-      { when: "2020 \u2013 2026", title: "Description and Access; Artifacts and Cultures; Systems and Infrastructures", where: "Special Reader \u00b7 Department of Information Studies, UCLA" },
-      { when: "2022 \u2013 2024", title: "Field Studies (COMM185)", where: "Graduate Reader \u00b7 Department of Communication, UCLA" },
+      { subhead: "UCLA Department of Information Studies" },
+      { role: "Teaching Assistant" },
+      { when: "S2026", title: "Internet and Society (INFSTD30)" },
+      { when: "W2024", title: "Artificial Intelligence and Justice (INFSTD180)" },
+      { role: "Special Reader" },
+      { when: "W2026", title: "Description and Access (INFSTD260)" },
+      { when: "F2020, F2021, F2024, F2025", title: "Artifacts and Cultures (INFSTD211)" },
+      { when: "W2025", title: "Systems and Infrastructures (INFSTD270)" },
+
+      { subhead: "UCLA Department of Digital Humanities" },
+      { role: "Teaching Assistant" },
+      { when: "F2025, W2026, S2026", title: "Introduction to Digital Humanities (DGTHUM101)" },
+
+      { subhead: "UCLA Cluster in Data, Justice, and Society" },
+      { role: "Primary Instructor: Teaching Fellow" },
+      { when: "S2024", title: "Critical Data and Decoloniality (10CW)" },
+
+      { subhead: "UCLA Department of Communication Studies" },
+      { role: "Graduate Reader" },
+      { when: "W2022, S2022, W2023, S2023, F2023, W2024", title: "Field Studies (COMM185)" },
     ],
   },
   {
@@ -1339,15 +1372,19 @@ function CVPage() {
         <${Reveal} key=${i}>
           <div class="cv-section">
             <span class="label">${sec.heading}</span>
-            ${sec.rows.map((r, j) => html`
-              <div class="cv-row" key=${j}>
-                <div class="when">${r.when}</div>
-                <div>
-                  <h4>${r.title}</h4>
-                  ${r.where ? html`<p class="where">${r.where}</p>` : null}
-                  ${r.detail ? html`<p class="detail">${r.detail}</p>` : null}
-                </div>
-              </div>`)}
+            ${sec.rows.map((r, j) => {
+              if (r.subhead) return html`<div class="cv-subhead" key=${j}>${r.subhead}</div>`;
+              if (r.role)    return html`<div class="cv-role" key=${j}>${r.role}</div>`;
+              return html`
+                <div class="cv-row" key=${j}>
+                  <div class="when">${r.when}</div>
+                  <div>
+                    <h4>${r.title}</h4>
+                    ${r.where ? html`<p class="where">${r.where}</p>` : null}
+                    ${r.detail ? html`<p class="detail">${r.detail}</p>` : null}
+                  </div>
+                </div>`;
+            })}
           </div>
         </${Reveal}>`)}
     </div>
