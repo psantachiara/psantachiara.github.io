@@ -11,9 +11,9 @@
    ============================================================================ */
 
 :root {
-  --bg:         #f7f4ee;   /* warm paper */
-  --bg-elev:    #fffdf9;
-  --bg-sunk:    #efeae1;
+  --bg:         #ffffff;
+  --bg-elev:    #ffffff;
+  --bg-sunk:    #f2f2f2;
 
   --text:       #16181d;
   --text-dim:   #55595f;
@@ -21,7 +21,7 @@
 
   --gold:       #9a7526;   /* darkened for contrast on light ground */
   --gold-soft:  #b8913c;
-  --gold-ink:   #fffdf9;
+  --gold-ink:   #ffffff;
 
   --blue:       #2f5f80;   /* links */
 
@@ -67,7 +67,7 @@ a { color: inherit; text-decoration: none; }
 header.bar {
   position: sticky; top: 0; z-index: 50;
   height: 62px; display: flex; align-items: center;
-  background: rgba(247,244,238,0.85);
+  background: rgba(255,255,255,0.86);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--line);
@@ -153,14 +153,9 @@ h3.sub {
    are allowed to run wider than the prose measure, because the visualisations
    need the room; captions stay narrow so they remain readable.
    ---------------------------------------------------------------------------- */
-figure.viz {
-  margin: 44px 0;
-  background: var(--bg-elev);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px;
-  overflow: hidden;
-}
+/* No frame: the visualisations are white and the page is white, so a border
+   would only draw a box around nothing. The embeds sit directly on the page. */
+figure.viz { margin: 44px 0; }
 /* The original viz_v1.js embeds size themselves in JavaScript from the
    container's width, so the placeholder must be a plain full-width block.
    Do not add padding or borders to .tableauPlaceholder itself — the script
@@ -168,28 +163,24 @@ figure.viz {
 figure.viz > div { width: 100%; display: block; }
 figure.viz .tableauPlaceholder { width: 100%; }
 figure.viz object.tableauViz { width: 100%; }
-figure.viz img { width: 100%; height: auto; display: block; border-radius: 2px; }
+figure.viz img { width: 100%; height: auto; display: block; }
 figure.viz figcaption {
   font-family: var(--mono); font-size: 12px; line-height: 1.65;
   color: var(--text-faint); margin-top: 14px; max-width: 70ch;
 }
 
 /* Voyant and other iframes: responsive box rather than a fixed pixel size */
-.frame {
-  position: relative; width: 100%; margin: 44px 0;
-  background: var(--bg-elev); border: 1px solid var(--line);
-  border-radius: var(--radius); overflow: hidden;
-}
+.frame { position: relative; width: 100%; margin: 44px 0; }
 .frame iframe { display: block; width: 100%; height: 700px; border: 0; }
 @media (max-width: 720px) { .frame iframe { height: 520px; } }
 .frame .note {
   font-family: var(--mono); font-size: 11.5px; color: var(--text-faint);
-  padding: 10px 14px; border-top: 1px solid var(--line-soft);
+  padding-top: 10px;
 }
 
 /* a plain image figure */
 figure.fig { margin: 44px 0; }
-figure.fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); }
+figure.fig img { width: 100%; height: auto; display: block; }
 figure.fig figcaption {
   font-family: var(--mono); font-size: 12px; color: var(--text-faint);
   margin-top: 12px; max-width: 70ch;
@@ -223,7 +214,7 @@ figure.fig figcaption {
   position: relative; z-index: 1;
   display: flex; align-items: flex-end; height: 100%; min-height: 168px;
   padding: 20px 22px;
-  font-family: var(--display); font-size: 1.5rem; color: #fffdf9;
+  font-family: var(--display); font-size: 1.5rem; color: #ffffff;
   line-height: 1.1;
 }
 
