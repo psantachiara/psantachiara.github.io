@@ -725,39 +725,85 @@ const TALK_CATEGORIES = ["Conference Presentations", "Invited Talks"];
    ------------------------------------------------------------------------ */
 const CV = [
   {
-    heading: "Appointments",
-    rows: [
-      { when: "2024 —",      title: "Assistant Professor", where: "Department, Somewhere University", detail: "One line on your role, if useful. Otherwise delete this field." },
-      { when: "2022 – 2024", title: "Postdoctoral Fellow", where: "Institute, Another University" },
-    ],
-  },
-  {
     heading: "Education",
     rows: [
-      { when: "in progress", title: "PhD, Information Studies", where: "University of California, Los Angeles", detail: "Dissertation: “The Title of Your Dissertation.” Advisor: Name." },
-      { when: "2016", title: "MA, Your Discipline", where: "University" },
-      { when: "2014", title: "BA, Your Discipline", where: "University" },
+      { when: "2027 (exp.)", title: "PhD, Information Studies", where: "University of California, Los Angeles",
+        detail: "Dissertation: From Representation to Apparatus: Rethinking Computational Ontology in Linked Open Data. Co-chairs: Jonathan Furner and Gregory H. Leazer." },
+      { when: "2024", title: "Graduate Certificate in Digital Humanities", where: "UCLA" },
+      { when: "2022", title: "MLIS, Informatics Specialization", where: "UCLA" },
+      { when: "2010", title: "MSc, Communication", where: "University of Lugano (USI), Switzerland",
+        detail: "Technology-Enhanced Communication for Cultural Heritage." },
+      { when: "2006", title: "BA, Communication Studies", where: "University of Modena and Reggio Emilia (UNIMORE), Italy",
+        detail: "Mass Media and Digital Publishing concentrations." },
     ],
   },
   {
-    heading: "Grants and Awards",
+    heading: "Research Experience",
     rows: [
-      { when: "2025", title: "A Digital Humanities Grant", where: "Funding Body", detail: "Amount or short description." },
-      { when: "2023", title: "An Article Prize", where: "Learned Society" },
+      { when: "2024", title: "Graduate Student Researcher", where: "DataX, UCLA",
+        detail: "PIs: Noopur Raval, Safiya Noble, Sarah Roberts." },
+      { when: "2022", title: "LEADING Data Science Fellow", where: "Department of Digital Humanities, Haverford College",
+        detail: "PI: Bret Mulligan. IMLS Laura Bush 21st Century Librarian programme (RE-246450-OLS-20)." },
+      { when: "2021", title: "Graduate Summer Research Mentorship", where: "Department of Information Studies, UCLA",
+        detail: "PI: Johanna Drucker." },
+      { when: "2020", title: "Graduate Student Researcher", where: "Department of Information Studies, UCLA",
+        detail: "PI: Johanna Drucker." },
+    ],
+  },
+  {
+    heading: "Professional Experience",
+    rows: [
+      { when: "2022", title: "User Experience Researcher", where: "NASA Jet Propulsion Laboratory, Los Angeles" },
+      { when: "2011 \u2013 2012", title: "Digital Initiatives Graduate Intern", where: "Collection Information and Access, The J. Paul Getty Museum" },
+      { when: "2008", title: "Production Intern", where: "Interactive Educational Technologies, San Francisco Museum of Modern Art" },
     ],
   },
   {
     heading: "Teaching",
     rows: [
-      { when: "2024 —", title: "Introduction to Digital Humanities", where: "Undergraduate seminar" },
-      { when: "2024 —", title: "A Course on Your Period or Topic",   where: "Graduate seminar" },
+      { when: "2024 \u2013 2026", title: "Introduction to Digital Humanities (DGTHUM101)", where: "Teaching Assistant \u00b7 Department of Digital Humanities, UCLA" },
+      { when: "2026", title: "Internet and Society (INFSTD30)", where: "Teaching Assistant \u00b7 Department of Information Studies, UCLA" },
+      { when: "2024", title: "Artificial Intelligence and Justice (INFSTD180)", where: "Teaching Assistant \u00b7 Department of Information Studies, UCLA" },
+      { when: "2024", title: "Critical Data and Decoloniality (10CW)", where: "Teaching Fellow, primary instructor \u00b7 Cluster in Data, Justice, and Society, UCLA" },
+      { when: "2020 \u2013 2026", title: "Description and Access; Artifacts and Cultures; Systems and Infrastructures", where: "Special Reader \u00b7 Department of Information Studies, UCLA" },
+      { when: "2022 \u2013 2024", title: "Field Studies (COMM185)", where: "Graduate Reader \u00b7 Department of Communication, UCLA" },
+    ],
+  },
+  {
+    heading: "Select Workshops and Institutes",
+    rows: [
+      { when: "2025", title: "Knowledge Organisation in the Age of AI", where: "ISKO UK Conference" },
+      { when: "2023", title: "Cultural Heritage Data School", where: "Cambridge Digital Humanities, University of Cambridge" },
+      { when: "2023", title: "AI for GLAM", where: "UCLA Data Science Center" },
+      { when: "2022", title: "Data Science Bootcamp", where: "Drexel University College of Computing & Informatics" },
+      { when: "2020", title: "Histories of Artificial Intelligence: A Genealogy of Power", where: "Mellon Sawyer Seminar, History and Philosophy of Science, University of Cambridge" },
+      { when: "2014", title: "Beautiful Data: Telling Stories with Open Art Collections", where: "metaLAB (at) Harvard \u00b7 Getty Foundation Digital Art History Initiative" },
+    ],
+  },
+  {
+    heading: "Awards, Fellowships, and Grants",
+    rows: [
+      { when: "2022, 25, 26", title: "University of California Regents Fellowship", where: "Graduate Division, UCLA" },
+      { when: "2025", title: "Andrew Horn Memorial Fellowship", where: "Information Studies, UCLA" },
+      { when: "2019 \u2013 2024", title: "Bernard and Martin Breslauer Fellowship", where: "Information Studies, UCLA" },
+      { when: "2022, 23", title: "University Fellowship", where: "Graduate Division, UCLA" },
+      { when: "2022", title: "LEADING Data Science Fellowship", where: "Drexel University \u00b7 IMLS RE-246450-OLS-20" },
+      { when: "2021", title: "Graduate Summer Research Mentorship", where: "Graduate Division, UCLA" },
+      { when: "2016", title: "David Vickter Fellowship (declined)", where: "Information Studies, UCLA" },
+      { when: "2015", title: "Fellowship", where: "Alliance of Digital Humanities Organizations" },
+      { when: "2014", title: "Research Grant, Beautiful Data", where: "metaLAB (at) Harvard \u00b7 Getty Foundation" },
+      { when: "2011 \u2013 2012", title: "Research and Travel Grants", where: "The J. Paul Getty Trust" },
+      { when: "2009 \u2013 2012", title: "MUSE Awards (two Silver, two Honorable Mention)", where: "American Alliance of Museums",
+        detail: "For projects at The J. Paul Getty Museum and the San Francisco Museum of Modern Art." },
+      { when: "2007", title: "Dean\u2019s Scholarship", where: "Foundation for the Lugano Faculties, USI" },
     ],
   },
   {
     heading: "Service",
     rows: [
-      { when: "2025 —", title: "Editorial Board", where: "Journal Name" },
-      { when: "2023 —", title: "Peer Reviewer",   where: "Several journals and presses" },
+      { when: "2020 \u2013 2021", title: "Organizer, Information Studies Colloquia Series", where: "UCLA" },
+      { when: "2017 \u2013 2018", title: "Communications Chair", where: "Alliance of Digital Humanities Organizations" },
+      { when: "2008, 2012", title: "Volunteer, Museums and the Web", where: "Montreal and San Diego" },
     ],
   },
 ];
