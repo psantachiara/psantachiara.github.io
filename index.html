@@ -251,7 +251,6 @@
      per-character spans cannot break in the middle of a word.
      ========================================================================== */
   .typed .t-w { display: inline-block; }
-  .typed .t-sp { white-space: pre; }
   .typed .t-c { position: relative; opacity: 0; }
 
   .typed.on .t-c { animation: typeIn 1ms linear var(--d) forwards; }
@@ -630,7 +629,7 @@ const PUBLICATIONS = [
     title: "Classification as System of Discipline and Punishment: A Mereological Analysis of the Antiquity/(Post)Modernity Dichotomy",
     authors: ["Santachiara, P."],
     venue: "Critical Theory and Information Studies, 1 February",
-    links: [ { label: "Read", url: "https://shorturl.at/yvfws" } ],
+    links: [ { label: "Read", url: "https://criticaltheoryis.blogspot.com/2020/02/classification-as-system-of-discipline.html" } ],
   },
   {
     year: 2024, kind: "Digital Projects",
@@ -950,8 +949,12 @@ function Typed({ text, start = 0, speed = TYPING.speed, className = "", tag = "p
       })}
     </span>`);
     if (wi < words.length - 1) {
-      const d = start + (i++) * speed;
-      nodes.push(html`<span key=${"s" + wi} class="t-c t-sp" style=${{ "--d": d + "ms" }}> </span>`);
+      // A plain text space, not a span: a span with white-space:pre survives a
+      // line break and shows up as a stray indent on the wrapped line. Spaces
+      // have no ink, so there is nothing to animate — only the delay counter
+      // needs to advance so the timing still matches the character count.
+      i++;
+      nodes.push(" ");
     }
   });
 
@@ -1343,7 +1346,7 @@ function PublicationsPage() {
       <${PageHead}
         label="Writing"
         title="Publications"
-        kicker="Grouped by kind, newest first within each. Open-access copies are linked where rights allow; write to me for anything behind a paywall." />
+        kicker="Grouped by kind, newest first within each. Open-access copies are linked where rights allow." />
       <${GroupedList} items=${PUBLICATIONS} order=${PUB_CATEGORIES} />
     </div>
   </div>`;
