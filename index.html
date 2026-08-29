@@ -400,27 +400,27 @@
   /* ==========================================================================
      PUBLICATIONS
      ========================================================================== */
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 46px; }
-  .chip {
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-dim); background: none; border: 1px solid var(--line);
-    padding: 8px 15px; border-radius: 999px; cursor: pointer;
-    transition: border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease);
-  }
-  .chip:hover { color: var(--text); border-color: var(--text-faint); }
-  .chip.on { color: var(--gold-ink); background: var(--gold); border-color: var(--gold); }
 
-  .year-group { margin-bottom: 8px; }
-  .year-head {
-    display: flex; align-items: baseline; gap: 18px;
-    padding: 34px 0 14px; border-bottom: 1px solid var(--line);
+  /* Publications are grouped by kind. The heading is set in the display serif
+     so it reads as a section, with the entry count sitting quietly beside it. */
+  .cat-group { margin-bottom: 8px; }
+  .cat-head {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 44px 0 14px; border-bottom: 1px solid var(--line);
   }
-  .year-head .yr { font-family: var(--display); font-size: 2.1rem; color: var(--gold-soft); line-height: 1; }
-  .year-head .count { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); }
+  .cat-head h3 {
+    font-family: var(--display); font-weight: 400; font-size: 1.75rem;
+    color: var(--gold-soft); line-height: 1.1; margin: 0;
+  }
+  .cat-head .count {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
+    color: var(--text-faint);
+  }
+  .cat-group:first-of-type .cat-head { padding-top: 26px; }
 
   .pub { display: grid; grid-template-columns: 108px 1fr; gap: 30px; padding: 26px 0; border-bottom: 1px solid var(--line-soft); }
   @media (max-width: 720px) { .pub { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
-  .pub .kind { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); padding-top: 7px; }
+  .pub .kind { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--gold); padding-top: 8px; }
   .pub h4 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; line-height: 1.28; margin: 0 0 8px; }
   .pub .authors { color: var(--text-dim); font-size: 0.97rem; margin: 0 0 4px; }
   .pub .authors .me { color: var(--text); }
@@ -578,40 +578,77 @@ const ABOUT = {
    ------------------------------------------------------------------------ */
 const PUBLICATIONS = [
   {
-    year: 2026, kind: "Article",
-    title: "The Title of a Recent Article That Runs a Little Long",
-    authors: ["Pietro Santachiara"],
-    venue: "Journal of the Thing You Study, 41(2), 210–238",
-    links: [ { label: "DOI", url: "#" }, { label: "PDF", url: "#" }, { label: "Data", url: "#" } ],
+    year: 2026, kind: "Peer-Reviewed Journal Articles",
+    title: "From Facticity to Perspective: Rethinking Classification, Truth and Interoperability in Knowledge Organization; or, Uncertainty as Infrastructure",
+    authors: ["Santachiara, P."],
+    venue: "Journal of Documentation, ahead-of-print, 1\u201322",
+    links: [ { label: "DOI", url: "https://doi.org/10.1108/JD-01-2026-0052" } ],
   },
   {
-    year: 2026, kind: "Chapter",
-    title: "A Book Chapter on a Narrower Question",
-    authors: ["Pietro Santachiara", "A Collaborator"],
-    venue: "In The Edited Collection (pp. 88–104). University Press",
-    links: [ { label: "PDF", url: "#" } ],
+    year: 2022, kind: "Peer-Reviewed Journal Articles",
+    title: "Heterochronologies: A Platform for Correlation and Research in Temporal Graphics",
+    authors: ["Drucker, J.", "Polack, P.", "Santachiara, P."],
+    venue: "Digital Humanities Quarterly, 16(3)",
+    links: [ { label: "Read", url: "http://digitalhumanities.org/dhq/vol/16/3/000624/000624.html" } ],
   },
   {
-    year: 2025, kind: "Article",
-    title: "An Earlier Article With a Colon: And a Subtitle After It",
-    authors: ["A Collaborator", "Pietro Santachiara"],
-    venue: "Another Journal, 12(4), 55–79",
-    links: [ { label: "DOI", url: "#" }, { label: "Preprint", url: "#" } ],
+    year: 2008, kind: "Book Chapters",
+    title: "Fondamenti della Comunicazione d\u2019Impresa",
+    authors: ["Santachiara, P."],
+    venue: "In M. Carpegna, Spot, Un Film di 30 Secondi. Come Nasce e Si Riproduce la Pubblicit\u00e0 Televisiva (Vol. 29, pp. 20\u201352). Franco Angeli",
+    links: [],
   },
   {
-    year: 2025, kind: "Talk",
-    title: "Conference Paper Delivered Somewhere Reasonably Prestigious",
-    authors: ["Pietro Santachiara"],
-    venue: "Annual Meeting of the Society, City",
-    links: [ { label: "Slides", url: "#" } ],
+    year: 2020, kind: "Public Writing",
+    title: "Classification as System of Discipline and Punishment: A Mereological Analysis of the Antiquity/(Post)Modernity Dichotomy",
+    authors: ["Santachiara, P."],
+    venue: "Critical Theory and Information Studies, 1 February",
+    links: [ { label: "Read", url: "https://shorturl.at/yvfws" } ],
   },
   {
-    year: 2023, kind: "Book",
-    title: "The Monograph, If You Have One",
-    authors: ["Pietro Santachiara"],
-    venue: "University Press",
-    links: [ { label: "Publisher", url: "#" } ],
+    year: 2024, kind: "Digital Projects",
+    title: "The Lives of Historic Broadway Theaters: Making Modernity",
+    authors: ["Hayes, N.", "Lee, D.", "Lim, R.", "Luong, S.", "Santachiara, P.", "Stocco, H.", "Zuberi, I."],
+    venue: "Digital project",
+    links: [ { label: "Visit", url: "#" } ],
   },
+  {
+    year: 2021, kind: "Digital Projects",
+    title: "Museum Acquisitions and Collection Development: An Analysis of The Museum of Modern Art Open Data",
+    authors: ["Santachiara, P."],
+    venue: "Digital project",
+    links: [ { label: "Visit", url: "#" } ],
+  },
+  {
+    year: 2021, kind: "Digital Projects",
+    title: "A Tourist Guide to United Kingdom Weather for Plutonians: A Satirical Exploration of Environmental Data Representation",
+    authors: ["Santachiara, P."],
+    venue: "Digital project",
+    links: [ { label: "Visit", url: "#" } ],
+  },
+  {
+    year: 2021, kind: "Digital Projects",
+    title: "Art, History, and Leadership: Uncovering Stories in The Metropolitan Museum of Art\u2019s Collection",
+    authors: ["Faulis, M.", "Hartman, J.", "Levandofsky, J.", "Santachiara, P."],
+    venue: "Digital project",
+    links: [ { label: "Visit", url: "#" } ],
+  },
+  {
+    year: 2020, kind: "Digital Projects",
+    title: "Power of the People: Mapping Mobilization in Venezuela, China, and France",
+    authors: ["Huang, K.", "Mimura, J.", "Santachiara, P.", "Sridhar, K.", "Xu, T."],
+    venue: "Digital project",
+    links: [ { label: "Visit", url: "#" } ],
+  },
+];
+
+// The order categories appear on the page. Any kind not listed here is shown
+// after these, in the order it first appears above.
+const PUB_CATEGORIES = [
+  "Peer-Reviewed Journal Articles",
+  "Book Chapters",
+  "Public Writing",
+  "Digital Projects",
 ];
 
 /* --- CURRICULUM VITAE ---------------------------------------------------
@@ -1016,7 +1053,8 @@ function GraphField() {
 
 /* ---------- Shared bits ---------- */
 function Authors({ list }) {
-  const me = SITE.givenName + " " + SITE.familyName;
+  // authors are written surname-first, as in a reference list
+  const me = SITE.familyName + ", " + SITE.givenName.charAt(0) + ".";
   return html`<p class="authors">${list.map((a, i) => html`
     <span key=${i} class=${a === me ? "me" : ""}>${a}${i < list.length - 1 ? ", " : ""}</span>`)}</p>`;
 }
@@ -1107,39 +1145,36 @@ function HomePage() {
 }
 
 function PublicationsPage() {
-  const kinds = useMemo(() => ["All", ...Array.from(new Set(PUBLICATIONS.map(p => p.kind)))], []);
-  const [filter, setFilter] = useState("All");
+  // categories in the declared order, then any others in order of appearance
+  const categories = useMemo(() => {
+    const present = Array.from(new Set(PUBLICATIONS.map(p => p.kind)));
+    const ordered = PUB_CATEGORIES.filter(c => present.includes(c));
+    return ordered.concat(present.filter(c => !ordered.includes(c)));
+  }, []);
 
-  const grouped = useMemo(() => {
-    const list = filter === "All" ? PUBLICATIONS : PUBLICATIONS.filter(p => p.kind === filter);
-    const byYear = {};
-    list.forEach(p => { (byYear[p.year] = byYear[p.year] || []).push(p); });
-    return Object.keys(byYear).sort((a, b) => b - a).map(y => ({ year: y, items: byYear[y] }));
-  }, [filter]);
+  const grouped = useMemo(() => categories.map(c => ({
+    name: c,
+    // newest first within each category
+    items: PUBLICATIONS.filter(p => p.kind === c).sort((a, b) => b.year - a.year),
+  })), [categories]);
 
   return html`<div class="page">
     <div class="wrap">
       <${PageHead}
         label="Writing"
         title="Publications"
-        kicker="Reverse chronological. Open-access copies are linked where rights allow; write to me for anything behind a paywall." />
-
-      <div class="filters">
-        ${kinds.map(k => html`
-          <button key=${k} class=${"chip " + (filter === k ? "on" : "")}
-                  onClick=${() => setFilter(k)} aria-pressed=${filter === k}>${k}</button>`)}
-      </div>
+        kicker="Grouped by kind, newest first within each. Open-access copies are linked where rights allow; write to me for anything behind a paywall." />
 
       ${grouped.map(g => html`
-        <${Reveal} key=${g.year}>
-          <div class="year-group">
-            <div class="year-head">
-              <span class="yr">${g.year}</span>
-              <span class="count">${g.items.length} ${g.items.length === 1 ? "entry" : "entries"}</span>
+        <${Reveal} key=${g.name}>
+          <div class="cat-group">
+            <div class="cat-head">
+              <h3>${g.name}</h3>
+              <span class="count">${g.items.length}</span>
             </div>
             ${g.items.map((p, i) => html`
               <div class="pub" key=${i}>
-                <div class="kind">${p.kind}</div>
+                <div class="kind">${p.year}</div>
                 <div>
                   <h4>${p.title}</h4>
                   <${Authors} list=${p.authors} />
