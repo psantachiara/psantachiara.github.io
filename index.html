@@ -491,15 +491,17 @@
   .proj h4 { font-family: var(--display); font-weight: 400; font-size: 1.85rem; line-height: 1.1; margin: 16px 0 10px; }
   .proj.featured h4 { font-size: 2.3rem; }
   .proj p { margin: 0; color: var(--text-dim); font-size: 1rem; line-height: 1.7; max-width: 62ch; }
-  /* contributor list, between the title and the description */
-  .proj p.people { color: var(--text-faint); font-size: 0.92rem; line-height: 1.6; margin: 0 0 12px; }
+  /* contributor list, between the title and the description. Uses the same
+     Authors component as the publications page, so the name highlighting is
+     identical across the site. */
+  .proj .people { margin: 0 0 12px; }
+  .proj .people .authors { color: var(--text-faint); font-size: 0.92rem; line-height: 1.6; margin: 0; }
+  .proj .people .authors .me { color: var(--text); }
   .proj .tags { margin-top: 20px; display: flex; gap: 7px; flex-wrap: wrap; }
   .proj .tags span {
     font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--text-faint); border: 1px solid var(--line-soft); padding: 4px 9px; border-radius: 999px;
   }
-  .proj .go { margin-top: 22px; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--blue); transition: color .25s var(--ease); }
-  .proj:hover .go { color: var(--gold-soft); }
 
   /* ==========================================================================
      FOOTER
@@ -853,47 +855,46 @@ const CV = [
 const PROJECTS = [
   {
     featured: true,
-    year: "2024", role: "Winter 2024 \u00b7 DGTHUM299 Architectural Reconstruction on Broadway",
+    year: "2024", role: "DGTHUM299 Architectural Reconstruction on Broadway",
     title: "The Lives of Historic Broadway Theaters: Making Modernity",
-    people: "Niaoz Hayes, Deborah Lee, Rachel Lim, Sage Luong, Pietro Santachiara, Hazel Stocco, Izma Zuberi",
+    people: ["Hayes, N.", "Lee, D.", "Lim, R.", "Luong, S.", "Santachiara, P.", "Stocco, H.", "Zuberi, I."],
     blurb: "An architectural reconstruction of the historic theaters of Broadway in downtown Los Angeles, presented as an ArcGIS StoryMap alongside the team\u2019s working Miro board. The project traces how these buildings were made, altered, and repurposed across a century of the street\u2019s life.",
     tags: ["ArcGIS StoryMaps", "Miro", "Architectural reconstruction"],
-    url: "/la-broadway-theaters/", urlLabel: "Open the project",
+    url: "/la-broadway-theaters/",
   },
   {
-    year: "2021", role: "Fall 2021 \u00b7 INFSTD180 History and Practice of Information Visualization",
-    title: "A Tourist Guide to United Kingdom Weather for Plutonians",
-    people: "Pietro Santachiara",
+    year: "2021", role: "INFSTD180 History and Practice of Information Visualization",
+    title: "A Tourist Guide to United Kingdom Weather for Plutonians: A Satirical Exploration of Environmental Data Representation",
+    people: ["Santachiara, P."],
     blurb: "A satirical exploration of environmental data representation, addressed to readers for whom the British climate would be balmy. Twelve visualizations of Met Office station data, arranged so that the framing does as much work as the figures.",
     tags: ["Tableau", "Environmental data", "Satire"],
-    url: "/tourist-guide/", urlLabel: "Open the project",
+    url: "/tourist-guide/",
   },
   {
-    year: "2021", role: "Winter 2021 \u00b7 INFSTD289 Community Data",
+    year: "2021", role: "INFSTD289 Community Data",
     title: "Art, History, and Leadership: Uncovering Stories in The Metropolitan Museum of Art\u2019s Collection",
-    people: "Madison Faulis, Jarett Hartman, Jade Levandofsky, Pietro Santachiara",
+    people: ["Faulis, M.", "Hartman, J.", "Levandofsky, J.", "Santachiara, P."],
     blurb: "An analysis of The Met\u2019s open collection data through the museum\u2019s leadership teams and the eras they presided over. Reading acquisitions against directors, exhibitions, and world events surfaces stories \u2014 Winlock, Rockefeller, Burdick \u2014 that the counts alone do not tell.",
     tags: ["OpenRefine", "R", "Open collection data"],
-    url: "/met/", urlLabel: "Open the project",
+    url: "/met/",
   },
   {
-    year: "2021", role: "Winter 2021 \u00b7 DGTHUM201 Introduction to Digital Humanities",
+    year: "2021", role: "DGTHUM201 Introduction to Digital Humanities",
     title: "Museum Acquisitions and Collection Development: an Analysis of The Museum of Modern Art Open Data",
-    people: "Pietro Santachiara",
+    people: ["Santachiara, P."],
     blurb: "A six-part study of MoMA\u2019s open datasets \u2014 138,151 artworks and 15,222 artists \u2014 examining how the collection was assembled by department, classification, acquisition type, gender, nationality, and medium.",
     tags: ["Tableau", "Voyant Tools", "Open collection data"],
-    url: "/moma/", urlLabel: "Open the project",
+    url: "/moma/",
   },
   {
-    year: "2020", role: "Fall 2020 \u00b7 DGTHUM250 Digital Mapping and Critical GIS",
+    year: "2020", role: "DGTHUM250 Digital Mapping and Critical GIS",
     title: "Power of the People: Mapping Mobilization in Venezuela, China, and France",
-    people: "Katie Huang, Josh Mimura, Pietro Santachiara, Kedaar Sridhar, Tianrui Xu",
+    people: ["Huang, K.", "Mimura, J.", "Santachiara, P.", "Sridhar, K.", "Xu, T."],
     blurb: "A critical mapping of protest and mobilization across three countries, built as an ArcGIS StoryMap. Archived: the interactive components are no longer active.",
     tags: ["ArcGIS StoryMaps", "Critical GIS", "Archived"],
-    url: "/power-people/", urlLabel: "Open the project",
+    url: "/power-people/",
   },
 ];
-
 /* ============================================================================
    ██  END OF CONTENT — you should not need to edit anything below  ██
    ============================================================================ */
@@ -1425,10 +1426,9 @@ function PortfolioPage() {
             <a class=${"proj " + (p.featured ? "featured" : "")} key=${i} href=${p.url}>
               <div class="meta-line"><span class="yr">${p.year}</span><span>${p.role}</span></div>
               <h4>${p.title}</h4>
-              ${p.people ? html`<p class="people">${p.people}</p>` : null}
+              ${p.people ? html`<div class="people"><${Authors} list=${p.people} /></div>` : null}
               <p>${p.blurb}</p>
               <div class="tags">${p.tags.map((t, j) => html`<span key=${j}>${t}</span>`)}</div>
-              <span class="go">${p.urlLabel || "Open"} →</span>
             </a>`)}
         </div>
       </${Reveal}>
