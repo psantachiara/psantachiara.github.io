@@ -184,6 +184,12 @@ figure.viz figcaption {
 .frame { position: relative; width: 100%; margin: 44px 0; }
 .frame iframe { display: block; width: 100%; height: 700px; border: 0; }
 @media (max-width: 720px) { .frame iframe { height: 520px; } }
+
+/* Immersive embeds — StoryMaps, Miro boards — carry their own internal
+   scrolling and navigation, so they need far more room than a chart does.
+   Viewport-relative so they stay proportionate on any screen. */
+.frame--tall iframe { height: 88vh; min-height: 620px; }
+@media (max-width: 720px) { .frame--tall iframe { height: 78vh; min-height: 480px; } }
 .frame .note {
   font-family: var(--mono); font-size: 11.5px; color: var(--text-faint);
   padding-top: 10px;
