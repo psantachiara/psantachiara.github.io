@@ -539,7 +539,8 @@ const SITE = {
   bio: "I study how people made meaning before the archive was searchable, and what changes when it becomes so. My current work brings computational methods to nineteenth-century periodical culture, with particular attention to what those methods flatten. I also build digital tools for reading at scale.",
   // Contact + profile links shown on the home page and in the footer.
   email: "psantachiara@ucla.edu",
-  cvPdf: "cv.pdf",                                  // put a PDF next to this file, or use a full URL
+  cvPdf: "cv.pdf",   // unused at present — the download button is removed. Put a
+                     // PDF beside this file and restore the button to use it.
   links: [
     { label: "UCLA profile",   url: "https://seis.ucla.edu/students/pietro-santachiara/" },
     { label: "Google Scholar", url: "https://scholar.google.com/citations?user=lXGHXp4AAAAJ&hl=en" },
@@ -1366,11 +1367,7 @@ function CVPage() {
       <${PageHead}
         label="Record"
         title="Curriculum <em>Vitae</em>"
-        kicker="A summary of appointments, training, funding, and service. The full document, including complete lists of talks and reviewing, is available as a PDF." />
-
-      <div style=${{ marginTop: "10px" }}>
-        <a class="btn" href=${SITE.cvPdf} target="_blank" rel="noopener">Download full CV (PDF)</a>
-      </div>
+        kicker="A summary of education, research, teaching, funding, and service." />
 
       ${CV.map((sec, i) => html`
         <${Reveal} key=${i}>
