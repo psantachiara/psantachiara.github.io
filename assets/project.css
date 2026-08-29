@@ -1,0 +1,267 @@
+/* ============================================================================
+   DH PROJECT PAGES — shared stylesheet
+   ----------------------------------------------------------------------------
+   Used by every project page (moma/, met/, tourist-guide/, etc.). Edit once
+   here and every project page changes.
+
+   This is the light counterpart to the main site's dark theme: same typefaces,
+   same gold accent, inverted ground. Warm paper rather than pure white, so the
+   Tableau and Voyant embeds — which are all white — sit inside the page rather
+   than glowing out of it.
+   ============================================================================ */
+
+:root {
+  --bg:         #f7f4ee;   /* warm paper */
+  --bg-elev:    #fffdf9;
+  --bg-sunk:    #efeae1;
+
+  --text:       #16181d;
+  --text-dim:   #55595f;
+  --text-faint: #8b8f97;
+
+  --gold:       #9a7526;   /* darkened for contrast on light ground */
+  --gold-soft:  #b8913c;
+  --gold-ink:   #fffdf9;
+
+  --blue:       #2f5f80;   /* links */
+
+  --line:       rgba(22,24,29,0.13);
+  --line-soft:  rgba(22,24,29,0.07);
+
+  --display: "DM Serif Display", Georgia, serif;
+  --body:    "Spectral", Georgia, serif;
+  --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius: 3px;
+  --measure: 68ch;
+  --maxw: 1180px;      /* wider than the main site: embeds need room */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+::selection { background: rgba(154,117,38,0.22); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: var(--radius); }
+
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 34px; }
+@media (max-width: 720px) { .wrap { padding: 0 20px; } }
+
+/* ----------------------------------------------------------------------------
+   TOP BAR — carries the ps: mark back to the main site
+   ---------------------------------------------------------------------------- */
+header.bar {
+  position: sticky; top: 0; z-index: 50;
+  height: 62px; display: flex; align-items: center;
+  background: rgba(247,244,238,0.85);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.bar .brand {
+  display: flex; align-items: center; line-height: 1;
+  transform: translateY(-2.5px);
+  font-family: var(--mono); font-size: 19px; font-weight: 500;
+  letter-spacing: 0.01em; color: var(--text); white-space: nowrap;
+}
+.bar .brand .dot { color: var(--gold); }
+.bar nav { display: flex; gap: 4px; }
+.bar nav a {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.025em;
+  color: var(--text-dim); padding: 8px 11px; border-radius: var(--radius);
+  transition: color .25s var(--ease), background .25s var(--ease);
+  white-space: nowrap;
+}
+.bar nav a:hover { color: var(--text); background: rgba(22,24,29,0.05); }
+
+/* ----------------------------------------------------------------------------
+   PROJECT HEADER
+   ---------------------------------------------------------------------------- */
+.proj-head { padding: 74px 0 0; }
+.proj-head .label {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--text-faint);
+}
+.proj-head h1 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.08;
+  letter-spacing: -0.012em; margin: 16px 0 0; max-width: 26ch;
+}
+.proj-head h1 em { color: var(--gold); }
+.proj-head .byline {
+  font-family: var(--mono); font-size: 13px; color: var(--text-dim);
+  margin: 22px 0 0; letter-spacing: 0.03em;
+}
+
+/* credits block: class, quarter, instructor */
+.credits {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 26px 34px; margin: 40px 0 0;
+  padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.credits div .k {
+  display: block; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 7px;
+}
+.credits div .v { font-size: 0.97rem; color: var(--text-dim); line-height: 1.6; }
+
+/* ----------------------------------------------------------------------------
+   PROSE
+   ---------------------------------------------------------------------------- */
+.prose { max-width: var(--measure); }
+.prose p { margin: 0 0 1.35em; }
+.prose p:last-child { margin-bottom: 0; }
+.prose a { color: var(--blue); border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.prose a:hover { border-color: var(--blue); }
+.prose em { font-style: italic; }
+
+/* The original pages set body copy at heading size, which gave the argument a
+   deliberate weight. `.lead` preserves that emphasis without using headings
+   for non-heading text. */
+.lead { font-size: 1.17rem; line-height: 1.62; color: var(--text); }
+
+section.band { padding: 54px 0 0; }
+h2.sec {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.1;
+  margin: 0 0 22px; letter-spacing: -0.008em;
+}
+h3.sub {
+  font-family: var(--display); font-weight: 400; font-size: 1.5rem;
+  line-height: 1.15; margin: 44px 0 14px;
+}
+
+/* ----------------------------------------------------------------------------
+   EMBEDS
+   Tableau's modern web component sizes itself from the element's width. Figures
+   are allowed to run wider than the prose measure, because the visualisations
+   need the room; captions stay narrow so they remain readable.
+   ---------------------------------------------------------------------------- */
+figure.viz {
+  margin: 44px 0;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  overflow: hidden;
+}
+figure.viz tableau-viz,
+figure.viz > div { width: 100%; display: block; }
+figure.viz img { width: 100%; height: auto; display: block; border-radius: 2px; }
+figure.viz figcaption {
+  font-family: var(--mono); font-size: 12px; line-height: 1.65;
+  color: var(--text-faint); margin-top: 14px; max-width: 70ch;
+}
+
+/* Voyant and other iframes: responsive box rather than a fixed pixel size */
+.frame {
+  position: relative; width: 100%; margin: 44px 0;
+  background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+}
+.frame iframe { display: block; width: 100%; height: 700px; border: 0; }
+@media (max-width: 720px) { .frame iframe { height: 520px; } }
+.frame .note {
+  font-family: var(--mono); font-size: 11.5px; color: var(--text-faint);
+  padding: 10px 14px; border-top: 1px solid var(--line-soft);
+}
+
+/* a plain image figure */
+figure.fig { margin: 44px 0; }
+figure.fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); }
+figure.fig figcaption {
+  font-family: var(--mono); font-size: 12px; color: var(--text-faint);
+  margin-top: 12px; max-width: 70ch;
+}
+
+/* ----------------------------------------------------------------------------
+   SUBPAGE MENU (project index)
+   ---------------------------------------------------------------------------- */
+.menu-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin: 34px 0 0;
+}
+@media (max-width: 860px) { .menu-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .menu-grid { grid-template-columns: 1fr; } }
+
+.menu-grid a {
+  position: relative; display: block; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line);
+  min-height: 168px;
+  background-size: cover; background-position: center;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.menu-grid a::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,12,16,0.28) 0%, rgba(10,12,16,0.72) 100%);
+  transition: background .35s var(--ease);
+}
+.menu-grid a:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(22,24,29,0.15); }
+.menu-grid a:hover::after { background: linear-gradient(180deg, rgba(10,12,16,0.20) 0%, rgba(10,12,16,0.64) 100%); }
+.menu-grid a span {
+  position: relative; z-index: 1;
+  display: flex; align-items: flex-end; height: 100%; min-height: 168px;
+  padding: 20px 22px;
+  font-family: var(--display); font-size: 1.5rem; color: #fffdf9;
+  line-height: 1.1;
+}
+
+/* ----------------------------------------------------------------------------
+   PAGER — previous / next within a project
+   ---------------------------------------------------------------------------- */
+.pager {
+  display: flex; justify-content: space-between; gap: 20px;
+  padding: 40px 0 0; margin-top: 64px; border-top: 1px solid var(--line);
+}
+.pager a { font-family: var(--mono); font-size: 13px; color: var(--text-dim); max-width: 46%; transition: color .25s var(--ease); }
+.pager a:hover { color: var(--text); }
+.pager a .dir {
+  display: block; font-size: 10.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px;
+}
+.pager a .t { color: var(--text); }
+.pager a:hover .t { color: var(--gold); }
+.pager a.next { text-align: right; margin-left: auto; }
+
+/* link back up to the project's own homepage */
+.up {
+  display: inline-block; margin: 30px 0 0;
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em;
+  color: var(--text-dim); transition: color .25s var(--ease);
+}
+.up:hover { color: var(--gold); }
+
+/* ----------------------------------------------------------------------------
+   BIBLIOGRAPHY + ABOUT
+   ---------------------------------------------------------------------------- */
+.biblio { font-family: var(--mono); font-size: 13.5px; line-height: 1.75; max-width: 80ch; }
+.biblio p { padding-left: 2.4em; text-indent: -2.4em; margin: 0 0 1.2em; color: var(--text-dim); }
+.biblio p i { color: var(--text); font-style: italic; }
+.biblio a { color: var(--blue); overflow-wrap: anywhere; }
+
+.about { max-width: var(--measure); color: var(--text-dim); font-size: 0.99rem; }
+.about p { margin: 0 0 1.2em; }
+.about a { color: var(--blue); border-bottom: 1px solid var(--line); }
+
+footer.foot {
+  border-top: 1px solid var(--line); margin-top: 80px; padding: 34px 0 56px;
+}
+footer.foot .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+footer.foot, footer.foot a { font-family: var(--mono); font-size: 12.5px; color: var(--text-faint); }
+footer.foot a:hover { color: var(--text-dim); }
