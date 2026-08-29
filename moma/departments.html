@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Departments — Museum Acquisitions and Collection Development</title>
+<meta name="description" content="Current collection composition by department, and the development of MoMA's departments over time." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/project.css" />
+
+<!-- Tableau Embedding API v3. Loaded once for the whole page, however many
+     visualisations it contains. Each <tableau-viz> below then needs only a src.
+     This replaces the older viz_v1.js placeholder-and-script pattern. -->
+<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/">ps<span class="dot">:</span></a>
+    <nav>
+      <a href="index.html">← Project homepage</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="proj-head">
+    <span class="label">MoMA Open Data · 01</span>
+    <h1>Departments</h1>
+  </div>
+
+  <section class="band">
+    <div class="prose lead">
+      <p>Insofar as the aim of this project as a whole is to understand museum collecting, a valid initial direction for exploration has to do with the identification of the current collection composition by department. Knowing how many works of art belong to each department provides a good bird’s eye view of the collection as a whole, as well as the size of the individual categories.</p>
+    </div>
+
+    <figure class="viz">
+      <tableau-viz
+        src="https://public.tableau.com/views/dh201_2024-05-14/CurrentCollectionCompositionbyDepartment"
+        toolbar="bottom"
+        hide-tabs>
+      </tableau-viz>
+      <figcaption>Current collection composition by department.</figcaption>
+    </figure>
+
+    <div class="prose lead">
+      <p>The visualization above shows the seven departments that compose MoMA, the size of each circle reflecting the number of works of art belonging to the department. It is apparent how three departments in particular – Drawings &amp; Prints, Photography, Architecture &amp; Design, with 76,117, 31,898, and 19,730 objects respectively – currently hold the majority of works owned by the museum.</p>
+
+      <p>Has this always been the case? Or have other departments been the main contributors to the museum’s collection as a whole? In other words, how has the collection evolved over time, by department?</p>
+    </div>
+
+    <figure class="viz">
+      <tableau-viz
+        src="https://public.tableau.com/views/Dptsdevelopmentovertimeanimated/DepartmentsDevelopmentOverTimeAnimated"
+        toolbar="bottom"
+        hide-tabs>
+      </tableau-viz>
+      <figcaption>Departments development over time (animated), from 1929.</figcaption>
+    </figure>
+
+    <div class="prose lead">
+      <p>The animated chart above shows how, while the three aforementioned departments have consistently made up the majority of the museum’s collection, the degree to which their contributions have taken place – in other words the ratio part-to-whole – has changed over time. Until 1934, the Photography department was the biggest contributor to and subset of the museum’s collection. This changed in 1935, when it was ousted by the Drawings &amp; Prints department.</p>
+
+      <p>Acquisitions by the three departments continued relatively steadily throughout the 1940s, while Painting &amp; Sculpture and Film departments acquired more modestly. In the 1950s the Drawings &amp; Prints department started acquiring at a noticeably quicker rate, and in 1964 it more than doubled in size. In 1968 the Photography department grew markedly, and in 1975 we see the first acquisitions by the Media and Performance department. Acquisitions continue to happen regularly and without spikes up to the current day, the only obvious exception being the Fluxus Collection, which only appears in 2008.</p>
+
+      <p>The succession of rankings and the temporal distribution of acquisitions by department is perhaps best represented by the chart below.</p>
+    </div>
+
+    <figure class="fig">
+      <img src="../assets/momadepartments.png"
+           alt="Alluvial chart showing acquisitions by department unfolding across time, each stream's cross-section reflecting the number of acquisitions." />
+    </figure>
+
+    <div class="prose lead">
+      <p>Here we can see how acquisitions unfolded by department across time, as the cross-section of each stream reflects the amount of acquisitions made by the department it corresponds to. In this sense, this chart provides a fair overall picture and a simple instrument through which a comparison of acquisition trends across departments may be carried out. It also allows to identify a year in which a sizeable amount of acquisitions took place — 2008 — that went unnoticed in the previous visualizations. However, what this visualization does not provide is granularity and detail.</p>
+
+      <p>The stacked bar chart below, instead, provides just that, as the temporal distribution of the totality of acquisitions is broken down by department. We can see the 1964 acquisition spike by the Drawings &amp; Prints department, the 1968 spike by Photography and the 2008 one by both Drawings &amp; Prints and Fluxus Collection.</p>
+    </div>
+
+    <figure class="viz">
+      <tableau-viz
+        src="https://public.tableau.com/views/dh201_acqbydptovtime/AcquisitionsbyDepartmentOverTime"
+        toolbar="bottom"
+        hide-tabs>
+      </tableau-viz>
+      <figcaption>Acquisitions by department over time.</figcaption>
+    </figure>
+
+    <div class="prose lead">
+      <p>While some departments may be more predominantly represented within and contribute more markedly to MoMA’s collection, this has not always been the case. Naturally, such differences are not qualitative, but merely quantitative; nonetheless, open collection data afford the type of analysis presented here the ability to uncover these distributions and illuminate interesting historical trends.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <a class="up" href="index.html"><span class="dir">Up</span><span class="t">Project homepage</span></a>
+    <a class="next" href="classification.html"><span class="dir">Next</span><span class="t">Classification →</span></a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Pietro Santachiara</span>
+    <span><a href="/#/portfolio">DH Portfolio</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

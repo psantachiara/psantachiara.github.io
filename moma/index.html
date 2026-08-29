@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Museum Acquisitions and Collection Development — Pietro Santachiara</title>
+<meta name="description" content="An analysis of The Museum of Modern Art open collection data, by Pietro Santachiara. DGTHUM201 Introduction to Digital Humanities, UCLA." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/project.css" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/">ps<span class="dot">:</span></a>
+    <nav>
+      <a href="/#/portfolio">← dhPortfolio</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="proj-head">
+    <span class="label">Digital Humanities Portfolio</span>
+    <h1>Museum Acquisitions and Collection Development: an Analysis of The Museum of Modern Art <em>Open Data</em></h1>
+    <p class="byline">Pietro Santachiara</p>
+
+    <div class="credits">
+      <div>
+        <span class="k">Class</span>
+        <span class="v">DGTHUM201 Introduction to Digital Humanities</span>
+      </div>
+      <div>
+        <span class="k">Quarter</span>
+        <span class="v">Winter 2021</span>
+      </div>
+      <div>
+        <span class="k">Instructor</span>
+        <span class="v">Miriam Posner</span>
+      </div>
+      <div>
+        <span class="k">Institution</span>
+        <span class="v">University of California, Los Angeles</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="prose lead">
+      <p>Open collection data started to appear on the museum scene at a time in which, on the one hand, some of the problematic aspects that have historically underpinned the practice of collecting in the West were being exposed and presented to the general public (Delbourgo, 2007); and on the other, the authoritative role of museums as exclusive holders of knowledge was starting to be put into question, their role gradually reinterpreted as places of social and cultural participation (Simon, 2010).</p>
+
+      <p>Within a social context in which user-generated content was gradually gaining popularity especially through digital and social media, the decision several museums made in the early 2010s to open their collections’ data to the public was one that arguably changed the ways in which it thought of museums as <em>loci</em> as well as memory institutions with cultural responsibilities.</p>
+
+      <p>The availability of such datasets affords the public an opportunity to analyze museums’ collections, explore their makeup and structure, their institutional activities, missions, components, issues and politics, and in so doing an opportunity to understand the practice of collecting as well as the nature and variety of cultural heritage at large.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2 class="sec">The data</h2>
+    <div class="prose">
+      <p>MoMA’s <strong>Artworks dataset</strong> contains 138,151 records, representing all of the works that have been accessioned, catalogued and are featured into its collection. The metadata that is included for each work of art is categorized as follows: title, artist, constituentID, artist bio, nationality, birth year, death year, gender, work date, medium, dimensions, credit line accession number, classification, department, acquisition date, objectID, URL, thumbnail (linked), dimensions/extent.</p>
+
+      <p>MoMA’s <strong>Artists dataset</strong> contains 15,222 records, representing all the artists whose works are featured in the museum’s collection. It includes basic metadata for each artist, categorized as follows: constituentID, display name, artist bio, nationality, gender, birth year, death year, Wiki QID, Getty ULAN ID.</p>
+
+      <p>Both datasets are available on the museum’s GitHub in CSV (UTF-8) and JSON formats (<em>MuseumofModernArt/Collection</em>, 2015/2021).</p>
+    </div>
+
+    <div class="prose lead" style="margin-top: 34px;">
+      <p>The insights that can be gleaned from any analysis of this collection data are, naturally, multifold, as the depth and breadth of the data gathered, collected and published by MoMA allows for multiple issues to be illuminated from a number of points of view. However, the analysis presented here focuses on issues and trends related to the museum’s acquisitions and collection development over time.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SUBPAGE MENU
+       Background images live in /assets and follow the pattern
+       momamenu<section>.jpg
+       ========================================================================== -->
+  <section class="band">
+    <div class="menu-grid">
+      <a href="departments.html"       style="background-image: url('../assets/momamenudepartments.jpg')"><span>Departments</span></a>
+      <a href="classification.html"    style="background-image: url('../assets/momamenuclassification.jpg')"><span>Classification</span></a>
+      <a href="acquisition-types.html" style="background-image: url('../assets/momamenuacquisitiontypes.jpg')"><span>Acquisition Types</span></a>
+      <a href="gender.html"            style="background-image: url('../assets/momamenugender.jpg')"><span>Gender</span></a>
+      <a href="nationality.html"       style="background-image: url('../assets/momamenunationality.jpg')"><span>Nationality</span></a>
+      <a href="medium.html"            style="background-image: url('../assets/momamenumedium.jpg')"><span>Medium</span></a>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2 class="sec">Bibliography</h2>
+    <div class="biblio">
+      <p>Delbourgo, J. (2007). <i>Slavery in The Cabinet of Curiosities: Hans Sloane’s Atlantic World</i>. The British Museum. <a href="https://www.britishmuseum.org/PDF/Delbourgo%20essay.pdf" target="_blank" rel="noopener">https://www.britishmuseum.org/PDF/Delbourgo essay.pdf</a></p>
+      <p><i>MuseumofModernArt/collection</i>. (2021). MoMA. <a href="https://github.com/MuseumofModernArt/collection" target="_blank" rel="noopener">https://github.com/MuseumofModernArt/collection</a> (Original work published 2015)</p>
+      <p>Simon, N. (2010). <i>The Participatory Museum</i>. Museum 2.0.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2 class="sec">About</h2>
+    <div class="about">
+      <p>All parts of this project, including full data life cycle and analysis, were carried out by Pietro Santachiara as part of the <em>DGTHUM201 Introduction to Digital Humanities</em> class taught by Miriam Posner in Winter 2021 at University of California, Los Angeles.</p>
+      <p>Pietro Santachiara is a PhD candidate in the Department of Information Studies at UCLA. His research deals with knowledge organization and modelling, classification of cultural heritage artifacts, and digital humanities.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Pietro Santachiara</span>
+    <span><a href="/#/portfolio">DH Portfolio</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
