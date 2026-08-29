@@ -439,7 +439,13 @@
      CV
      ========================================================================== */
   .cv-section { margin-top: 54px; }
-  .cv-section > .label { display: block; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  /* Matches .cat-head h3 on the publications and talks pages, so section
+     headings read the same across all three. */
+  .cv-section > .cv-heading {
+    font-family: var(--display); font-weight: 400; font-size: 1.75rem;
+    color: var(--gold-soft); line-height: 1.1; margin: 0;
+    padding-bottom: 14px; border-bottom: 1px solid var(--line);
+  }
 
   .cv-row { display: grid; grid-template-columns: 150px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--line-soft); }
   @media (max-width: 720px) { .cv-row { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; } }
@@ -455,7 +461,7 @@
     font-family: var(--display); font-weight: 400; font-size: 1.2rem;
     color: var(--text); margin: 34px 0 0; padding-bottom: 2px;
   }
-  .cv-section > .label + .cv-subhead { margin-top: 22px; }
+  .cv-section > .cv-heading + .cv-subhead { margin-top: 22px; }
   .cv-role {
     font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--gold);
@@ -1369,7 +1375,7 @@ function CVPage() {
       ${CV.map((sec, i) => html`
         <${Reveal} key=${i}>
           <div class="cv-section">
-            <span class="label">${sec.heading}</span>
+            <h3 class="cv-heading">${sec.heading}</h3>
             ${sec.rows.map((r, j) => {
               if (r.subhead) return html`<div class="cv-subhead" key=${j}>${r.subhead}</div>`;
               if (r.role)    return html`<div class="cv-role" key=${j}>${r.role}</div>`;
