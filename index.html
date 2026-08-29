@@ -388,7 +388,8 @@
   /* ==========================================================================
      HOME — section index cards
      ========================================================================== */
-  .index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  /* Two by two: with four sections a 3-column grid leaves an orphan cell. */
+  .index-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
   @media (max-width: 820px) { .index-grid { grid-template-columns: 1fr; } }
   .index-grid a { background: var(--bg-elev); padding: 32px 28px; display: block; transition: background .3s var(--ease); }
   .index-grid a:hover { background: var(--bg-elev-2); }
@@ -421,6 +422,7 @@
   .pub { display: grid; grid-template-columns: 108px 1fr; gap: 30px; padding: 26px 0; border-bottom: 1px solid var(--line-soft); }
   @media (max-width: 720px) { .pub { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
   .pub .kind { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--gold); padding-top: 8px; }
+  .pub .kind .d { display: block; color: var(--text-faint); font-size: 11.5px; margin-top: 3px; }
   .pub h4 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; line-height: 1.28; margin: 0 0 8px; }
   .pub .authors { color: var(--text-dim); font-size: 0.97rem; margin: 0 0 4px; }
   .pub .authors .me { color: var(--text); }
@@ -542,6 +544,7 @@ const PREDICATES = [
 // Short blurbs for the three cards on the home page.
 const INDEX_CARDS = [
   { path: "/publications", title: "Publications",  blurb: "Peer-reviewed articles, chapters, and edited work, with links to open-access copies where they exist." },
+  { path: "/talks",        title: "Talks & Presentations", blurb: "Conference papers and invited lectures, in departments, seminars, and museums." },
   { path: "/cv",           title: "Curriculum Vitae", blurb: "Appointments, education, funding, teaching, and service. Full PDF available for download." },
   { path: "/portfolio",    title: "DH Portfolio", blurb: "Tools, datasets, and experiments built in the course of research, most of them public." },
 ];
@@ -651,6 +654,71 @@ const PUB_CATEGORIES = [
   "Digital Projects",
 ];
 
+/* --- TALKS ---------------------------------------------------------------
+   Same shape as PUBLICATIONS: kind is the category heading, and the order of
+   categories is set by TALK_CATEGORIES below.
+   ------------------------------------------------------------------------ */
+const TALKS = [
+  {
+    year: 2026, date: "9 October", kind: "Conference Presentations",
+    title: "Cuts That Count: How Ontological Apparatuses Shape What Counts in Linked Open Data",
+    authors: ["Santachiara, P."],
+    venue: "In Counting Matters: The Ontologies of (Ac)counting with and Beyond Data. 4S 2026: Technopower, Technoscientific Futures, Toronto",
+    links: [],
+  },
+  {
+    year: 2021, date: "16 March", kind: "Conference Presentations",
+    title: "Heterochronologies: A Platform For Correlation and Research in Temporal Graphics",
+    authors: ["Drucker, J.", "Polack, P.", "Santachiara, P."],
+    venue: "The Material Life of Time: Second International Temporal Belongings Conference, Oslo, Norway",
+    links: [],
+  },
+  {
+    year: 2026, date: "18 May", kind: "Invited Talks",
+    title: "Classification, Algorithms, and (the) AI (con)",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (INFSTD30 Internet and Society), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2026, date: "27 April", kind: "Invited Talks",
+    title: "Tensions in Computing and the Myth of Neutrality: Labor, Power, and Bias",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (INFSTD30 Internet and Society), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2026, date: "3 March", kind: "Invited Talks",
+    title: "Studying Knowledge Infrastructures: Linked Data Ontologies and Agential Realism",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (Doctoral Seminar \u2014 INFSTD298B Special Topics in Methodology of Information Studies: Methods in Science and Technology Studies), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2025, date: "24 February", kind: "Invited Talks",
+    title: "Knowledge Modelling in Linked Open Data: The Role of Ontologies and Controlled Vocabularies",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (INFSTD270 Systems and Infrastructures), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2023, date: "9 June", kind: "Invited Talks",
+    title: "Unifying the Uncertain: When Provenance Metadata Resists Linked Data",
+    authors: ["Santachiara, P."],
+    venue: "Provenance Data at the Fowler Museum, Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2014, date: "16 June", kind: "Invited Talks",
+    title: "Museum Collections Data: Semantics, Threads, And (Hi)stories",
+    authors: ["Santachiara, P."],
+    venue: "Beautiful Data: A Summer Institute for Telling Stories with Open Art Collections, metaLAB (at) Harvard, Cambridge, MA",
+    links: [],
+  },
+];
+
+const TALK_CATEGORIES = ["Conference Presentations", "Invited Talks"];
+
 /* --- CURRICULUM VITAE ---------------------------------------------------
    Each section has a heading and a list of rows. Add or remove sections
    freely — they render in the order listed here.
@@ -740,6 +808,7 @@ const PROJECTS = [
 const ROUTES = [
   { path: "/",             label: "about",        title: "Home" },
   { path: "/publications", label: "publications", title: "Publications" },
+  { path: "/talks",        label: "talks",        title: "Talks & Presentations" },
   { path: "/cv",           label: "cv",           title: "Curriculum Vitae" },
   { path: "/portfolio",    label: "dhPortfolio",  title: "DH Portfolio" },
 ];
@@ -1144,50 +1213,66 @@ function HomePage() {
   </div>`;
 }
 
+/* Both Publications and Talks are the same shape: entries grouped under
+   category headings, newest first inside each. */
+function GroupedList({ items, order, dated }) {
+  const grouped = useMemo(() => {
+    const present = Array.from(new Set(items.map(p => p.kind)));
+    const ordered = order.filter(c => present.includes(c));
+    const cats = ordered.concat(present.filter(c => !ordered.includes(c)));
+    return cats.map(c => ({
+      name: c,
+      items: items.filter(p => p.kind === c).sort((a, b) => b.year - a.year),
+    }));
+  }, [items, order]);
+
+  return grouped.map(g => html`
+    <${Reveal} key=${g.name}>
+      <div class="cat-group">
+        <div class="cat-head">
+          <h3>${g.name}</h3>
+          <span class="count">${g.items.length}</span>
+        </div>
+        ${g.items.map((p, i) => html`
+          <div class="pub" key=${i}>
+            <div class="kind">
+              ${p.year}${dated && p.date ? html`<span class="d">${p.date}</span>` : null}
+            </div>
+            <div>
+              <h4>${p.title}</h4>
+              <${Authors} list=${p.authors} />
+              <p class="venue">${p.venue}</p>
+              ${p.links && p.links.length ? html`
+                <div class="pub-links">
+                  ${p.links.map((l, j) => html`
+                    <a key=${j} href=${l.url} target="_blank" rel="noopener">${l.label}</a>`)}
+                </div>` : null}
+            </div>
+          </div>`)}
+      </div>
+    </${Reveal}>`);
+}
+
 function PublicationsPage() {
-  // categories in the declared order, then any others in order of appearance
-  const categories = useMemo(() => {
-    const present = Array.from(new Set(PUBLICATIONS.map(p => p.kind)));
-    const ordered = PUB_CATEGORIES.filter(c => present.includes(c));
-    return ordered.concat(present.filter(c => !ordered.includes(c)));
-  }, []);
-
-  const grouped = useMemo(() => categories.map(c => ({
-    name: c,
-    // newest first within each category
-    items: PUBLICATIONS.filter(p => p.kind === c).sort((a, b) => b.year - a.year),
-  })), [categories]);
-
   return html`<div class="page">
     <div class="wrap">
       <${PageHead}
         label="Writing"
         title="Publications"
         kicker="Grouped by kind, newest first within each. Open-access copies are linked where rights allow; write to me for anything behind a paywall." />
+      <${GroupedList} items=${PUBLICATIONS} order=${PUB_CATEGORIES} />
+    </div>
+  </div>`;
+}
 
-      ${grouped.map(g => html`
-        <${Reveal} key=${g.name}>
-          <div class="cat-group">
-            <div class="cat-head">
-              <h3>${g.name}</h3>
-              <span class="count">${g.items.length}</span>
-            </div>
-            ${g.items.map((p, i) => html`
-              <div class="pub" key=${i}>
-                <div class="kind">${p.year}</div>
-                <div>
-                  <h4>${p.title}</h4>
-                  <${Authors} list=${p.authors} />
-                  <p class="venue">${p.venue}</p>
-                  ${p.links && p.links.length ? html`
-                    <div class="pub-links">
-                      ${p.links.map((l, j) => html`
-                        <a key=${j} href=${l.url} target="_blank" rel="noopener">${l.label}</a>`)}
-                    </div>` : null}
-                </div>
-              </div>`)}
-          </div>
-        </${Reveal}>`)}
+function TalksPage() {
+  return html`<div class="page">
+    <div class="wrap">
+      <${PageHead}
+        label="Speaking"
+        title="Talks &amp; <em>Presentations</em>"
+        kicker="Conference papers and invited lectures, newest first within each group. Slides and recordings are linked where they exist." />
+      <${GroupedList} items=${TALKS} order=${TALK_CATEGORIES} dated=${true} />
     </div>
   </div>`;
 }
@@ -1251,6 +1336,7 @@ function PortfolioPage() {
 const PAGES = {
   "/":             HomePage,
   "/publications": PublicationsPage,
+  "/talks":        TalksPage,
   "/cv":           CVPage,
   "/portfolio":    PortfolioPage,
 };
