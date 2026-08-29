@@ -516,8 +516,8 @@ const ABOUT = {
   ],
   // Small monospace block in the left column
   facts: [
-    { k: "Field",     v: "Information Studies" },
-    { k: "Interests", v: "Knowledge representation, knowledge organization, ontology, semantic web, digital humanities, LAM data" },
+    { k: "Field",     v: "Information Studies + Digital Humanities" },
+    { k: "Interests", v: "Knowledge representation, knowledge organization, ontology, semantic web, LAM data" },
     { k: "Based in",  v: "Los Angeles, California" },
   ],
 };
@@ -1009,6 +1009,7 @@ function HomePage() {
               <p class="side-note" style=${{ marginTop: "18px" }}>
                 ${ABOUT.facts.map((f, i) => html`
                   <span key=${i}><span class="pin">${f.k}</span><br/>${f.v}<br/><br/></span>`)}
+                <span class="pin">Links</span><br/>
                 ${SITE.links.map((l, i) => html`
                   <span key=${"l" + i}><a href=${l.url} target="_blank" rel="noopener">${l.label}</a><br/></span>`)}
               </p>
