@@ -280,7 +280,6 @@ figure.fig figcaption {
   border-left: 2px solid var(--gold);
   padding: 2px 0 2px 18px;
   margin: 0 0 8px;
-  max-width: 74ch;
 }
 
 /* a short list of research questions or claims, set apart from the prose */
