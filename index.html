@@ -888,7 +888,7 @@ const PROJECTS = [
    here is just the local part. `title` is the human-readable version used for
    the browser tab. */
 const ROUTES = [
-  { path: "/",             label: "about",        title: "Home" },
+  { path: "/",             label: "about",        title: "About" },
   { path: "/publications", label: "publications", title: "Publications" },
   { path: "/talks",        label: "talks",        title: "Talks & Presentations" },
   { path: "/cv",           label: "cv",           title: "Curriculum Vitae" },
@@ -1466,7 +1466,10 @@ function App() {
 
   useEffect(() => {
     const r = ROUTES.find(r => r.path === path);
-    document.title = (r && r.path !== "/" ? r.title + " — " : "") +
+    // Every page leads with its own name, the home page included, so the tab
+    // reads consistently after the ps: favicon rather than starting with the
+    // full name on one page and a page label on the others.
+    document.title = (r ? r.title + " — " : "") +
       SITE.givenName + " " + SITE.familyName;
   }, [path]);
 
