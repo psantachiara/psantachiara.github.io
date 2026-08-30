@@ -356,7 +356,9 @@
     line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.005em;
   }
 
-  .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: start; }
+  /* Equal columns: Details and News are both monospace lists now, so neither
+     needs the wider measure the old prose column did. */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   @media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 30px; } }
 
   .side-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.85; color: var(--text-dim); }
