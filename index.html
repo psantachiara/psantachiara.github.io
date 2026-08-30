@@ -373,6 +373,17 @@
   .side-note .fact-list li { margin-bottom: 6px; line-height: 1.6; }
   .side-note .fact-list li:last-child { margin-bottom: 0; }
 
+  /* News column, right of the details. Same monospace register as the details
+     column so the two halves of the section read as one thing: the "News"
+     heading matches "Details", and each item's label matches "Field" and
+     "Interests". */
+  .news { font-family: var(--mono); font-size: 12.5px; margin-top: 18px; }
+  .news .news-item { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line-soft); }
+  .news .news-item:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
+  .news .pin { color: var(--gold); display: block; margin-bottom: 8px; }
+  .news .t { color: var(--text); line-height: 1.7; }
+  .news .m { color: var(--text-faint); line-height: 1.7; margin-top: 7px; }
+
   /* ==========================================================================
      HOME — section index cards
      ========================================================================== */
@@ -565,10 +576,22 @@ const INDEX_CARDS = [
 
 /* --- HOME PAGE: the longer "about" text under the fold ------------------- */
 const ABOUT = {
-  heading: "On method, and its limits.",
-  paragraphs: [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales leo eget gravida hendrerit. Morbi non molestie sapien, eu dignissim ipsum. Nullam efficitur dapibus velit vel tempor. Nullam ullamcorper, elit non dictum eleifend, sapien orci pharetra justo, sed dignissim magna purus ac arcu. Donec tincidunt interdum leo nec egestas. Quisque non faucibus dui. Quisque volutpat magna non est egestas venenatis. Maecenas egestas bibendum odio, nec volutpat risus venenatis a. Donec justo est, malesuada eget mattis ut, consectetur a odio. Ut ante diam, bibendum at rhoncus vitae, interdum quis ex. In hac habitasse platea dictumst. Nam consequat imperdiet egestas. Fusce laoreet.",
+  // The right-hand column of the About section. Each item is a dated note:
+  // add one at the top when something changes, drop the oldest off the end.
+  // Keep it to three or four — this is a current-state list, not an archive.
+  news: [
+    {
+      k: "Latest article",
+      v: "From Facticity to Perspective: Rethinking Classification, Truth and Interoperability in Knowledge Organization; or, Uncertainty as Infrastructure",
+      meta: "Journal of Documentation, 2026",
+    },
+    {
+      k: "Next talk",
+      v: "Cuts That Count: How Ontological Apparatuses Shape What Counts in Linked Open Data",
+      meta: "4S 2026: Technopower, Technoscientific Futures \u00b7 Toronto, 9 October 2026",
+    },
   ],
+
   // Small monospace block in the left column
   // A fact's value can be a plain string, or a list of strings — a list is
   // rendered as bullets.
@@ -963,8 +986,6 @@ function Typed({ text, start = 0, speed = TYPING.speed, className = "", tag = "p
   return React.createElement(tag, { ref, className: cls, style: { "--s": (speed * 1.5) + "ms" } }, nodes);
 }
 
-// total animation time for a string, used to run paragraphs one after another
-const typedDuration = (text, speed = TYPING.speed) => text.length * speed;
 
 /* ---------- Graph field -------------------------------------------------
    A starfield read as an RDF graph. Three parallax depth layers of drifting
@@ -1266,14 +1287,16 @@ function HomePage() {
                 </div>
               </div>
             </div>
-            <div class="prose">
-              <h3 class="sub">${ABOUT.heading}</h3>
-              ${ABOUT.paragraphs.map((p, i) => {
-                // each paragraph starts where the previous one finished
-                const start = ABOUT.paragraphs.slice(0, i)
-                  .reduce((sum, prev) => sum + typedDuration(prev) + 260, 0);
-                return html`<${Typed} key=${i} text=${p} start=${start} />`;
-              })}
+            <div>
+              <span class="label">News</span>
+              <div class="news">
+                ${ABOUT.news.map((n, i) => html`
+                  <div class="news-item" key=${i}>
+                    <span class="pin">${n.k}</span>
+                    <div class="t">${n.v}</div>
+                    ${n.meta ? html`<div class="m">${n.meta}</div>` : null}
+                  </div>`)}
+              </div>
             </div>
           </div>
         </${Reveal}>
