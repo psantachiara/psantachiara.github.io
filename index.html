@@ -394,7 +394,7 @@
   @media (max-width: 820px) { .index-grid { grid-template-columns: 1fr; } }
   .index-grid a { background: var(--bg-elev); padding: 32px 28px; display: block; transition: background .3s var(--ease); }
   .index-grid a:hover { background: var(--bg-elev-2); }
-  .index-grid a h4 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; margin: 12px 0 10px; }
+  .index-grid a h4 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; margin: 0 0 10px; }
   .index-grid a p { margin: 0; color: var(--text-dim); font-size: 0.97rem; line-height: 1.65; }
   .index-grid a .arrow { margin-top: 18px; display: inline-block; font-family: var(--mono); font-size: 12px; color: var(--text-faint); transition: transform .3s var(--ease), color .3s var(--ease); }
   .index-grid a:hover .arrow { color: var(--gold); transform: translateX(5px); }
@@ -1312,7 +1312,6 @@ function HomePage() {
           <div class="index-grid" style=${{ marginTop: "24px" }}>
             ${INDEX_CARDS.map((c) => html`
               <a key=${c.path} href=${"#" + c.path}>
-                <span class="label">${c.title}</span>
                 <h4>${c.title}</h4>
                 <p>${c.blurb}</p>
                 <span class="arrow">Open →</span>
