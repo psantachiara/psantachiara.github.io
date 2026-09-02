@@ -526,6 +526,9 @@
   footer.foot, footer.foot a { font-family: var(--mono); font-size: 12px; color: var(--text-faint); letter-spacing: 0.04em; }
   footer.foot a:hover { color: var(--text-dim); }
 </style>
+<script data-goatcounter="https://pscom.goatcounter.com/count"
+        data-goatcounter-settings='{"no_onload": true}'
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div id="root"></div>
@@ -1521,6 +1524,30 @@ function App() {
     // full name on one page and a page label on the others.
     document.title = (r ? r.title + " — " : "") +
       SITE.givenName + " " + SITE.familyName;
+
+    // Each section is its own page as far as analytics is concerned. The site
+    // never reloads when you move between them, so GoatCounter would otherwise
+    // record every visit as a single hit on "/" and tell us nothing about
+    // which sections people actually read. Counting the first view here as
+    // well would double it, so the script's own automatic count is switched
+    // off in the tag and every view — including the first — is sent from here.
+    // The counter script is async, so on the very first view it may not have
+    // arrived yet. Retry briefly rather than dropping that view, and give up
+    // after a couple of seconds so a blocked script costs nothing.
+    let tries = 0;
+    const send = () => {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({
+          path:  path === "/" ? "/about" : path,
+          title: r ? r.title : "",
+          event: false,
+        });
+      } else if (tries++ < 20) {
+        timer = setTimeout(send, 100);
+      }
+    };
+    let timer = setTimeout(send, 0);
+    return () => clearTimeout(timer);
   }, [path]);
 
   const Page = PAGES[path] || HomePage;
