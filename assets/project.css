@@ -1,15 +1,3 @@
-/* ============================================================================
-   DH PROJECT PAGES — shared stylesheet
-   ----------------------------------------------------------------------------
-   Used by every project page (moma/, met/, tourist-guide/, etc.). Edit once
-   here and every project page changes.
-
-   This is the light counterpart to the main site's dark theme: same typefaces,
-   same gold accent, inverted ground. Warm paper rather than pure white, so the
-   Tableau and Voyant embeds — which are all white — sit inside the page rather
-   than glowing out of it.
-   ============================================================================ */
-
 :root {
   --bg:         #ffffff;
   --bg-elev:    #ffffff;
@@ -19,12 +7,10 @@
   --text-dim:   #55595f;
   --text-faint: #8b8f97;
 
-  --gold:       #9a7526;   /* darkened for contrast on light ground */
-  --gold-soft:  #b8913c;
+  --gold:       #9a7526;  --gold-soft:  #b8913c;
   --gold-ink:   #ffffff;
 
-  --blue:       #2f5f80;   /* links */
-
+  --blue:       #2f5f80;
   --line:       rgba(22,24,29,0.13);
   --line-soft:  rgba(22,24,29,0.07);
 
@@ -33,9 +19,6 @@
   --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --radius: 3px;
-  /* Matches the main site exactly (index.html uses --maxw: 1120px with the
-     same 34px gutter), so moving between the portfolio and the main site
-     changes only the ground colour, not the measure or the margins. */
   --maxw: 1120px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -63,9 +46,6 @@ a { color: inherit; text-decoration: none; }
 .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 34px; }
 @media (max-width: 720px) { .wrap { padding: 0 20px; } }
 
-/* ----------------------------------------------------------------------------
-   TOP BAR — carries the ps: mark back to the main site
-   ---------------------------------------------------------------------------- */
 header.bar {
   position: sticky; top: 0; z-index: 50;
   height: 66px; display: flex; align-items: center;
@@ -76,8 +56,6 @@ header.bar {
   transition: transform .32s var(--ease);
   will-change: transform;
 }
-/* Applied by assets/project.js while the reader is scrolling down. 101% rather
-   than 100% so the bottom border clears the top of the viewport too. */
 header.bar.bar--hidden { transform: translateY(-101%); }
 @media (prefers-reduced-motion: reduce) {
   header.bar { transition: none; }
@@ -100,9 +78,6 @@ header.bar.bar--hidden { transform: translateY(-101%); }
 }
 .bar nav a:hover { color: var(--text); background: rgba(22,24,29,0.05); }
 
-/* ----------------------------------------------------------------------------
-   PROJECT HEADER
-   ---------------------------------------------------------------------------- */
 .proj-head { padding: 74px 0 0; }
 .proj-head .label {
   font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.22em;
@@ -119,9 +94,6 @@ header.bar.bar--hidden { transform: translateY(-101%); }
   margin: 22px 0 0; letter-spacing: 0.03em;
 }
 
-/* Credits block. The class field holds far more text than the others, so it
-   spans the full width on its own row and the remaining three sit beneath it.
-   That way nothing wraps into a ragged second line under a short first one. */
 .credits {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 24px 34px; margin: 40px 0 0;
@@ -137,9 +109,6 @@ header.bar.bar--hidden { transform: translateY(-101%); }
 }
 .credits div .v { font-size: 0.97rem; color: var(--text-dim); line-height: 1.6; }
 
-/* ----------------------------------------------------------------------------
-   PROSE
-   ---------------------------------------------------------------------------- */
 .prose { max-width: none; }
 .prose p { margin: 0 0 1.35em; }
 .prose p:last-child { margin-bottom: 0; }
@@ -147,9 +116,6 @@ header.bar.bar--hidden { transform: translateY(-101%); }
 .prose a:hover { border-color: var(--blue); }
 .prose em { font-style: italic; }
 
-/* The original pages set body copy at heading size, which gave the argument a
-   deliberate weight. `.lead` preserves that emphasis without using headings
-   for non-heading text. */
 .lead { font-size: 1.17rem; line-height: 1.62; color: var(--text); }
 
 section.band { padding: 54px 0 0; }
@@ -163,19 +129,7 @@ h3.sub {
   line-height: 1.15; margin: 44px 0 14px;
 }
 
-/* ----------------------------------------------------------------------------
-   EMBEDS
-   Tableau's modern web component sizes itself from the element's width. Figures
-   Tableau's classic viz_v1.js embeds size themselves from the container width,
-   so figures fill the column exactly as the prose does.
-   ---------------------------------------------------------------------------- */
-/* No frame: the visualisations are white and the page is white, so a border
-   would only draw a box around nothing. The embeds sit directly on the page. */
 figure.viz { margin: 44px 0; }
-/* The original viz_v1.js embeds size themselves in JavaScript from the
-   container's width, so the placeholder must be a plain full-width block.
-   Do not add padding or borders to .tableauPlaceholder itself — the script
-   measures offsetWidth and would compute the height from the wrong number. */
 figure.viz > div { width: 100%; display: block; }
 figure.viz .tableauPlaceholder { width: 100%; }
 figure.viz object.tableauViz { width: 100%; }
@@ -185,14 +139,10 @@ figure.viz figcaption {
   color: var(--text-faint); margin-top: 14px;
 }
 
-/* Voyant and other iframes: responsive box rather than a fixed pixel size */
 .frame { position: relative; width: 100%; margin: 44px 0; }
 .frame iframe { display: block; width: 100%; height: 700px; border: 0; }
 @media (max-width: 720px) { .frame iframe { height: 520px; } }
 
-/* Immersive embeds — StoryMaps, Miro boards — carry their own internal
-   scrolling and navigation, so they need far more room than a chart does.
-   Viewport-relative so they stay proportionate on any screen. */
 .frame--tall iframe { height: 88vh; min-height: 620px; }
 @media (max-width: 720px) { .frame--tall iframe { height: 78vh; min-height: 480px; } }
 .frame .note {
@@ -200,7 +150,6 @@ figure.viz figcaption {
   padding-top: 10px;
 }
 
-/* a plain image figure */
 figure.fig { margin: 44px 0; }
 figure.fig img { width: 100%; height: auto; display: block; }
 figure.fig figcaption {
@@ -208,9 +157,6 @@ figure.fig figcaption {
   margin-top: 12px;
 }
 
-/* ----------------------------------------------------------------------------
-   SUBPAGE MENU (project index)
-   ---------------------------------------------------------------------------- */
 .menu-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   margin: 34px 0 0;
@@ -240,9 +186,6 @@ figure.fig figcaption {
   line-height: 1.1;
 }
 
-/* ----------------------------------------------------------------------------
-   PAGER — previous / next within a project
-   ---------------------------------------------------------------------------- */
 .pager {
   display: flex; justify-content: space-between; gap: 20px;
   padding: 40px 0 0; margin-top: 64px; border-top: 1px solid var(--line);
@@ -256,11 +199,8 @@ figure.fig figcaption {
 .pager a .t { color: var(--text); }
 .pager a:hover .t { color: var(--gold); }
 .pager a.next { text-align: right; margin-left: auto; }
-/* .up carries a top margin for standalone use elsewhere; inside the pager it
-   must sit on the same baseline as the next link. */
 .pager .up { margin: 0; }
 
-/* link back up to the project's own homepage */
 .up {
   display: inline-block; margin: 30px 0 0;
   font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em;
@@ -268,17 +208,11 @@ figure.fig figcaption {
 }
 .up:hover { color: var(--gold); }
 
-/* ----------------------------------------------------------------------------
-   BIBLIOGRAPHY + ABOUT
-   ---------------------------------------------------------------------------- */
 .biblio { font-family: var(--mono); font-size: 13.5px; line-height: 1.75; }
 .biblio p { padding-left: 2.4em; text-indent: -2.4em; margin: 0 0 1.2em; color: var(--text-dim); }
 .biblio p i { color: var(--text); font-style: italic; }
 .biblio a { color: var(--blue); overflow-wrap: anywhere; }
 
-/* Notice for projects whose interactive components no longer function. Set in
-   the monospace face so it reads as an editorial note about the page rather
-   than as part of the project's own text. */
 .archive-note {
   font-family: var(--mono); font-size: 13px; line-height: 1.7;
   color: var(--text-dim);
@@ -287,7 +221,6 @@ figure.fig figcaption {
   margin: 0 0 8px;
 }
 
-/* a short list of research questions or claims, set apart from the prose */
 .qlist { list-style: none; margin: 0; padding: 0; max-width: none; }
 .qlist li {
   position: relative; padding-left: 26px; margin-bottom: 16px;

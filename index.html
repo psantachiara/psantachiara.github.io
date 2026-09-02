@@ -4,26 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ============================================================================
-     EDIT ME: site title + description (shows in browser tab and search results)
-     ============================================================================ -->
 <title>Pietro Santachiara — Information Studies</title>
 <meta name="description" content="Pietro Santachiara, PhD Candidate in Information Studies at UCLA: publications, CV, and digital humanities portfolio." />
-
-<!-- ============================================================================
-     HOW TO EDIT THIS SITE
-     ----------------------------------------------------------------------------
-     Everything lives in this one file. There is no build step. To change content,
-     scroll down to the big block marked "CONTENT — EDIT EVERYTHING HERE" inside
-     the <script> tag near the bottom. All your text, publications, CV entries and
-     projects are plain JavaScript data there — you do not need to touch any of
-     the code below it.
-
-     To change colours or fonts, edit the :root block in the <style> tag below.
-
-     To publish: upload this file (named index.html) to Cloudflare Pages or a
-     GitHub repo with GitHub Pages enabled, then point your domain at it.
-     ============================================================================ -->
 
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,10 +13,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
-  /* ==========================================================================
-     DESIGN TOKENS — midnight blue-black, warm starlight gold, cool paper blue.
-     One accent (gold) for emphasis; blue is reserved for links and links only.
-     ========================================================================== */
   :root {
     --bg:         #070a12;
     --bg-elev:    #0c1120;
@@ -44,12 +22,9 @@
     --text-dim:   #a3aab9;
     --text-faint: #6a7285;
 
-    --gold:       #d8b26a;   /* emphasis, section marks, active states */
-    --gold-soft:  #f0dcae;
-    --gold-ink:   #0a0d16;   /* text on gold fills */
-
-    --blue:       #93bcd9;   /* links */
-
+    --gold:       #d8b26a;    --gold-soft:  #f0dcae;
+    --gold-ink:   #0a0d16;
+    --blue:       #93bcd9;
     --line:       rgba(236,233,226,0.11);
     --line-soft:  rgba(236,233,226,0.055);
 
@@ -80,7 +55,6 @@
     overflow-x: hidden;
   }
 
-  /* soft aurora wash over the starfield, non-scrolling, never interactive */
   body::before {
     content: "";
     position: fixed;
@@ -102,9 +76,6 @@
     border-radius: var(--radius);
   }
 
-  /* ==========================================================================
-     STARFIELD — fixed behind everything, drifts continuously
-     ========================================================================== */
   .starfield {
     position: fixed;
     inset: 0;
@@ -116,9 +87,6 @@
 
   .shell { position: relative; z-index: 1; }
 
-  /* ==========================================================================
-     LAYOUT PRIMITIVES
-     ========================================================================== */
   .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 34px; }
   @media (max-width: 720px) { .wrap { padding: 0 20px; } }
 
@@ -136,9 +104,6 @@
     color: var(--text-faint);
   }
 
-  /* ==========================================================================
-     NAVIGATION
-     ========================================================================== */
   header.nav {
     position: sticky;
     top: 0;
@@ -153,15 +118,6 @@
   }
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
-  /* The mark is a namespace prefix declaration, so it is set in the monospace
-     face rather than the display serif — the code register is what makes the
-     trailing colon read as syntax instead of as a stray character.
-
-     Flexbox centres the line box, not the glyphs. "ps:" has no ascenders, so
-     its visual mass sits well below the line box centre and the mark reads as
-     hanging low. line-height:1 removes the leading and the small negative
-     shift corrects the remainder; adjust the translateY if you change the
-     font size. */
   .brand {
     display: flex;
     align-items: center;
@@ -177,10 +133,6 @@
   .brand .dot { color: var(--gold); }
 
   .nav-links { display: flex; align-items: center; gap: 2px; }
-  /* Nav items are the local names of the properties declared by the ps: mark
-     at the left of the bar. Lowercase and untracked, because RDF property
-     names are — the small-caps treatment used elsewhere would break the
-     convention the mark is asserting. */
   .nav-links a {
     font-family: var(--mono);
     font-size: 13px;
@@ -196,8 +148,6 @@
 
   .menu-btn { display: none; }
 
-  /* Slightly above the original 820px: the nav type is a little larger than it
-     was, so the row needs to collapse into the menu marginally sooner. */
   @media (max-width: 860px) {
     .nav-links {
       position: fixed;
@@ -227,9 +177,6 @@
     .menu-btn.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
   }
 
-  /* ==========================================================================
-     PAGE ENTRANCE + SCROLL REVEAL
-     ========================================================================== */
   @keyframes pageIn {
     from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -244,23 +191,11 @@
     .reveal { opacity: 1; transform: none; transition: none; }
   }
 
-  /* ==========================================================================
-     TYPED TEXT
-     The full text is in the DOM from the first paint; only opacity is animated,
-     so nothing is ever missing from the page — it is just not yet shown. Each
-     character carries its own delay in --d. Words are inline-block so that
-     per-character spans cannot break in the middle of a word.
-     ========================================================================== */
   .typed .t-w { display: inline-block; }
   .typed .t-c { position: relative; opacity: 0; }
 
   .typed.on .t-c { animation: typeIn 1ms linear var(--d) forwards; }
 
-  /* a caret that flashes at each character in turn, so it reads as a cursor
-     travelling along the line. Its duration is set from the typing speed
-     (--s, written by the component) rather than being fixed: if the caret
-     outlives the gap between characters, several are lit at once and the
-     effect turns into a smear instead of a cursor. */
   .typed.on .t-c::after {
     content: "";
     position: absolute;
@@ -271,7 +206,6 @@
     animation: caretRun var(--s, 16ms) linear var(--d) both;
   }
 
-  /* instant state: reduced motion, typing switched off, or the safety timeout */
   .typed.instant .t-c { opacity: 1; animation: none; }
   .typed.instant .t-c::after { display: none; }
 
@@ -283,9 +217,6 @@
     .typed .t-c::after { display: none !important; }
   }
 
-  /* ==========================================================================
-     HERO
-     ========================================================================== */
   .hero {
     position: relative;
     min-height: calc(100dvh - 66px);
@@ -336,9 +267,6 @@
   }
   .btn-ghost:hover { border-color: var(--gold); color: var(--text); }
 
-  /* ==========================================================================
-     SECTION SCAFFOLD
-     ========================================================================== */
   section.band { padding: 92px 0; border-top: 1px solid var(--line); }
   @media (max-width: 720px) { section.band { padding: 60px 0; } }
 
@@ -356,8 +284,6 @@
     line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.005em;
   }
 
-  /* Equal columns: Details and News are both monospace lists now, so neither
-     needs the wider measure the old prose column did. */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   @media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 30px; } }
 
@@ -368,17 +294,10 @@
   .side-note a { color: var(--blue); border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
   .side-note a:hover { border-color: var(--blue); }
 
-  /* Interests read as a list rather than a run-on line. No markers: each item
-     is short enough that the line breaks alone separate them, and the gold
-     dots competed with the category headings above. Spacing does the work. */
   .side-note .fact-list { list-style: none; margin: 4px 0 0; padding: 0; }
   .side-note .fact-list li { margin-bottom: 6px; line-height: 1.6; }
   .side-note .fact-list li:last-child { margin-bottom: 0; }
 
-  /* News column, right of the details. Same monospace register as the details
-     column so the two halves of the section read as one thing: the "News"
-     heading matches "Details", and each item's label matches "Field" and
-     "Interests". */
   .news { font-family: var(--mono); font-size: 12.5px; margin-top: 18px; }
   .news .news-item { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line-soft); }
   .news .news-item:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
@@ -386,10 +305,6 @@
   .news .t { color: var(--text); line-height: 1.7; }
   .news .m { color: var(--text-dim); line-height: 1.7; margin-top: 7px; }
 
-  /* ==========================================================================
-     HOME — section index cards
-     ========================================================================== */
-  /* Two by two: with four sections a 3-column grid leaves an orphan cell. */
   .index-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
   @media (max-width: 820px) { .index-grid { grid-template-columns: 1fr; } }
   .index-grid a { background: var(--bg-elev); padding: 32px 28px; display: block; transition: background .3s var(--ease); }
@@ -399,12 +314,6 @@
   .index-grid a .arrow { margin-top: 18px; display: inline-block; font-family: var(--mono); font-size: 12px; color: var(--text-faint); transition: transform .3s var(--ease), color .3s var(--ease); }
   .index-grid a:hover .arrow { color: var(--gold); transform: translateX(5px); }
 
-  /* ==========================================================================
-     PUBLICATIONS
-     ========================================================================== */
-
-  /* Publications are grouped by kind. The heading is set in the display serif
-     so it reads as a section, with the entry count sitting quietly beside it. */
   .cat-group { margin-bottom: 8px; }
   .cat-head {
     display: flex; align-items: baseline; gap: 14px;
@@ -422,10 +331,6 @@
 
   .pub { display: grid; grid-template-columns: 108px 1fr; gap: 30px; padding: 26px 0; border-bottom: 1px solid var(--line-soft); }
   @media (max-width: 720px) { .pub { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
-  /* The year sits on the same cap-height line as the title beside it. The two
-     use different faces and sizes, so their line boxes leave different amounts
-     of space above the letters — the padding here is the difference, found by
-     eye rather than calculated. Adjust it if the title size ever changes. */
   .pub .kind { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--gold); line-height: 1.3; padding-top: 4px; }
   .pub .kind .d { display: block; color: var(--text-faint); font-size: 11.5px; margin-top: 5px; }
   .pub h4 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; line-height: 1.28; margin: 0 0 8px; }
@@ -440,12 +345,7 @@
   }
   .pub .pub-links a:hover { border-color: var(--gold); color: var(--text); }
 
-  /* ==========================================================================
-     CV
-     ========================================================================== */
   .cv-section { margin-top: 54px; }
-  /* Matches .cat-head h3 on the publications and talks pages, so section
-     headings read the same across all three. */
   .cv-section > .cv-head {
     display: flex; align-items: baseline; gap: 14px;
     padding-bottom: 14px; border-bottom: 1px solid var(--line);
@@ -461,18 +361,11 @@
 
   .cv-row { display: grid; grid-template-columns: 150px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--line-soft); }
   @media (max-width: 720px) { .cv-row { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; } }
-  /* Same cap-height alignment as the publications page: the padding closes the
-     gap between where the mono digits and the serif capitals begin. The looser
-     line-height stays, because the teaching entries carry lists of terms that
-     wrap onto several lines and need the breathing room. */
   .cv-row .when { font-family: var(--mono); font-size: 12.5px; color: var(--gold); padding-top: 2px; letter-spacing: 0.04em; line-height: 1.65; }
   .cv-row h4 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; margin: 0 0 6px; line-height: 1.28; }
   .cv-row .where { color: var(--text-dim); font-size: 0.97rem; margin: 0; }
   .cv-row .detail { color: var(--text-dim); font-size: 0.95rem; margin: 8px 0 0; }
 
-  /* Department heading inside a section, and the position type beneath it.
-     Both sit outside the date column so the courses under them stay aligned
-     with every other dated row on the page. */
   .cv-subhead {
     font-family: var(--display); font-weight: 400; font-size: 1.2rem;
     color: var(--text); margin: 34px 0 0; padding-bottom: 2px;
@@ -484,12 +377,8 @@
     margin: 16px 0 2px;
   }
   .cv-subhead + .cv-role { margin-top: 12px; }
-  /* course rows sit tighter than the dated entries elsewhere */
   .cv-role + .cv-row, .cv-role ~ .cv-row { padding: 14px 0; }
 
-  /* ==========================================================================
-     PORTFOLIO
-     ========================================================================== */
   .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
   @media (max-width: 860px) { .proj-grid { grid-template-columns: 1fr; } }
 
@@ -506,9 +395,6 @@
   .proj .meta-line .yr { color: var(--gold); }
   .proj h4 { font-family: var(--display); font-weight: 400; font-size: 1.85rem; line-height: 1.1; margin: 16px 0 10px; }
   .proj p { margin: 0; color: var(--text-dim); font-size: 1rem; line-height: 1.7; max-width: 62ch; }
-  /* contributor list, between the title and the description. Uses the same
-     Authors component as the publications page, so the name highlighting is
-     identical across the site. */
   .proj .people { margin: 0 0 12px; }
   .proj .people .authors { color: var(--text-dim); font-size: 0.92rem; line-height: 1.6; margin: 0; }
   .proj .people .authors .me { color: var(--text); }
@@ -518,9 +404,6 @@
     color: var(--text-faint); border: 1px solid var(--line-soft); padding: 4px 9px; border-radius: 999px;
   }
 
-  /* ==========================================================================
-     FOOTER
-     ========================================================================== */
   footer.foot { border-top: 1px solid var(--line); padding: 50px 0; margin-top: 90px; }
   footer.foot .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
   footer.foot, footer.foot a { font-family: var(--mono); font-size: 12px; color: var(--text-faint); letter-spacing: 0.04em; }
@@ -542,26 +425,14 @@ const { useState, useEffect, useRef, useMemo } = React;
 const html = htm.bind(React.createElement);
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ============================================================================
-   ██  CONTENT — EDIT EVERYTHING HERE  ██
-   Everything below this line down to "END OF CONTENT" is your text. Change the
-   words between the quote marks. Keep the punctuation (commas, braces, quotes)
-   exactly as it is. To add an entry, copy an existing block and edit it.
-   ============================================================================ */
-
 const SITE = {
   givenName:  "Pietro",
   familyName: "Santachiara",
-  // Top-left mark, set as a namespace prefix declaration
   brandShort: "ps",
-  // The lines under your name on the home page
   roles: ["PhD Candidate in Information Studies", "University of California, Los Angeles"],
-  // Home page introduction. Two or three sentences works best.
   bio: "I study how libraries, archives, and museums decide what a thing is. I follow those decisions into the computational ontologies that carry them on the Semantic Web as Linked Data, and argue that descriptive structures do not simply record what a thing is, but rather participate in constituting it.",
-  // Contact + profile links shown on the home page and in the footer.
   email: "psantachiara@ucla.edu",
-  cvPdf: "cv.pdf",   // unused at present — the download button is removed. Put a
-                     // PDF beside this file and restore the button to use it.
+  cvPdf: "cv.pdf",
   links: [
     { label: "UCLA profile",   url: "https://seis.ucla.edu/students/pietro-santachiara/" },
     { label: "Google Scholar", url: "https://scholar.google.com/citations?user=lXGHXp4AAAAJ&hl=en" },
@@ -571,22 +442,14 @@ const SITE = {
   footerNote: "Last updated August 2026",
 };
 
-// Typing effect on the introductory paragraphs. Set enabled to false to turn
-// it off everywhere; raise or lower speed (milliseconds per character) to make
-// it slower or brisker. Readers who ask their system for reduced motion always
-// get the text instantly, whatever is set here.
 const TYPING = { enabled: true, speed: 11 };
 
-// Predicates that surface on the background graph. Swap these for the
-// vocabularies you actually work with — they are only ever decorative, but
-// they should be yours. Keep them short; long ones crowd the canvas.
 const PREDICATES = [
   "rdf:type", "rdfs:label", "rdfs:seeAlso", "owl:sameAs", "skos:broader",
   "skos:related", "dcterms:creator", "dcterms:date", "dcterms:subject",
   "prov:wasDerivedFrom", "foaf:knows", "schema:about",
 ];
 
-// Short blurbs for the three cards on the home page.
 const INDEX_CARDS = [
   { path: "/publications", title: "Publications",  blurb: "Peer-reviewed articles, chapters, and edited work, with links to open-access copies where they exist." },
   { path: "/talks",        title: "Talks & Presentations", blurb: "Conference papers and invited lectures, in departments, seminars, and museums." },
@@ -594,11 +457,7 @@ const INDEX_CARDS = [
   { path: "/portfolio",    title: "DH Portfolio", blurb: "Tools, datasets, and experiments built in the course of research, most of them public." },
 ];
 
-/* --- HOME PAGE: the longer "about" text under the fold ------------------- */
 const ABOUT = {
-  // The right-hand column of the About section. Each item is a dated note:
-  // add one at the top when something changes, drop the oldest off the end.
-  // Keep it to three or four — this is a current-state list, not an archive.
   news: [
     {
       k: "Latest article",
@@ -612,9 +471,6 @@ const ABOUT = {
     },
   ],
 
-  // Small monospace block in the left column
-  // A fact's value can be a plain string, or a list of strings — a list is
-  // rendered as bullets.
   facts: [
     { k: "Field",     v: "Information Studies + Digital Humanities" },
     { k: "Interests", v: [
@@ -628,12 +484,6 @@ const ABOUT = {
   ],
 };
 
-/* --- PUBLICATIONS -------------------------------------------------------
-   kind: any short label you like ("Article", "Chapter", "Book", "Review",
-   "Talk"). The filter buttons are generated automatically from whatever
-   kinds you use, so you do not need to configure them.
-   links: delete the ones you do not have.
-   ------------------------------------------------------------------------ */
 const PUBLICATIONS = [
   {
     year: 2026, kind: "Peer-Reviewed Journal Articles",
@@ -700,8 +550,6 @@ const PUBLICATIONS = [
   },
 ];
 
-// The order categories appear on the page. Any kind not listed here is shown
-// after these, in the order it first appears above.
 const PUB_CATEGORIES = [
   "Peer-Reviewed Journal Articles",
   "Book Chapters",
@@ -709,10 +557,6 @@ const PUB_CATEGORIES = [
   "Digital Projects",
 ];
 
-/* --- TALKS ---------------------------------------------------------------
-   Same shape as PUBLICATIONS: kind is the category heading, and the order of
-   categories is set by TALK_CATEGORIES below.
-   ------------------------------------------------------------------------ */
 const TALKS = [
   {
     year: 2026, date: "9 October", kind: "Conference Presentations",
@@ -774,10 +618,6 @@ const TALKS = [
 
 const TALK_CATEGORIES = ["Conference Presentations", "Invited Talks"];
 
-/* --- CURRICULUM VITAE ---------------------------------------------------
-   Each section has a heading and a list of rows. Add or remove sections
-   freely — they render in the order listed here.
-   ------------------------------------------------------------------------ */
 const CV = [
   {
     heading: "Education",
@@ -813,10 +653,7 @@ const CV = [
   },
   {
     heading: "Teaching",
-    // each term counts as a section taught, so "F2020, F2021" counts as two
     countTerms: true,
-    // rows marked `subhead` are department headings, `role` marks a position;
-    // both are labels rather than entries and render without a date column.
     rows: [
       { subhead: "UCLA Department of Information Studies" },
       { role: "Teaching Assistant" },
@@ -853,7 +690,6 @@ const CV = [
   },
   {
     heading: "Awards, Fellowships, and Grants",
-    // a year list means the award was held more than once, so each counts
     countTerms: true,
     rows: [
       { when: "2022, 25, 26", title: "University of California Regents Fellowship", where: "Graduate Division, UCLA" },
@@ -881,9 +717,6 @@ const CV = [
   },
 ];
 
-/* --- DIGITAL HUMANITIES PORTFOLIO ---------------------------------------
-   All cards are the same size, laid out two per row.
-   ------------------------------------------------------------------------ */
 const PROJECTS = [
   {
     year: "2024",
@@ -926,14 +759,7 @@ const PROJECTS = [
     url: "/power-people/",
   },
 ];
-/* ============================================================================
-   ██  END OF CONTENT — you should not need to edit anything below  ██
-   ============================================================================ */
 
-/* Nav labels are the local names of properties in the ps: namespace. The
-   prefix is rendered separately (and dimmed) by the Nav component, so `label`
-   here is just the local part. `title` is the human-readable version used for
-   the browser tab. */
 const ROUTES = [
   { path: "/",             label: "about",        title: "About" },
   { path: "/publications", label: "publications", title: "Publications" },
@@ -942,7 +768,6 @@ const ROUTES = [
   { path: "/portfolio",    label: "dhPortfolio",  title: "DH Portfolio" },
 ];
 
-/* ---------- Scroll reveal ---------- */
 function Reveal({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
   const [shown, setShown] = useState(prefersReduced);
@@ -959,13 +784,6 @@ function Reveal({ children, delay = 0, className = "" }) {
   return html`<div ref=${ref} class=${"reveal " + (shown ? "in " : "") + className} style=${{ transitionDelay: delay + "ms" }}>${children}</div>`;
 }
 
-/* ---------- Typed text ------------------------------------------------------
-   Renders the whole string immediately as per-character spans, then reveals
-   them on a stagger once the paragraph scrolls into view. The text is never
-   absent from the DOM, so anything that reads the rendered page still sees it.
-   A safety timer forces the finished state after four seconds in case the
-   observer never fires — a headless renderer with no real viewport, say.
-   ---------------------------------------------------------------------------- */
 function Typed({ text, start = 0, speed = TYPING.speed, className = "", tag = "p" }) {
   const ref = useRef(null);
   const instant = prefersReduced || !TYPING.enabled;
@@ -995,39 +813,15 @@ function Typed({ text, start = 0, speed = TYPING.speed, className = "", tag = "p
       })}
     </span>`);
     if (wi < words.length - 1) {
-      // A plain text space, not a span: a span with white-space:pre survives a
-      // line break and shows up as a stray indent on the wrapped line. Spaces
-      // have no ink, so there is nothing to animate — only the delay counter
-      // needs to advance so the timing still matches the character count.
       i++;
       nodes.push(" ");
     }
   });
 
   const cls = "typed " + (forced ? "instant " : on ? "on " : "") + className;
-  // 1.5× the stagger: long enough not to flicker at 60fps, short enough that
-  // only the current character (and just barely its neighbour) is lit
   return React.createElement(tag, { ref, className: cls, style: { "--s": (speed * 1.5) + "ms" } }, nodes);
 }
 
-
-/* ---------- Graph field -------------------------------------------------
-   A starfield read as an RDF graph. Three parallax depth layers of drifting
-   nodes; the nearest layer is the only one that participates in the graph, so
-   the line count stays low and the far sky still reads as sky.
-
-   Node shapes follow the convention used in RDF diagrams:
-     · filled circle  = IRI resource
-     · small square   = literal   (gold, the accent colour)
-     · hollow circle  = blank node
-
-   Edges appear between near nodes that drift within range of each other, and
-   fade as they separate. Every few seconds one edge is asserted as a triple:
-   it gains a direction arrow, a predicate label along the arc, and a pulse
-   travelling subject → object. Then it relaxes back into an untyped edge.
-
-   Tuning knobs are gathered in CONFIG below.
-   -------------------------------------------------------------------------- */
 function GraphField() {
   const ref = useRef(null);
   useEffect(() => {
@@ -1038,15 +832,14 @@ function GraphField() {
     let mx = 0, my = 0, tx = 0, ty = 0, nextSpawn = 0;
 
     const CONFIG = {
-      linkDist:    170,   // px within which two graph nodes connect
-      edgeAlpha:   0.20,  // strongest an untyped edge ever gets
-      maxTriples:  3,     // labelled triples visible at once
-      tripleLife:  9000,  // ms a triple takes to appear, hold, and fade
-      spawnEvery:  2600,  // ms between attempts to assert a new triple
-      labelAlpha:  0.34,  // strongest a predicate label ever gets
+      linkDist:    170,
+      edgeAlpha:   0.20,
+      maxTriples:  3,
+      tripleLife:  9000,
+      spawnEvery:  2600,
+      labelAlpha:  0.34,
     };
 
-    // depth layers: density per 100k px², radius, drift speed, opacity, parallax
     const LAYERS = [
       { density: 26, r: 0.6, sp: 0.010, op: 0.42, par: 2, graph: false },
       { density: 14, r: 0.9, sp: 0.021, op: 0.60, par: 5, graph: false },
@@ -1074,15 +867,12 @@ function GraphField() {
             x: Math.random() * w,
             y: Math.random() * h,
             r: L.r * (0.7 + Math.random() * 0.6),
-            // slow drift, mostly rightward and slightly up, like a long exposure
             vx: L.sp * (0.6 + Math.random() * 0.8),
             vy: -L.sp * (0.15 + Math.random() * 0.3),
             op: L.op * (0.55 + Math.random() * 0.45),
             par: L.par,
             graph: L.graph,
-            // node kind, only meaningful on the graph layer
             kind: !L.graph ? "iri" : roll < 0.18 ? "literal" : roll < 0.28 ? "blank" : "iri",
-            // a small minority twinkle; the rest stay steady so it reads calm
             tw: Math.random() < 0.16 ? (0.4 + Math.random() * 0.6) : 0,
             ph: Math.random() * Math.PI * 2,
           });
@@ -1093,13 +883,11 @@ function GraphField() {
 
     const pos = (s) => [s.x + tx * s.par, s.y + ty * s.par];
 
-    // Try to assert a triple on a pair that is currently within linking range.
     const spawnTriple = () => {
       if (graphIdx.length < 2) return;
       for (let attempt = 0; attempt < 24; attempt++) {
         const ai = graphIdx[(Math.random() * graphIdx.length) | 0];
         const a = stars[ai];
-        // a literal cannot be the subject of a triple, so skip those
         if (a.kind === "literal") continue;
         const near = [];
         for (const bi of graphIdx) {
@@ -1124,7 +912,6 @@ function GraphField() {
       let o = s.op;
       if (s.tw) o *= 0.55 + 0.45 * Math.sin(t * 0.0011 * (1 + s.tw) + s.ph);
       if (s.kind === "literal") {
-        // literals are rectangles in RDF diagrams; gold ties them to the accent
         ctx.fillStyle = "rgba(216,178,106," + o + ")";
         ctx.fillRect(px - s.r, py - s.r * 0.85, s.r * 2, s.r * 1.7);
       } else if (s.kind === "blank") {
@@ -1158,19 +945,16 @@ function GraphField() {
         const life = (t - tr.born) / CONFIG.tripleLife;
         const a = stars[tr.a], b = stars[tr.b];
         const d = Math.hypot(a.x - b.x, a.y - b.y);
-        // retire when its time is up or the nodes have drifted apart
         if (life >= 1 || d > CONFIG.linkDist) { triples.splice(i, 1); continue; }
 
-        const fade = Math.sin(Math.PI * life);          // ease in, hold, ease out
+        const fade = Math.sin(Math.PI * life);
         const [ax, ay] = pos(a), [bx, by] = pos(b);
         const ang = Math.atan2(by - ay, bx - ax);
 
-        // the asserted edge, brighter than an untyped one
         ctx.strokeStyle = "rgba(147,188,217," + (fade * 0.5) + ")";
         ctx.lineWidth = 0.9;
         ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
 
-        // arrowhead, set back from the object node
         const hx = bx - Math.cos(ang) * (b.r + 4);
         const hy = by - Math.sin(ang) * (b.r + 4);
         ctx.fillStyle = "rgba(147,188,217," + (fade * 0.6) + ")";
@@ -1180,7 +964,6 @@ function GraphField() {
         ctx.lineTo(hx - Math.cos(ang + 0.42) * 6, hy - Math.sin(ang + 0.42) * 6);
         ctx.closePath(); ctx.fill();
 
-        // pulse travelling subject → object, one pass per triple
         const p = Math.min(1, life * 1.9);
         if (p < 1) {
           ctx.fillStyle = "rgba(240,220,174," + (fade * 0.9) + ")";
@@ -1189,7 +972,6 @@ function GraphField() {
           ctx.fill();
         }
 
-        // predicate label, set along the arc the way it would be in a diagram
         const flip = ang > Math.PI / 2 || ang < -Math.PI / 2;
         ctx.save();
         ctx.translate((ax + bx) / 2, (ay + by) / 2);
@@ -1221,7 +1003,6 @@ function GraphField() {
         nextSpawn = t + CONFIG.spawnEvery;
         if (triples.length < CONFIG.maxTriples) spawnTriple();
       }
-      // ease the parallax offset toward the pointer position
       tx += (mx - tx) * 0.045;
       ty += (my - ty) * 0.045;
       draw();
@@ -1235,7 +1016,7 @@ function GraphField() {
     const onResize = () => { resize(); init(); if (prefersReduced) draw(); };
 
     resize(); init();
-    if (prefersReduced) draw();  // one static frame: nodes and edges, no motion
+    if (prefersReduced) draw();
     else {
       raf = requestAnimationFrame(step);
       window.addEventListener("pointermove", onPointer, { passive: true });
@@ -1251,9 +1032,7 @@ function GraphField() {
   return html`<canvas ref=${ref} class="starfield" aria-hidden="true"></canvas>`;
 }
 
-/* ---------- Shared bits ---------- */
 function Authors({ list }) {
-  // authors are written surname-first, as in a reference list
   const me = SITE.familyName + ", " + SITE.givenName.charAt(0) + ".";
   return html`<p class="authors">${list.map((a, i) => html`
     <span key=${i} class=${a === me ? "me" : ""}>${a}${i < list.length - 1 ? ", " : ""}</span>`)}</p>`;
@@ -1267,9 +1046,6 @@ function PageHead({ label, title, kicker }) {
   </div>`;
 }
 
-/* ============================================================================
-   PAGES
-   ============================================================================ */
 function HomePage() {
   return html`<div class="page">
     <section class="hero">
@@ -1345,8 +1121,6 @@ function HomePage() {
   </div>`;
 }
 
-/* Both Publications and Talks are the same shape: entries grouped under
-   category headings, newest first inside each. */
 function GroupedList({ items, order, dated }) {
   const grouped = useMemo(() => {
     const present = Array.from(new Set(items.map(p => p.kind)));
@@ -1481,9 +1255,6 @@ const PAGES = {
   "/portfolio":    PortfolioPage,
 };
 
-/* ============================================================================
-   SHELL + ROUTER
-   ============================================================================ */
 function Nav({ path }) {
   const [open, setOpen] = useState(false);
   useEffect(() => { setOpen(false); }, [path]);
@@ -1519,21 +1290,9 @@ function App() {
 
   useEffect(() => {
     const r = ROUTES.find(r => r.path === path);
-    // Every page leads with its own name, the home page included, so the tab
-    // reads consistently after the ps: favicon rather than starting with the
-    // full name on one page and a page label on the others.
     document.title = (r ? r.title + " — " : "") +
       SITE.givenName + " " + SITE.familyName;
 
-    // Each section is its own page as far as analytics is concerned. The site
-    // never reloads when you move between them, so GoatCounter would otherwise
-    // record every visit as a single hit on "/" and tell us nothing about
-    // which sections people actually read. Counting the first view here as
-    // well would double it, so the script's own automatic count is switched
-    // off in the tag and every view — including the first — is sent from here.
-    // The counter script is async, so on the very first view it may not have
-    // arrived yet. Retry briefly rather than dropping that view, and give up
-    // after a couple of seconds so a blocked script costs nothing.
     let tries = 0;
     const send = () => {
       if (window.goatcounter && window.goatcounter.count) {
