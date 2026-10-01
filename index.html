@@ -329,19 +329,6 @@
   }
   .cat-group:first-of-type .cat-head { padding-top: 26px; }
 
-  .sub-head {
-    display: flex; align-items: baseline; gap: 12px;
-    padding: 30px 0 10px;
-  }
-  .sub-head h4 {
-    font-family: var(--display); font-weight: 400; font-size: 1.2rem;
-    color: var(--text); line-height: 1.15; margin: 0;
-  }
-  .sub-head .count {
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
-    color: var(--text-faint);
-  }
-
   .pub { display: grid; grid-template-columns: 108px 1fr; gap: 30px; padding: 26px 0; border-bottom: 1px solid var(--line-soft); }
   @media (max-width: 720px) { .pub { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
   .pub .kind { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--gold); line-height: 1.3; padding-top: 4px; }
@@ -513,7 +500,6 @@ const PUBLICATIONS = [
   },
   {
     year: 2027, kind: "Peer-Reviewed Journal Articles",
-    sub: "Forthcoming and under review",
     status: "Invited",
     title: "Toward a Reconfiguration of Representation: Ontologies as Apparatuses and the Production of Provenance in Linked Data",
     authors: ["Santachiara, P."],
@@ -1154,15 +1140,10 @@ function GroupedList({ items, order, dated }) {
     const present = Array.from(new Set(items.map(p => p.kind)));
     const ordered = order.filter(c => present.includes(c));
     const cats = ordered.concat(present.filter(c => !ordered.includes(c)));
-    return cats.map(c => {
-      const all = items.filter(p => p.kind === c).sort((a, b) => b.year - a.year);
-      const subs = [];
-      all.filter(p => p.sub).forEach(p => {
-        const g = subs.find(x => x.name === p.sub);
-        if (g) g.items.push(p); else subs.push({ name: p.sub, items: [p] });
-      });
-      return { name: c, total: all.length, items: all.filter(p => !p.sub), subs };
-    });
+    return cats.map(c => ({
+      name: c,
+      items: items.filter(p => p.kind === c).sort((a, b) => b.year - a.year),
+    }));
   }, [items, order]);
 
   const entry = (p, i) => html`
@@ -1189,17 +1170,9 @@ function GroupedList({ items, order, dated }) {
       <div class="cat-group">
         <div class="cat-head">
           <h3>${g.name}</h3>
-          <span class="count">${g.total}</span>
+          <span class="count">${g.items.length}</span>
         </div>
         ${g.items.map(entry)}
-        ${g.subs.map(sg => html`
-          <div key=${sg.name}>
-            <div class="sub-head">
-              <h4>${sg.name}</h4>
-              <span class="count">${sg.items.length}</span>
-            </div>
-            ${sg.items.map(entry)}
-          </div>`)}
       </div>
     </${Reveal}>`);
 }
