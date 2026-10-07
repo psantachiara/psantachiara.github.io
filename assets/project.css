@@ -109,6 +109,9 @@ header.bar.bar--hidden { transform: translateY(-101%); }
 }
 .credits div .v { font-size: 0.97rem; color: var(--text-dim); line-height: 1.6; }
 
+.credits .desc { padding-top: 4px; }
+.credits .desc .v { line-height: 1.7; max-width: 82ch; }
+
 .prose { max-width: none; }
 .prose p { margin: 0 0 1.35em; }
 .prose p:last-child { margin-bottom: 0; }
