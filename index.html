@@ -381,6 +381,9 @@
   .cv-role + .cv-row, .cv-role ~ .cv-row { padding: 14px 0; }
 
   .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .proj-group { margin-top: 18px; }
+  .proj-group .cat-head { padding-top: 54px; }
+  .group-caption { color: var(--text-dim); max-width: 58ch; font-size: 1.05rem; margin: 20px 0 30px; }
   @media (max-width: 860px) { .proj-grid { grid-template-columns: 1fr; } }
 
   .proj {
@@ -455,7 +458,7 @@ const INDEX_CARDS = [
   { path: "/publications", title: "Publications",  blurb: "Peer-reviewed articles, chapters, and edited work, with links to open-access copies where they exist." },
   { path: "/talks",        title: "Talks & Presentations", blurb: "Conference papers and invited lectures, in departments, seminars, and museums." },
   { path: "/cv",           title: "Curriculum Vitae", blurb: "Education, research and teaching experience, funding, and service." },
-  { path: "/portfolio",    title: "DH Portfolio", blurb: "Tools, datasets, and experiments built in the course of research, most of them public." },
+  { path: "/projects",     title: "Digital Projects", blurb: "Research tools, visualizations, and experiments, including the UCLA DH Portfolio." },
 ];
 
 const ABOUT = {
@@ -733,6 +736,15 @@ const CV = [
 
 const PROJECTS = [
   {
+    year: "2026",
+    title: "Priced In: Visualizing the Entanglements of AI News and Market Valuations",
+    people: ["Santachiara, P."],
+    blurb: "A timeline that sets AI news announcements against the market valuations of the companies making them, to ask how each moves the other. The project offers a per-company view and an aggregate one that treats AI news and AI market value as a single entangled object.",
+    tags: ["Data visualization", "Timeline", "Market data"],
+    url: "#PRICED_IN_URL",
+  },
+  {
+    group: "DH Portfolio",
     year: "2024",
     title: "The Lives of Historic Broadway Theaters: Making Modernity",
     people: ["Hayes, N.", "Lee, D.", "Lim, R.", "Luong, S.", "Santachiara, P.", "Stocco, H.", "Zuberi, I."],
@@ -741,6 +753,7 @@ const PROJECTS = [
     url: "/la-broadway-theaters/",
   },
   {
+    group: "DH Portfolio",
     year: "2021",
     title: "A Tourist Guide to United Kingdom Weather for Plutonians: A Satirical Exploration of Environmental Data Representation",
     people: ["Santachiara, P."],
@@ -749,6 +762,7 @@ const PROJECTS = [
     url: "/tourist-guide/",
   },
   {
+    group: "DH Portfolio",
     year: "2021",
     title: "Art, History, and Leadership: Uncovering Stories in The Metropolitan Museum of Art\u2019s Collection",
     people: ["Faulis, M.", "Hartman, J.", "Levandofsky, J.", "Santachiara, P."],
@@ -757,6 +771,7 @@ const PROJECTS = [
     url: "/met/",
   },
   {
+    group: "DH Portfolio",
     year: "2021",
     title: "Museum Acquisitions and Collection Development: an Analysis of The Museum of Modern Art Open Data",
     people: ["Santachiara, P."],
@@ -765,6 +780,7 @@ const PROJECTS = [
     url: "/moma/",
   },
   {
+    group: "DH Portfolio",
     year: "2020",
     title: "Power of the People: Mapping Mobilization in Venezuela, China, and France",
     people: ["Huang, K.", "Mimura, J.", "Santachiara, P.", "Sridhar, K.", "Xu, T."],
@@ -774,12 +790,20 @@ const PROJECTS = [
   },
 ];
 
+const PROJECT_GROUPS = [
+  {
+    name: "DH Portfolio",
+    caption: "Projects built in the course of the Digital Humanities program at UCLA, in reverse chronological order. Each opens as it was presented.",
+  },
+];
+
+
 const ROUTES = [
   { path: "/",             label: "about",        title: "About" },
   { path: "/publications", label: "publications", title: "Publications" },
   { path: "/talks",        label: "talks",        title: "Talks & Presentations" },
   { path: "/cv",           label: "cv",           title: "Curriculum Vitae" },
-  { path: "/portfolio",    label: "dhPortfolio",  title: "DH Portfolio" },
+  { path: "/projects",     label: "digitalProjects", title: "Digital Projects" },
 ];
 
 function Reveal({ children, delay = 0, className = "" }) {
@@ -1239,36 +1263,59 @@ function CVPage() {
   </div>`;
 }
 
-function PortfolioPage() {
+function ProjectsPage() {
+  const tile = (p, i) => html`
+    <a class="proj" key=${i} href=${p.url}>
+      <div class="meta-line"><span class="yr">${p.year}</span></div>
+      <h4>${p.title}</h4>
+      ${p.people ? html`<div class="people"><${Authors} list=${p.people} /></div>` : null}
+      <p>${p.blurb}</p>
+      <div class="tags">${p.tags.map((t, j) => html`<span key=${j}>${t}</span>`)}</div>
+    </a>`;
+
+  const loose = PROJECTS.filter(p => !p.group);
+  const groups = PROJECT_GROUPS
+    .map(g => ({ ...g, items: PROJECTS.filter(p => p.group === g.name) }))
+    .filter(g => g.items.length);
+
   return html`<div class="page">
     <div class="wrap">
       <${PageHead}
         label="Built"
-        title="DH <em>Portfolio</em>"
-        kicker="Projects built in the course of the Digital Humanities program at UCLA, in reverse chronological order. Each opens as it was presented." />
+        title="Digital <em>Projects</em>"
+        kicker="Research tools, visualizations, and experiments, in reverse chronological order. Each opens as it was presented." />
 
-      <${Reveal}>
-        <div class="proj-grid" style=${{ marginTop: "34px" }}>
-          ${PROJECTS.map((p, i) => html`
-            <a class="proj" key=${i} href=${p.url}>
-              <div class="meta-line"><span class="yr">${p.year}</span></div>
-              <h4>${p.title}</h4>
-              ${p.people ? html`<div class="people"><${Authors} list=${p.people} /></div>` : null}
-              <p>${p.blurb}</p>
-              <div class="tags">${p.tags.map((t, j) => html`<span key=${j}>${t}</span>`)}</div>
-            </a>`)}
-        </div>
-      </${Reveal}>
+      ${loose.length ? html`
+        <${Reveal}>
+          <div class="proj-grid" style=${{ marginTop: "34px" }}>
+            ${loose.map(tile)}
+          </div>
+        </${Reveal}>` : null}
+
+      ${groups.map(g => html`
+        <${Reveal} key=${g.name}>
+          <div class="proj-group">
+            <div class="cat-head">
+              <h3>${g.name}</h3>
+              <span class="count">${g.items.length}</span>
+            </div>
+            ${g.caption ? html`<p class="group-caption">${g.caption}</p>` : null}
+            <div class="proj-grid">
+              ${g.items.map(tile)}
+            </div>
+          </div>
+        </${Reveal}>`)}
     </div>
   </div>`;
 }
+
 
 const PAGES = {
   "/":             HomePage,
   "/publications": PublicationsPage,
   "/talks":        TalksPage,
   "/cv":           CVPage,
-  "/portfolio":    PortfolioPage,
+  "/projects":     ProjectsPage,
 };
 
 function Nav({ path }) {
@@ -1291,8 +1338,10 @@ function Nav({ path }) {
 }
 
 function App() {
+  const ALIASES = { "/portfolio": "/projects" };
   const parse = () => {
-    const h = window.location.hash.replace(/^#/, "");
+    let h = window.location.hash.replace(/^#/, "");
+    if (ALIASES[h]) h = ALIASES[h];
     return PAGES[h] ? h : "/";
   };
   const [path, setPath] = useState(parse());
