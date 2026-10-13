@@ -547,10 +547,17 @@ const PUBLICATIONS = [
     links: [ { label: "Read", url: "https://criticaltheoryis.blogspot.com/2020/02/classification-as-system-of-discipline.html" } ],
   },
   {
+    year: 2026, kind: "Digital Projects",
+    title: "Priced In: Visualizing the Entanglements of AI News and Market Valuations",
+    authors: ["Santachiara, P."],
+    venue: "",
+    links: [ { label: "Visit", url: "/pricedin/" } ],
+  },
+  {
     year: 2024, kind: "Digital Projects",
     title: "The Lives of Historic Broadway Theaters: Making Modernity",
     authors: ["Hayes, N.", "Lee, D.", "Lim, R.", "Luong, S.", "Santachiara, P.", "Stocco, H.", "Zuberi, I."],
-    venue: "ArcGIS StoryMap. DGTHUM299 Architectural Reconstruction on Broadway, UCLA",
+    venue: "DGTHUM299 Architectural Reconstruction on Broadway, UCLA",
     links: [ { label: "Visit", url: "/la-broadway-theaters/" } ],
   },
   {
@@ -578,7 +585,7 @@ const PUBLICATIONS = [
     year: 2020, kind: "Digital Projects",
     title: "Power of the People: Mapping Mobilization in Venezuela, China, and France",
     authors: ["Huang, K.", "Mimura, J.", "Santachiara, P.", "Sridhar, K.", "Xu, T."],
-    venue: "ArcGIS StoryMap. DGTHUM250 Digital Mapping and Critical GIS, UCLA. Archived",
+    venue: "DGTHUM250 Digital Mapping and Critical GIS, UCLA. Archived",
     links: [ { label: "Visit", url: "/power-people/" } ],
   },
 ];
@@ -1194,7 +1201,7 @@ function GroupedList({ items, order, dated }) {
       <div>
         <h4>${p.title}</h4>
         <${Authors} list=${p.authors} />
-        <p class="venue">${p.venue}</p>
+        ${p.venue ? html`<p class="venue">${p.venue}</p>` : null}
         ${p.links && p.links.length ? html`
           <div class="pub-links">
             ${p.links.map((l, j) => html`
