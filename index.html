@@ -277,7 +277,7 @@
     margin: 14px 0 0; letter-spacing: -0.012em;
   }
   .page-head h2 em { color: var(--gold-soft); }
-  .page-head .kicker { margin-top: 20px; color: var(--text-dim); max-width: 58ch; font-size: 1.05rem; }
+  .page-head .kicker { margin: 20px 0 0; color: var(--text-dim); max-width: 58ch; font-size: 1.05rem; }
 
   h3.sub {
     font-family: var(--display); font-weight: 400; font-size: 1.75rem;
@@ -1287,7 +1287,7 @@ function ProjectsPage() {
 
       ${loose.length ? html`
         <${Reveal}>
-          <div class="proj-grid" style=${{ marginTop: "14px" }}>
+          <div class="proj-grid" style=${{ marginTop: "18px" }}>
             ${loose.map(tile)}
           </div>
         </${Reveal}>` : null}
