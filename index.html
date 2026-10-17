@@ -540,6 +540,13 @@ const PUBLICATIONS = [
     links: [],
   },
   {
+    year: 2026, kind: "Editorial Activity", status: "Forthcoming",
+    title: "(In)visible AI: What We See, What We Do Not, and Why It Matters",
+    authors: ["Santachiara, P. (Guest ed.)"],
+    venue: "Special issue of Information Matters, December 2026",
+    links: [],
+  },
+  {
     year: 2020, kind: "Public Writing",
     title: "Classification as System of Discipline and Punishment: A Mereological Analysis of the Antiquity/(Post)Modernity Dichotomy",
     authors: ["Santachiara, P."],
@@ -593,6 +600,7 @@ const PUBLICATIONS = [
 const PUB_CATEGORIES = [
   "Peer-Reviewed Journal Articles",
   "Book Chapters",
+  "Editorial Activity",
   "Public Writing",
   "Digital Projects",
 ];
@@ -1096,7 +1104,7 @@ function GraphField() {
 function Authors({ list }) {
   const me = SITE.familyName + ", " + SITE.givenName.charAt(0) + ".";
   return html`<p class="authors">${list.map((a, i) => html`
-    <span key=${i} class=${a === me ? "me" : ""}>${a}${i < list.length - 1 ? ", " : ""}</span>`)}</p>`;
+    <span key=${i} class=${a === me || a.startsWith(me + " ") ? "me" : ""}>${a}${i < list.length - 1 ? ", " : ""}</span>`)}</p>`;
 }
 
 function PageHead({ label, title, kicker }) {
