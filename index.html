@@ -756,6 +756,11 @@ const PROJECTS = [
     url: "/pricedin/",
   },
   {
+    year: "2026",
+    title: "Adverse: An Inverse Ad Blocker",
+    people: ["Santachiara, P."],
+  },
+  {
     group: "DH Portfolio",
     year: "2024",
     title: "The Lives of Historic Broadway Theaters: Making Modernity",
@@ -1281,8 +1286,9 @@ function ProjectsPage() {
       <div class="meta-line"><span class="yr">${p.year}</span></div>
       <h4>${p.title}</h4>
       ${p.people ? html`<div class="people"><${Authors} list=${p.people} /></div>` : null}
-      <p>${p.blurb}</p>
-      <div class="tags">${p.tags.map((t, j) => html`<span key=${j}>${t}</span>`)}</div>
+      ${p.blurb ? html`<p>${p.blurb}</p>` : null}
+      ${p.tags && p.tags.length ? html`
+        <div class="tags">${p.tags.map((t, j) => html`<span key=${j}>${t}</span>`)}</div>` : null}
     </a>`;
 
   const loose = PROJECTS.filter(p => !p.group);
