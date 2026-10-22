@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Pietro Santachiara — PhD Candidate in Information Studies, UCLA</title>
+<meta name="description" content="Pietro Santachiara, PhD Candidate in Information Studies at UCLA: publications, CV, and digital humanities portfolio." />
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:         #070a12;
+    --bg-elev:    #0c1120;
+    --bg-elev-2:  #111829;
+
+    --text:       #ece9e2;
+    --text-dim:   #a3aab9;
+    --text-faint: #6a7285;
+
+    --gold:       #d8b26a;    --gold-soft:  #f0dcae;
+    --gold-ink:   #0a0d16;
+    --blue:       #93bcd9;
+    --line:       rgba(236,233,226,0.11);
+    --line-soft:  rgba(236,233,226,0.055);
+
+    --display: "DM Serif Display", Georgia, serif;
+    --body:    "Spectral", Georgia, serif;
+    --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --radius: 3px;
+    --measure: 66ch;
+    --maxw: 1120px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+    background:
+      radial-gradient(110% 80% at 85% -5%, rgba(147,188,217,0.07), transparent 55%),
+      radial-gradient(90% 70% at -5% 105%, rgba(216,178,106,0.05), transparent 52%);
+    mix-blend-mode: screen;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: rgba(216,178,106,0.30); color: var(--text); }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: var(--radius);
+  }
+
+  .starfield {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .shell { position: relative; z-index: 1; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 34px; }
+  @media (max-width: 720px) { .wrap { padding: 0 20px; } }
+
+  .prose { max-width: var(--measure); }
+  .prose p { margin: 0 0 1.3em; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose a { color: var(--blue); border-bottom: 1px solid var(--line); transition: border-color .25s var(--ease); }
+  .prose a:hover { border-color: var(--blue); }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    background: rgba(7,10,18,0.74);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    transform: translateY(-2.5px);
+    font-family: var(--mono);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .brand .dot { color: var(--gold); }
+
+  .nav-links { display: flex; align-items: center; gap: 2px; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.025em;
+    color: var(--text-dim);
+    padding: 8px 11px;
+    border-radius: var(--radius);
+    transition: color .25s var(--ease), background .25s var(--ease);
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--text); background: rgba(236,233,226,0.05); }
+  .nav-links a.active { color: var(--gold-soft); }
+
+  .menu-btn { display: none; }
+
+  @media (max-width: 860px) {
+    .nav-links {
+      position: fixed;
+      inset: 66px 0 auto 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: rgba(7,10,18,0.985);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+      padding: 6px 0;
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s var(--ease), transform .28s var(--ease);
+    }
+    .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-links a { padding: 15px 20px; font-size: 13px; border-bottom: 1px solid var(--line-soft); }
+    .menu-btn {
+      display: inline-flex; flex-direction: column; justify-content: center; gap: 4px;
+      width: 40px; height: 34px; background: none; border: 0; cursor: pointer; padding: 8px;
+    }
+    .menu-btn span { display: block; height: 1.5px; background: var(--text); transition: transform .28s var(--ease), opacity .2s var(--ease); }
+    .menu-btn.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .menu-btn.open span:nth-child(2) { opacity: 0; }
+    .menu-btn.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+  }
+
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page { animation: pageIn .5s var(--ease) both; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  .typed .t-w { display: inline-block; }
+  .typed .t-c { position: relative; opacity: 0; }
+
+  .typed.on .t-c { animation: typeIn 1ms linear var(--d) forwards; }
+
+  .typed.on .t-c::after {
+    content: "";
+    position: absolute;
+    right: -2px; top: 0.12em; bottom: 0.06em;
+    width: 2px;
+    background: var(--gold);
+    opacity: 0;
+    animation: caretRun var(--s, 16ms) linear var(--d) both;
+  }
+
+  .typed.instant .t-c { opacity: 1; animation: none; }
+  .typed.instant .t-c::after { display: none; }
+
+  @keyframes typeIn { to { opacity: 1; } }
+  @keyframes caretRun { 0% { opacity: 1; } 99% { opacity: 1; } 100% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typed .t-c { opacity: 1; animation: none !important; }
+    .typed .t-c::after { display: none !important; }
+  }
+
+  .hero {
+    position: relative;
+    min-height: calc(100dvh - 66px);
+    display: flex;
+    align-items: center;
+    padding: 60px 0 90px;
+  }
+  .hero .rule { height: 1px; width: 54px; background: var(--gold); margin-bottom: 26px; }
+
+  h1.name {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(3rem, 8.5vw, 6.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  h1.name .given { display: block; color: var(--text); }
+  h1.name .family { display: block; font-style: italic; color: var(--gold-soft); }
+
+  .role {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 30px 0 0;
+    line-height: 2;
+  }
+  .role .sep { color: var(--gold); margin: 0 10px; }
+
+  .bio { margin-top: 34px; font-size: 1.1rem; max-width: 60ch; color: var(--text); }
+
+  .hero-links { margin-top: 44px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase;
+    background: var(--gold); color: var(--gold-ink);
+    padding: 13px 22px; border-radius: var(--radius);
+    transition: background .25s var(--ease), transform .18s var(--ease);
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .btn:hover { background: var(--gold-soft); }
+  .btn:active { transform: translateY(1px); }
+  .btn-ghost {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase;
+    color: var(--text-dim); padding: 13px 16px; border: 1px solid var(--line); border-radius: var(--radius);
+    transition: border-color .25s var(--ease), color .25s var(--ease);
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--text); }
+
+  section.band { padding: 92px 0; border-top: 1px solid var(--line); }
+  @media (max-width: 720px) { section.band { padding: 60px 0; } }
+
+  .page-head { padding: 84px 0 26px; }
+  .page-head h2 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(2.2rem, 5.4vw, 3.8rem); line-height: 1.04;
+    margin: 14px 0 0; letter-spacing: -0.012em;
+  }
+  .page-head h2 em { color: var(--gold-soft); }
+  .page-head .kicker { margin: 20px 0 0; color: var(--text-dim); max-width: 58ch; font-size: 1.05rem; }
+
+  h3.sub {
+    font-family: var(--display); font-weight: 400; font-size: 1.75rem;
+    line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.005em;
+  }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 30px; } }
+
+  .side-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.85; color: var(--text-dim); }
+  .side-note .pin { color: var(--gold); display: block; }
+  .side-note .fact { margin-bottom: 22px; }
+  .side-note .fact:last-child { margin-bottom: 0; }
+  .side-note a { color: var(--blue); border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+  .side-note a:hover { border-color: var(--blue); }
+
+  .side-note .fact-list { list-style: none; margin: 4px 0 0; padding: 0; }
+  .side-note .fact-list li { margin-bottom: 6px; line-height: 1.6; }
+  .side-note .fact-list li:last-child { margin-bottom: 0; }
+
+  .news { font-family: var(--mono); font-size: 12.5px; margin-top: 18px; }
+  .news .news-item { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line-soft); }
+  .news .news-item:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
+  .news .pin { color: var(--gold); display: block; margin-bottom: 8px; }
+  .news .t { color: var(--text); line-height: 1.7; }
+  .news .m { color: var(--text-dim); line-height: 1.7; margin-top: 7px; }
+
+  .index-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  @media (max-width: 820px) { .index-grid { grid-template-columns: 1fr; } }
+  .index-grid a { background: var(--bg-elev); padding: 32px 28px; display: block; transition: background .3s var(--ease); }
+  .index-grid a:hover { background: var(--bg-elev-2); }
+  .index-grid a h4 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; margin: 0 0 10px; }
+  .index-grid a p { margin: 0; color: var(--text-dim); font-size: 0.97rem; line-height: 1.65; }
+  .index-grid a .arrow { margin-top: 18px; display: inline-block; font-family: var(--mono); font-size: 12px; color: var(--text-faint); transition: transform .3s var(--ease), color .3s var(--ease); }
+  .index-grid a:hover .arrow { color: var(--gold); transform: translateX(5px); }
+
+  .cat-group { margin-bottom: 8px; }
+  .cat-head {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 44px 0 14px; border-bottom: 1px solid var(--line);
+  }
+  .cat-head h3 {
+    font-family: var(--display); font-weight: 400; font-size: 1.75rem;
+    color: var(--gold-soft); line-height: 1.1; margin: 0;
+  }
+  .cat-head .count {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
+    color: var(--text-faint);
+  }
+  .cat-group:first-of-type .cat-head { padding-top: 26px; }
+
+  .pub { display: grid; grid-template-columns: 108px 1fr; gap: 30px; padding: 26px 0; border-bottom: 1px solid var(--line-soft); }
+  @media (max-width: 720px) { .pub { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
+  .pub .kind { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--gold); line-height: 1.3; padding-top: 4px; }
+  .pub .kind .d { display: block; color: var(--text-faint); font-size: 11.5px; margin-top: 5px; }
+  .pub .kind.status { font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.5; padding-top: 3px; }
+  .pub h4 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; line-height: 1.28; margin: 0 0 8px; }
+  .pub .authors { color: var(--text-dim); font-size: 0.97rem; margin: 0 0 4px; }
+  .pub .authors .me { color: var(--text); }
+  .pub .venue { font-style: italic; color: var(--text-dim); font-size: 0.97rem; margin: 0; }
+  .pub .pub-links { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .pub .pub-links a {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--line); padding: 5px 11px; border-radius: var(--radius);
+    transition: border-color .25s var(--ease), color .25s var(--ease);
+  }
+  .pub .pub-links a:hover { border-color: var(--gold); color: var(--text); }
+
+  .cv-section { margin-top: 54px; }
+  .cv-section > .cv-head {
+    display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--line);
+  }
+  .cv-section .cv-heading {
+    font-family: var(--display); font-weight: 400; font-size: 1.75rem;
+    color: var(--gold-soft); line-height: 1.1; margin: 0;
+  }
+  .cv-section .cv-head .count {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
+    color: var(--text-faint);
+  }
+
+  .cv-row { display: grid; grid-template-columns: 150px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--line-soft); }
+  @media (max-width: 720px) { .cv-row { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; } }
+  .cv-row .when { font-family: var(--mono); font-size: 12.5px; color: var(--gold); padding-top: 2px; letter-spacing: 0.04em; line-height: 1.65; }
+  .cv-row h4 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; margin: 0 0 6px; line-height: 1.28; }
+  .cv-row .where { color: var(--text-dim); font-size: 0.97rem; margin: 0; }
+  .cv-row .detail { color: var(--text-dim); font-size: 0.95rem; margin: 8px 0 0; }
+
+  .cv-subhead {
+    font-family: var(--display); font-weight: 400; font-size: 1.2rem;
+    color: var(--text); margin: 34px 0 0; padding-bottom: 2px;
+  }
+  .cv-section > .cv-head + .cv-subhead { margin-top: 22px; }
+  .cv-role {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    margin: 16px 0 2px;
+  }
+  .cv-subhead + .cv-role { margin-top: 12px; }
+  .cv-role + .cv-row, .cv-role ~ .cv-row { padding: 14px 0; }
+
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .proj-group { margin-top: 18px; }
+  .proj-group .cat-head { padding-top: 54px; }
+  .group-caption { color: var(--text-dim); max-width: 58ch; font-size: 1.05rem; margin: 20px 0 30px; }
+  @media (max-width: 860px) { .proj-grid { grid-template-columns: 1fr; } }
+
+  .proj {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px 30px 30px;
+    display: flex; flex-direction: column;
+    transition: border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
+  }
+  .proj:hover { border-color: rgba(216,178,106,0.4); background: var(--bg-elev-2); transform: translateY(-3px); }
+  .proj .meta-line { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); line-height: 1.6; }
+  .proj .meta-line .yr { color: var(--gold); }
+  .proj h4 { font-family: var(--display); font-weight: 400; font-size: 1.85rem; line-height: 1.1; margin: 16px 0 10px; }
+  .proj p { margin: 0; color: var(--text-dim); font-size: 1rem; line-height: 1.7; max-width: 62ch; }
+  .proj .people { margin: 0 0 12px; }
+  .proj .people .authors { color: var(--text-dim); font-size: 0.92rem; line-height: 1.6; margin: 0; }
+  .proj .people .authors .me { color: var(--text); }
+  .proj .tags { margin-top: 20px; display: flex; gap: 7px; flex-wrap: wrap; }
+  .proj .tags span {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-faint); border: 1px solid var(--line-soft); padding: 4px 9px; border-radius: 999px;
+  }
+
+  footer.foot { border-top: 1px solid var(--line); padding: 50px 0; margin-top: 90px; }
+  footer.foot .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  footer.foot, footer.foot a { font-family: var(--mono); font-size: 12px; color: var(--text-faint); letter-spacing: 0.04em; }
+  footer.foot a:hover { color: var(--text-dim); }
+</style>
+<script data-goatcounter="https://pscom.goatcounter.com/count"
+        data-goatcounter-settings='{"no_onload": true}'
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="module">
+import React from "https://esm.sh/react@18.2.0";
+import ReactDOM from "https://esm.sh/react-dom@18.2.0/client";
+import htm from "https://esm.sh/htm@3.1.1";
+
+const { useState, useEffect, useRef, useMemo } = React;
+const html = htm.bind(React.createElement);
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const SITE = {
+  givenName:  "Pietro",
+  familyName: "Santachiara",
+  brandShort: "ps",
+  roles: ["PhD Candidate in Information Studies", "University of California, Los Angeles"],
+  bio: "I study how libraries, archives, and museums decide what a thing is. I follow those decisions into the computational ontologies that carry them on the Semantic Web as Linked Data, and argue that descriptive structures do not simply record what a thing is, but rather participate in constituting it.",
+  email: "psantachiara@ucla.edu",
+  cvPdf: "cv.pdf",
+  links: [
+    { label: "UCLA profile",   url: "https://seis.ucla.edu/students/pietro-santachiara/" },
+    { label: "Google Scholar", url: "https://scholar.google.com/citations?user=lXGHXp4AAAAJ&hl=en" },
+    { label: "ORCID",          url: "https://orcid.org/0000-0002-5569-2177" },
+    { label: "LinkedIn",       url: "https://www.linkedin.com/in/pietrosantachiara/" },
+  ],
+  footerNote: "Last updated October 2026",
+};
+
+const TYPING = { enabled: true, speed: 11 };
+
+const PREDICATES = [
+  "rdf:type", "rdfs:label", "rdfs:seeAlso", "owl:sameAs", "skos:broader",
+  "skos:related", "dcterms:creator", "dcterms:date", "dcterms:subject",
+  "prov:wasDerivedFrom", "foaf:knows", "schema:about",
+];
+
+const INDEX_CARDS = [
+  { path: "/publications", title: "Publications",  blurb: "Peer-reviewed articles, chapters, and edited work, with links to open-access copies where they exist." },
+  { path: "/talks",        title: "Talks & Presentations", blurb: "Conference papers and invited lectures, in departments, seminars, and museums." },
+  { path: "/cv",           title: "Curriculum Vitae", blurb: "Education, research and teaching experience, funding, and service." },
+  { path: "/projects",     title: "Digital Projects", blurb: "Research tools, visualizations, and experiments, including the UCLA DH Portfolio." },
+];
+
+const ABOUT = {
+  news: [
+    {
+      k: "Latest talk",
+      v: "Cuts That Count: How Ontological Apparatuses Shape What Counts in Linked Open Data",
+      meta: "4S 2026: Technopower, Technoscientific Futures \u00b7 Toronto, 9 October 2026",
+    },
+    {
+      k: "Invited article",
+      v: "Toward a Reconfiguration of Representation: Ontologies as Apparatuses and the Production of Provenance in Linked Open Data",
+      meta: "Library & Information Science Research, special issue on Exploring Information-as-Potentiality: Methods, Approaches, Implications",
+    },
+    {
+      k: "Latest article",
+      v: "From Facticity to Perspective: Rethinking Classification, Truth and Interoperability in Knowledge Organization; or, Uncertainty as Infrastructure",
+      meta: "Journal of Documentation, 2026",
+    },
+  ],
+
+  facts: [
+    { k: "Field",     v: "Information Studies + Digital Humanities" },
+    { k: "Interests", v: [
+      "Critical knowledge organization",
+      "Linked Open Data in libraries, archives, museums",
+      "Computational ontology modelling and the politics of description",
+      "Knowledge representation and the history of symbolic AI",
+      "History and philosophy of LIS (documentation)",
+    ] },
+    { k: "Based in",  v: "Los Angeles, California" },
+  ],
+};
+
+const PUBLICATIONS = [
+  {
+    year: 2027, kind: "Peer-Reviewed Journal Articles",
+    status: "Under review",
+    title: "Centralized in Practice: A Critical Hermeneutic Review of Linked Open Data in Libraries, Archives and Museums",
+    authors: ["Santachiara, P."],
+    venue: "Annual Review of Information Science and Technology (ARIST)",
+    links: [],
+  },
+  {
+    year: 2027, kind: "Peer-Reviewed Journal Articles",
+    status: "Under review",
+    title: "The Problem with Linked Open Data: a Gramscian Account",
+    authors: ["Santachiara, P."],
+    venue: "Journal of Documentation",
+    links: [],
+  },
+  {
+    year: 2027, kind: "Peer-Reviewed Journal Articles",
+    status: "Under review",
+    title: "Absorbed and Neutralized: Trasformismo in Linked Open Data",
+    authors: ["Santachiara, P."],
+    venue: "Information Research, 32(iConf 2027)",
+    links: [],
+  },
+  {
+    year: 2026, kind: "Peer-Reviewed Journal Articles",
+    title: "From Facticity to Perspective: Rethinking Classification, Truth and Interoperability in Knowledge Organization; or, Uncertainty as Infrastructure",
+    authors: ["Santachiara, P."],
+    venue: "Journal of Documentation, ahead-of-print, 1\u201322",
+    links: [ { label: "DOI", url: "https://doi.org/10.1108/JD-01-2026-0052" } ],
+  },
+  {
+    year: 2027, kind: "Peer-Reviewed Journal Articles",
+    status: "Invited",
+    title: "Toward a Reconfiguration of Representation: Ontologies as Apparatuses and the Production of Provenance in Linked Open Data",
+    authors: ["Santachiara, P."],
+    venue: "Library & Information Science Research, special issue on Exploring Information-as-Potentiality: Methods, Approaches, Implications",
+    links: [],
+  },
+  {
+    year: 2022, kind: "Peer-Reviewed Journal Articles",
+    title: "Heterochronologies: A Platform for Correlation and Research in Temporal Graphics",
+    authors: ["Drucker, J.", "Polack, P.", "Santachiara, P."],
+    venue: "Digital Humanities Quarterly, 16(3)",
+    links: [ { label: "Read", url: "http://digitalhumanities.org/dhq/vol/16/3/000624/000624.html" } ],
+  },
+  {
+    year: 2026, kind: "Conference Proceedings",
+    status: "Under review",
+    title: "Four Versions of Barr’s Chart: A Study of Ontology Development",
+    authors: ["Santachiara, P.", "Leazer, G."],
+    venue: "11th Computational Archival Science (CAS) Workshop, 2026 IEEE Big Data Conference Proceedings",
+    links: [ { label: "Workshop", url: "https://bigdataieee.org/BigData2026/" } ],
+  },
+  {
+    year: 2008, kind: "Book Chapters",
+    title: "Fondamenti della Comunicazione d\u2019Impresa",
+    authors: ["Santachiara, P."],
+    venue: "In M. Carpegna, Spot, Un Film di 30 Secondi. Come Nasce e Si Riproduce la Pubblicit\u00e0 Televisiva (Vol. 29, pp. 20\u201352). Franco Angeli",
+    links: [],
+  },
+  {
+    year: 2026, kind: "Editorial Activity", status: "Forthcoming",
+    title: "(In)visible AI: What We See, What We Do Not, and Why It Matters",
+    authors: ["Santachiara, P. (Guest ed.)"],
+    venue: "Special issue of Information Matters, December 2026",
+    links: [],
+  },
+  {
+    year: 2026, kind: "Editorial Activity", status: "Forthcoming",
+    title: "Introduction to the Special Issue",
+    authors: ["Santachiara, P."],
+    venue: "Introduction to the special issue (In)visible AI: What We See, What We Do Not, and Why It Matters, Information Matters",
+    links: [],
+  },
+];
+
+const PUB_CATEGORIES = [
+  "Peer-Reviewed Journal Articles",
+  "Conference Proceedings",
+  "Book Chapters",
+  "Editorial Activity",
+];
+
+const TALKS = [
+  {
+    year: 2026, date: "9 October", kind: "Conference Presentations",
+    title: "Cuts That Count: How Ontological Apparatuses Shape What Counts in Linked Open Data",
+    authors: ["Santachiara, P."],
+    venue: "In Counting Matters: The Ontologies of (Ac)counting with and Beyond Data. 4S 2026: Technopower, Technoscientific Futures, Toronto",
+    links: [],
+  },
+  {
+    year: 2021, date: "16 March", kind: "Conference Presentations",
+    title: "Heterochronologies: A Platform For Correlation and Research in Temporal Graphics",
+    authors: ["Drucker, J.", "Polack, P.", "Santachiara, P."],
+    venue: "The Material Life of Time: Second International Temporal Belongings Conference, Oslo, Norway",
+    links: [],
+  },
+  {
+    year: 2026, date: "18 May", kind: "Invited Talks",
+    title: "Classification, Algorithms, and (the) AI (con)",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (INFSTD30 Internet and Society), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2026, date: "27 April", kind: "Invited Talks",
+    title: "Tensions in Computing and the Myth of Neutrality: Labor, Power, and Bias",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (INFSTD30 Internet and Society), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2026, date: "3 March", kind: "Invited Talks",
+    title: "Studying Knowledge Infrastructures: Linked Data Ontologies and Agential Realism",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (Doctoral Seminar \u2014 INFSTD298B Special Topics in Methodology of Information Studies: Methods in Science and Technology Studies), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2025, date: "24 February", kind: "Invited Talks",
+    title: "Knowledge Modelling in Linked Open Data: The Role of Ontologies and Controlled Vocabularies",
+    authors: ["Santachiara, P."],
+    venue: "Department of Information Studies, UCLA (INFSTD270 Systems and Infrastructures), Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2023, date: "9 June", kind: "Invited Talks",
+    title: "Unifying the Uncertain: When Provenance Metadata Resists Linked Data",
+    authors: ["Santachiara, P."],
+    venue: "Provenance Data at the Fowler Museum, Los Angeles, CA",
+    links: [],
+  },
+  {
+    year: 2014, date: "16 June", kind: "Invited Talks",
+    title: "Museum Collections Data: Semantics, Threads, And (Hi)stories",
+    authors: ["Santachiara, P."],
+    venue: "Beautiful Data: A Summer Institute for Telling Stories with Open Art Collections, metaLAB (at) Harvard, Cambridge, MA",
+    links: [],
+  },
+];
+
+const TALK_CATEGORIES = ["Conference Presentations", "Invited Talks"];
+
+const CV = [
+  {
+    heading: "Education",
+    rows: [
+      { when: "2027 (exp.)", title: "PhD in Information Studies", where: "University of California, Los Angeles (UCLA)",
+        detail: "Co-chairs: Jonathan Furner and Gregory H. Leazer." },
+      { when: "2024", title: "Graduate Certificate in Digital Humanities", where: "UCLA" },
+      { when: "2022", title: "Master of Library and Information Science, Informatics Specialization", where: "UCLA" },
+      { when: "2010", title: "Master of Science in Technology-Enhanced Communication for Cultural Heritage", where: "University of Lugano, Switzerland" },
+      { when: "2006", title: "Bachelor of Arts in Communication Studies", where: "University of Modena and Reggio Emilia, Italy" },
+    ],
+  },
+  {
+    heading: "Research Experience",
+    rows: [
+      { when: "2024", title: "Graduate Student Researcher", where: "DataX, UCLA",
+        detail: "PIs: Noopur Raval, Safiya Noble, Sarah Roberts." },
+      { when: "2022", title: "LEADING Data Science Fellow", where: "Drexel University College of Computing & Informatics",
+        detail: "Laura Bush 21st Century Librarian (LB21) National Digital Infrastructures and Initiatives project, supported by the Institute of Museum and Library Services (IMLS) RE-246450-OLS-20." },
+      { when: "2021", title: "Graduate Summer Research Mentorship", where: "Department of Information Studies, UCLA",
+        detail: "PI: Johanna Drucker." },
+      { when: "2020", title: "Graduate Student Researcher", where: "Department of Information Studies, UCLA",
+        detail: "PI: Johanna Drucker." },
+    ],
+  },
+  {
+    heading: "Select Professional Experience",
+    rows: [
+      { when: "2022", title: "User Experience Researcher", where: "NASA Jet Propulsion Laboratory, Los Angeles" },
+      { when: "2011 \u2013 2012", title: "Digital Initiatives Graduate Intern", where: "Collection Information and Access, The J. Paul Getty Museum" },
+      { when: "2008", title: "Production Intern", where: "Interactive Educational Technologies, San Francisco Museum of Modern Art" },
+    ],
+  },
+  {
+    heading: "Teaching",
+    countTerms: true,
+    rows: [
+      { subhead: "UCLA Department of Information Studies" },
+      { role: "Teaching Assistant" },
+      { when: "S2026", title: "Internet and Society (INFSTD30)" },
+      { when: "W2024", title: "Artificial Intelligence and Justice (INFSTD180)" },
+      { role: "Special Reader" },
+      { when: "W2026", title: "Description and Access (INFSTD260)" },
+      { when: "F2020, F2021, F2024, F2025", title: "Artifacts and Cultures (INFSTD211)" },
+      { when: "W2025", title: "Systems and Infrastructures (INFSTD270)" },
+
+      { subhead: "UCLA Department of Digital Humanities" },
+      { role: "Teaching Assistant" },
+      { when: "F2025, W2026, S2026, F2026, W2027, S2027", title: "Introduction to Digital Humanities (DGTHUM101)" },
+
+      { subhead: "UCLA Cluster in Data, Justice, and Society" },
+      { role: "Primary Instructor: Teaching Fellow" },
+      { when: "S2024", title: "Introduction to Critical Data Studies (10CW)" },
+
+      { subhead: "UCLA Department of Communication Studies" },
+      { role: "Graduate Reader" },
+      { when: "W2022, S2022, W2023, S2023, F2023, W2024", title: "Field Studies (COMM185)" },
+    ],
+  },
+  {
+    heading: "Select Workshops and Institutes",
+    rows: [
+      { when: "2025", title: "Knowledge Organisation in the Age of AI", where: "ISKO UK Conference" },
+      { when: "2023", title: "Cultural Heritage Data School", where: "Cambridge Digital Humanities, University of Cambridge" },
+      { when: "2023", title: "AI for GLAM", where: "UCLA Data Science Center" },
+      { when: "2022", title: "Data Science Bootcamp", where: "Drexel University College of Computing & Informatics" },
+      { when: "2020", title: "Histories of Artificial Intelligence: A Genealogy of Power", where: "Mellon Sawyer Seminar, History and Philosophy of Science, University of Cambridge" },
+      { when: "2014", title: "Beautiful Data: Telling Stories with Open Art Collections", where: "metaLAB (at) Harvard \u00b7 Getty Foundation Digital Art History Initiative" },
+    ],
+  },
+  {
+    heading: "Awards, Fellowships, and Grants",
+    countTerms: true,
+    rows: [
+      { when: "2022, 25, 26", title: "University of California Regents Fellowship", where: "Graduate Division, UCLA" },
+      { when: "2025", title: "Andrew Horn Memorial Fellowship", where: "Information Studies, UCLA" },
+      { when: "2019 \u2013 2024", title: "Bernard and Martin Breslauer Fellowship", where: "Information Studies, UCLA" },
+      { when: "2022, 23", title: "University Fellowship", where: "Graduate Division, UCLA" },
+      { when: "2022", title: "LEADING Data Science Fellowship", where: "Drexel University College of Computing & Informatics",
+        detail: "Laura Bush 21st Century Librarian (LB21) National Digital Infrastructures and Initiatives project, supported by the Institute of Museum and Library Services (IMLS) RE-246450-OLS-20." },
+      { when: "2021", title: "Graduate Summer Research Mentorship", where: "Graduate Division, UCLA" },
+      { when: "2015", title: "Fellowship", where: "Alliance of Digital Humanities Organizations" },
+      { when: "2014", title: "Research Grant, Beautiful Data", where: "metaLAB (at) Harvard \u00b7 Getty Foundation" },
+      { when: "2011 \u2013 2012", title: "Research and Travel Grants", where: "The J. Paul Getty Trust" },
+      { when: "2009 \u2013 2012", title: "MUSE Awards (two Silver, two Honorable Mention)", where: "American Alliance of Museums", count: 4,
+        detail: "For projects at The J. Paul Getty Museum and the San Francisco Museum of Modern Art." },
+      { when: "2007", title: "Dean\u2019s Scholarship", where: "Foundation for the Lugano Faculties, USI" },
+    ],
+  },
+  {
+    heading: "Service",
+    rows: [
+      { when: "2020 \u2013 2021", title: "Organizer, Information Studies Colloquia Series", where: "UCLA" },
+      { when: "2017 \u2013 2018", title: "Communications Chair", where: "Alliance of Digital Humanities Organizations" },
+      { when: "2008, 2012", title: "Volunteer, Museums and the Web", where: "Montreal and San Diego" },
+    ],
+  },
+];
+
+const PROJECTS = [
+  {
+    year: "2026",
+    title: "Priced In: Visualizing the Entanglements of AI News and Market Valuations",
+    people: ["Santachiara, P."],
+    blurb: "A timeline that sets AI news announcements against the market valuations of the companies making them, to ask how each moves the other. The project offers a per-company view and an aggregate one that treats AI news and AI market value as a single entangled object.",
+    tags: ["Data visualization", "Timeline", "Market data"],
+    url: "/pricedin/",
+  },
+  {
+    group: "DH Portfolio",
+    year: "2024",
+    title: "The Lives of Historic Broadway Theaters: Making Modernity",
+    people: ["Hayes, N.", "Lee, D.", "Lim, R.", "Luong, S.", "Santachiara, P.", "Stocco, H.", "Zuberi, I."],
+    blurb: "An architectural reconstruction of the historic theaters of Broadway in downtown Los Angeles, presented as an ArcGIS StoryMap alongside the team\u2019s working Miro board. The project traces how these buildings were made, altered, and repurposed across a century of the street\u2019s life.",
+    tags: ["ArcGIS StoryMaps", "Miro", "Architectural reconstruction"],
+    url: "/la-broadway-theaters/",
+  },
+  {
+    group: "DH Portfolio",
+    year: "2021",
+    title: "A Tourist Guide to United Kingdom Weather for Plutonians: A Satirical Exploration of Environmental Data Representation",
+    people: ["Santachiara, P."],
+    blurb: "A satirical guide for visitors who need warmth and dry air, addressed to a country that offers little of either. Twelve visualizations of Met Office station data work to locate the sunniest, warmest, driest corners of the United Kingdom and the narrow windows in which to find them.",
+    tags: ["Tableau", "Environmental data", "Satire"],
+    url: "/tourist-guide/",
+  },
+  {
+    group: "DH Portfolio",
+    year: "2021",
+    title: "Art, History, and Leadership: Uncovering Stories in The Metropolitan Museum of Art\u2019s Collection",
+    people: ["Faulis, M.", "Hartman, J.", "Levandofsky, J.", "Santachiara, P."],
+    blurb: "An analysis of The Met\u2019s open collection data through the museum\u2019s leadership teams and the eras they presided over. Reading acquisitions against directors, exhibitions, and world events surfaces stories \u2014 Winlock, Rockefeller, Burdick \u2014 that the counts alone do not tell.",
+    tags: ["OpenRefine", "R", "Open collection data"],
+    url: "/met/",
+  },
+  {
+    group: "DH Portfolio",
+    year: "2021",
+    title: "Museum Acquisitions and Collection Development: an Analysis of The Museum of Modern Art Open Data",
+    people: ["Santachiara, P."],
+    blurb: "A six-part study of MoMA\u2019s open datasets \u2014 138,151 artworks and 15,222 artists \u2014 examining how the collection was assembled by department, classification, acquisition type, gender, nationality, and medium.",
+    tags: ["Tableau", "Voyant Tools", "Open collection data"],
+    url: "/moma/",
+  },
+  {
+    group: "DH Portfolio",
+    year: "2020",
+    title: "Power of the People: Mapping Mobilization in Venezuela, China, and France",
+    people: ["Huang, K.", "Mimura, J.", "Santachiara, P.", "Sridhar, K.", "Xu, T."],
+    blurb: "A critical mapping of protest and mobilization across three countries, built as an ArcGIS StoryMap. Archived: the interactive components are no longer active.",
+    tags: ["ArcGIS StoryMaps", "Critical GIS", "Archived"],
+    url: "/power-people/",
+  },
+];
+
+const PROJECT_GROUPS = [
+  {
+    name: "DH Portfolio",
+    caption: "Projects built in the course of the Digital Humanities program at UCLA, in reverse chronological order. Each opens as it was presented.",
+  },
+];
+
+
+const ROUTES = [
+  { path: "/",             label: "about",        title: "About" },
+  { path: "/publications", label: "publications", title: "Publications" },
+  { path: "/talks",        label: "talks",        title: "Talks & Presentations" },
+  { path: "/cv",           label: "cv",           title: "Curriculum Vitae" },
+  { path: "/projects",     label: "digitalProjects", title: "Digital Projects" },
+];
+
+function Reveal({ children, delay = 0, className = "" }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(prefersReduced);
+  useEffect(() => {
+    if (prefersReduced) return;
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { setShown(true); io.disconnect(); } });
+    }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return html`<div ref=${ref} class=${"reveal " + (shown ? "in " : "") + className} style=${{ transitionDelay: delay + "ms" }}>${children}</div>`;
+}
+
+function Typed({ text, start = 0, speed = TYPING.speed, className = "", tag = "p" }) {
+  const ref = useRef(null);
+  const instant = prefersReduced || !TYPING.enabled;
+  const [on, setOn] = useState(instant);
+  const [forced, setForced] = useState(instant);
+
+  useEffect(() => {
+    if (instant) return;
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { setOn(true); io.disconnect(); } });
+    }, { threshold: 0.15, rootMargin: "0px 0px -5% 0px" });
+    io.observe(el);
+    const safety = setTimeout(() => setForced(true), 4000);
+    return () => { io.disconnect(); clearTimeout(safety); };
+  }, []);
+
+  const words = text.split(" ");
+  let i = 0;
+  const nodes = [];
+  words.forEach((word, wi) => {
+    nodes.push(html`<span key=${"w" + wi} class="t-w">
+      ${word.split("").map((c, ci) => {
+        const d = start + (i++) * speed;
+        return html`<span key=${ci} class="t-c" style=${{ "--d": d + "ms" }}>${c}</span>`;
+      })}
+    </span>`);
+    if (wi < words.length - 1) {
+      i++;
+      nodes.push(" ");
+    }
+  });
+
+  const cls = "typed " + (forced ? "instant " : on ? "on " : "") + className;
+  return React.createElement(tag, { ref, className: cls, style: { "--s": (speed * 1.5) + "ms" } }, nodes);
+}
+
+function GraphField() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let w = 0, h = 0, dpr = 1, stars = [], graphIdx = [], triples = [], raf = 0, t = 0;
+    let mx = 0, my = 0, tx = 0, ty = 0, nextSpawn = 0;
+
+    const CONFIG = {
+      linkDist:    170,
+      edgeAlpha:   0.20,
+      maxTriples:  3,
+      tripleLife:  9000,
+      spawnEvery:  2600,
+      labelAlpha:  0.34,
+    };
+
+    const LAYERS = [
+      { density: 26, r: 0.6, sp: 0.010, op: 0.42, par: 2, graph: false },
+      { density: 14, r: 0.9, sp: 0.021, op: 0.60, par: 5, graph: false },
+      { density: 4.4, r: 1.4, sp: 0.034, op: 0.92, par: 9, graph: true },
+    ];
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = Math.max(1, w * dpr);
+      canvas.height = Math.max(1, h * dpr);
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const init = () => {
+      stars = []; graphIdx = []; triples = [];
+      const area = (w * h) / 100000;
+      LAYERS.forEach((L) => {
+        const n = Math.round(L.density * area);
+        for (let i = 0; i < n; i++) {
+          const roll = Math.random();
+          stars.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: L.r * (0.7 + Math.random() * 0.6),
+            vx: L.sp * (0.6 + Math.random() * 0.8),
+            vy: -L.sp * (0.15 + Math.random() * 0.3),
+            op: L.op * (0.55 + Math.random() * 0.45),
+            par: L.par,
+            graph: L.graph,
+            kind: !L.graph ? "iri" : roll < 0.18 ? "literal" : roll < 0.28 ? "blank" : "iri",
+            tw: Math.random() < 0.16 ? (0.4 + Math.random() * 0.6) : 0,
+            ph: Math.random() * Math.PI * 2,
+          });
+          if (L.graph) graphIdx.push(stars.length - 1);
+        }
+      });
+    };
+
+    const pos = (s) => [s.x + tx * s.par, s.y + ty * s.par];
+
+    const spawnTriple = () => {
+      if (graphIdx.length < 2) return;
+      for (let attempt = 0; attempt < 24; attempt++) {
+        const ai = graphIdx[(Math.random() * graphIdx.length) | 0];
+        const a = stars[ai];
+        if (a.kind === "literal") continue;
+        const near = [];
+        for (const bi of graphIdx) {
+          if (bi === ai) continue;
+          const b = stars[bi];
+          if (Math.hypot(a.x - b.x, a.y - b.y) < CONFIG.linkDist * 0.85) near.push(bi);
+        }
+        if (!near.length) continue;
+        const bi = near[(Math.random() * near.length) | 0];
+        if (triples.some(tr => (tr.a === ai && tr.b === bi) || (tr.a === bi && tr.b === ai))) continue;
+        triples.push({
+          a: ai, b: bi,
+          pred: PREDICATES[(Math.random() * PREDICATES.length) | 0],
+          born: t,
+        });
+        return;
+      }
+    };
+
+    const drawNode = (s) => {
+      const [px, py] = pos(s);
+      let o = s.op;
+      if (s.tw) o *= 0.55 + 0.45 * Math.sin(t * 0.0011 * (1 + s.tw) + s.ph);
+      if (s.kind === "literal") {
+        ctx.fillStyle = "rgba(216,178,106," + o + ")";
+        ctx.fillRect(px - s.r, py - s.r * 0.85, s.r * 2, s.r * 1.7);
+      } else if (s.kind === "blank") {
+        ctx.strokeStyle = "rgba(232,238,248," + (o * 0.85) + ")";
+        ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.arc(px, py, s.r * 1.15, 0, Math.PI * 2); ctx.stroke();
+      } else {
+        ctx.fillStyle = "rgba(232,238,248," + o + ")";
+        ctx.beginPath(); ctx.arc(px, py, s.r, 0, Math.PI * 2); ctx.fill();
+      }
+    };
+
+    const drawEdges = () => {
+      ctx.lineWidth = 0.7;
+      for (let i = 0; i < graphIdx.length; i++) {
+        for (let j = i + 1; j < graphIdx.length; j++) {
+          const a = stars[graphIdx[i]], b = stars[graphIdx[j]];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d >= CONFIG.linkDist) continue;
+          const o = (1 - d / CONFIG.linkDist) * CONFIG.edgeAlpha;
+          const [ax, ay] = pos(a), [bx, by] = pos(b);
+          ctx.strokeStyle = "rgba(147,188,217," + o + ")";
+          ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+        }
+      }
+    };
+
+    const drawTriples = () => {
+      for (let i = triples.length - 1; i >= 0; i--) {
+        const tr = triples[i];
+        const life = (t - tr.born) / CONFIG.tripleLife;
+        const a = stars[tr.a], b = stars[tr.b];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (life >= 1 || d > CONFIG.linkDist) { triples.splice(i, 1); continue; }
+
+        const fade = Math.sin(Math.PI * life);
+        const [ax, ay] = pos(a), [bx, by] = pos(b);
+        const ang = Math.atan2(by - ay, bx - ax);
+
+        ctx.strokeStyle = "rgba(147,188,217," + (fade * 0.5) + ")";
+        ctx.lineWidth = 0.9;
+        ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+
+        const hx = bx - Math.cos(ang) * (b.r + 4);
+        const hy = by - Math.sin(ang) * (b.r + 4);
+        ctx.fillStyle = "rgba(147,188,217," + (fade * 0.6) + ")";
+        ctx.beginPath();
+        ctx.moveTo(hx, hy);
+        ctx.lineTo(hx - Math.cos(ang - 0.42) * 6, hy - Math.sin(ang - 0.42) * 6);
+        ctx.lineTo(hx - Math.cos(ang + 0.42) * 6, hy - Math.sin(ang + 0.42) * 6);
+        ctx.closePath(); ctx.fill();
+
+        const p = Math.min(1, life * 1.9);
+        if (p < 1) {
+          ctx.fillStyle = "rgba(240,220,174," + (fade * 0.9) + ")";
+          ctx.beginPath();
+          ctx.arc(ax + (bx - ax) * p, ay + (by - ay) * p, 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        const flip = ang > Math.PI / 2 || ang < -Math.PI / 2;
+        ctx.save();
+        ctx.translate((ax + bx) / 2, (ay + by) / 2);
+        ctx.rotate(flip ? ang + Math.PI : ang);
+        ctx.font = "500 10px 'JetBrains Mono', ui-monospace, monospace";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        ctx.fillStyle = "rgba(147,188,217," + (fade * CONFIG.labelAlpha) + ")";
+        ctx.fillText(tr.pred, 0, -4);
+        ctx.restore();
+      }
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      drawEdges();
+      drawTriples();
+      for (const s of stars) drawNode(s);
+    };
+
+    const step = (now) => {
+      t = now;
+      for (const s of stars) {
+        s.x += s.vx; s.y += s.vy;
+        if (s.x > w + 2) { s.x = -2; s.y = Math.random() * h; }
+        if (s.y < -2)    { s.y = h + 2; s.x = Math.random() * w; }
+      }
+      if (t > nextSpawn) {
+        nextSpawn = t + CONFIG.spawnEvery;
+        if (triples.length < CONFIG.maxTriples) spawnTriple();
+      }
+      tx += (mx - tx) * 0.045;
+      ty += (my - ty) * 0.045;
+      draw();
+      raf = requestAnimationFrame(step);
+    };
+
+    const onPointer = (e) => {
+      mx = (e.clientX / w - 0.5) * 2;
+      my = (e.clientY / h - 0.5) * 2;
+    };
+    const onResize = () => { resize(); init(); if (prefersReduced) draw(); };
+
+    resize(); init();
+    if (prefersReduced) draw();
+    else {
+      raf = requestAnimationFrame(step);
+      window.addEventListener("pointermove", onPointer, { passive: true });
+    }
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("pointermove", onPointer);
+    };
+  }, []);
+  return html`<canvas ref=${ref} class="starfield" aria-hidden="true"></canvas>`;
+}
+
+function Authors({ list }) {
+  const me = SITE.familyName + ", " + SITE.givenName.charAt(0) + ".";
+  return html`<p class="authors">${list.map((a, i) => html`
+    <span key=${i} class=${a === me || a.startsWith(me + " ") ? "me" : ""}>${a}${i < list.length - 1 ? ", " : ""}</span>`)}</p>`;
+}
+
+function PageHead({ label, title, kicker }) {
+  return html`<div class="page-head">
+    <span class="label">${label}</span>
+    <h2 dangerouslySetInnerHTML=${{ __html: title }}></h2>
+    ${kicker ? html`<${Typed} text=${kicker} className="kicker" start=${300} />` : null}
+  </div>`;
+}
+
+function HomePage() {
+  return html`<div class="page">
+    <section class="hero">
+      <div class="wrap">
+        <div class="rule"></div>
+        <h1 class="name">
+          <span class="given">${SITE.givenName}</span>
+          <span class="family">${SITE.familyName}</span>
+        </h1>
+        <p class="role">${SITE.roles.map((r, i) => html`
+          <span key=${i}>${i > 0 ? html`<span class="sep">/</span>` : null}${r}</span>`)}</p>
+        <${Typed} text=${SITE.bio} className="bio" start=${450} />
+        <div class="hero-links">
+          <a class="btn" href="#/publications">Publications <span aria-hidden="true">→</span></a>
+          <a class="btn-ghost" href="#/projects">Digital Projects</a>
+          <a class="btn-ghost" href=${"mailto:" + SITE.email}>Email</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <${Reveal}>
+          <div class="split">
+            <div>
+              <span class="label">Details</span>
+              <div class="side-note" style=${{ marginTop: "18px" }}>
+                ${ABOUT.facts.map((f, i) => html`
+                  <div class="fact" key=${i}>
+                    <span class="pin">${f.k}</span>
+                    ${Array.isArray(f.v)
+                      ? html`<ul class="fact-list">${f.v.map((item, j) => html`<li key=${j}>${item}</li>`)}</ul>`
+                      : html`<div>${f.v}</div>`}
+                  </div>`)}
+                <div class="fact">
+                  <span class="pin">Links</span>
+                  ${SITE.links.map((l, i) => html`
+                    <div key=${"l" + i}><a href=${l.url} target="_blank" rel="noopener">${l.label}</a></div>`)}
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="label">News</span>
+              <div class="news">
+                ${ABOUT.news.map((n, i) => html`
+                  <div class="news-item" key=${i}>
+                    <span class="pin">${n.k}</span>
+                    <div class="t">${n.v}</div>
+                    ${n.meta ? html`<div class="m">${n.meta}</div>` : null}
+                  </div>`)}
+              </div>
+            </div>
+          </div>
+        </${Reveal}>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <${Reveal}>
+          <span class="label">Sections</span>
+          <div class="index-grid" style=${{ marginTop: "24px" }}>
+            ${INDEX_CARDS.map((c) => html`
+              <a key=${c.path} href=${"#" + c.path}>
+                <h4>${c.title}</h4>
+                <p>${c.blurb}</p>
+                <span class="arrow">Open →</span>
+              </a>`)}
+          </div>
+        </${Reveal}>
+      </div>
+    </section>
+  </div>`;
+}
+
+function GroupedList({ items, order, dated }) {
+  const grouped = useMemo(() => {
+    const present = Array.from(new Set(items.map(p => p.kind)));
+    const ordered = order.filter(c => present.includes(c));
+    const cats = ordered.concat(present.filter(c => !ordered.includes(c)));
+    return cats.map(c => ({
+      name: c,
+      items: items.filter(p => p.kind === c).sort((a, b) => b.year - a.year),
+    }));
+  }, [items, order]);
+
+  const entry = (p, i) => html`
+    <div class="pub" key=${i}>
+      <div class=${"kind" + (p.status ? " status" : "")}>
+        ${p.status || p.year}${dated && p.date ? html`<span class="d">${p.date}</span>` : null}
+      </div>
+      <div>
+        <h4>${p.title}</h4>
+        <${Authors} list=${p.authors} />
+        ${p.venue ? html`<p class="venue">${p.venue}</p>` : null}
+        ${p.links && p.links.length ? html`
+          <div class="pub-links">
+            ${p.links.map((l, j) => html`
+              <a key=${j} href=${l.url}
+                 target=${l.url.startsWith("/") ? undefined : "_blank"}
+                 rel=${l.url.startsWith("/") ? undefined : "noopener"}>${l.label}</a>`)}
+          </div>` : null}
+      </div>
+    </div>`;
+
+  return grouped.map(g => html`
+    <${Reveal} key=${g.name}>
+      <div class="cat-group">
+        <div class="cat-head">
+          <h3>${g.name}</h3>
+          <span class="count">${g.items.length}</span>
+        </div>
+        ${g.items.map(entry)}
+      </div>
+    </${Reveal}>`);
+}
+
+function PublicationsPage() {
+  return html`<div class="page">
+    <div class="wrap">
+      <${PageHead}
+        label="Writing"
+        title="Publications"
+        kicker="Grouped by kind, newest first within each. Open-access copies are linked where rights allow." />
+      <${GroupedList} items=${PUBLICATIONS} order=${PUB_CATEGORIES} />
+    </div>
+  </div>`;
+}
+
+function TalksPage() {
+  return html`<div class="page">
+    <div class="wrap">
+      <${PageHead}
+        label="Speaking"
+        title="Talks &amp; <em>Presentations</em>"
+        kicker="Conference papers and invited lectures, newest first within each group. Slides and recordings are linked where they exist." />
+      <${GroupedList} items=${TALKS} order=${TALK_CATEGORIES} dated=${true} />
+    </div>
+  </div>`;
+}
+
+function CVPage() {
+  return html`<div class="page">
+    <div class="wrap">
+      <${PageHead}
+        label="Record"
+        title="Curriculum <em>Vitae</em>"
+        kicker="A summary of education, research, teaching, funding, and service." />
+
+      ${CV.map((sec, i) => html`
+        <${Reveal} key=${i}>
+          <div class="cv-section">
+            <div class="cv-head">
+              <h3 class="cv-heading">${sec.heading}</h3>
+              <span class="count">${
+                sec.rows
+                  .filter(r => !r.subhead && !r.role)
+                  .reduce((n, r) => n + (r.count || (sec.countTerms ? String(r.when).split(",").length : 1)), 0)
+              }</span>
+            </div>
+            ${sec.rows.map((r, j) => {
+              if (r.subhead) return html`<div class="cv-subhead" key=${j}>${r.subhead}</div>`;
+              if (r.role)    return html`<div class="cv-role" key=${j}>${r.role}</div>`;
+              return html`
+                <div class="cv-row" key=${j}>
+                  <div class="when">${r.when}</div>
+                  <div>
+                    <h4>${r.title}</h4>
+                    ${r.where ? html`<p class="where">${r.where}</p>` : null}
+                    ${r.detail ? html`<p class="detail">${r.detail}</p>` : null}
+                  </div>
+                </div>`;
+            })}
+          </div>
+        </${Reveal}>`)}
+    </div>
+  </div>`;
+}
+
+function ProjectsPage() {
+  const tile = (p, i) => html`
+    <a class="proj" key=${i} href=${p.url}>
+      <div class="meta-line"><span class="yr">${p.year}</span></div>
+      <h4>${p.title}</h4>
+      ${p.people ? html`<div class="people"><${Authors} list=${p.people} /></div>` : null}
+      <p>${p.blurb}</p>
+      <div class="tags">${p.tags.map((t, j) => html`<span key=${j}>${t}</span>`)}</div>
+    </a>`;
+
+  const loose = PROJECTS.filter(p => !p.group);
+  const groups = PROJECT_GROUPS
+    .map(g => ({ ...g, items: PROJECTS.filter(p => p.group === g.name) }))
+    .filter(g => g.items.length);
+
+  return html`<div class="page">
+    <div class="wrap">
+      <${PageHead}
+        label="Built"
+        title="Digital <em>Projects</em>"
+        kicker="Research tools, visualizations, and experiments, in reverse chronological order." />
+
+      ${loose.length ? html`
+        <${Reveal}>
+          <div class="proj-grid" style=${{ marginTop: "18px" }}>
+            ${loose.map(tile)}
+          </div>
+        </${Reveal}>` : null}
+
+      ${groups.map(g => html`
+        <${Reveal} key=${g.name}>
+          <div class="proj-group">
+            <div class="cat-head">
+              <h3>${g.name}</h3>
+              <span class="count">${g.items.length}</span>
+            </div>
+            ${g.caption ? html`<p class="group-caption">${g.caption}</p>` : null}
+            <div class="proj-grid">
+              ${g.items.map(tile)}
+            </div>
+          </div>
+        </${Reveal}>`)}
+    </div>
+  </div>`;
+}
+
+
+const PAGES = {
+  "/":             HomePage,
+  "/publications": PublicationsPage,
+  "/talks":        TalksPage,
+  "/cv":           CVPage,
+  "/projects":     ProjectsPage,
+};
+
+function Nav({ path }) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => { setOpen(false); }, [path]);
+  return html`<header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#/" aria-label=${SITE.givenName + " " + SITE.familyName + " — home"}>${SITE.brandShort}<span class="dot">:</span></a>
+      <nav class=${"nav-links " + (open ? "open" : "")}>
+        ${ROUTES.map(r => html`
+          <a key=${r.path} class=${path === r.path ? "active" : ""} href=${"#" + r.path}
+             aria-label=${r.title}>${r.label}</a>`)}
+      </nav>
+      <button class=${"menu-btn " + (open ? "open" : "")} aria-label="Toggle navigation"
+              aria-expanded=${open} onClick=${() => setOpen(o => !o)}>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>`;
+}
+
+function App() {
+  const ALIASES = { "/portfolio": "/projects" };
+  const parse = () => {
+    let h = window.location.hash.replace(/^#/, "");
+    if (ALIASES[h]) h = ALIASES[h];
+    return PAGES[h] ? h : "/";
+  };
+  const [path, setPath] = useState(parse());
+
+  useEffect(() => {
+    const onHash = () => { setPath(parse()); window.scrollTo({ top: 0, behavior: "auto" }); };
+    window.addEventListener("hashchange", onHash);
+    if (!window.location.hash) window.location.hash = "#/";
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  useEffect(() => {
+    const r = ROUTES.find(r => r.path === path);
+    document.title = (r ? r.title + " — " : "") +
+      SITE.givenName + " " + SITE.familyName;
+
+    let tries = 0;
+    const send = () => {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({
+          path:  path === "/" ? "/about" : path,
+          title: r ? r.title : "",
+          event: false,
+        });
+      } else if (tries++ < 20) {
+        timer = setTimeout(send, 100);
+      }
+    };
+    let timer = setTimeout(send, 0);
+    return () => clearTimeout(timer);
+  }, [path]);
+
+  const Page = PAGES[path] || HomePage;
+
+  return html`
+    <${GraphField} />
+    <div class="shell">
+      <${Nav} path=${path} />
+      <main key=${path}>${html`<${Page} />`}</main>
+      <footer class="foot">
+        <div class="wrap">
+          <span>© ${new Date().getFullYear()} ${SITE.givenName} ${SITE.familyName}</span>
+          <span>${SITE.footerNote}</span>
+        </div>
+      </footer>
+    </div>`;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
+</script>
+</body>
+</html>
