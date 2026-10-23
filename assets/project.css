@@ -123,6 +123,9 @@ header.bar.bar--hidden { transform: translateY(-101%); }
 .lead { font-size: 1.17rem; line-height: 1.62; color: var(--text); }
 
 section.band { padding: 54px 0 0; }
+section.band > figure:first-child,
+section.band > .frame:first-child,
+section.band > .menu-grid:first-child { margin-top: 0; }
 h2.sec {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.1;
