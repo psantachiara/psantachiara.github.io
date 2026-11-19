@@ -471,6 +471,11 @@ const INDEX_CARDS = [
 const ABOUT = {
   news: [
     {
+      k: "Accepted paper",
+      v: "Absorbed and Neutralized: Trasformismo in Linked Open Data",
+      meta: "iConference 2027 · Information Research, 32(iConf 2027)",
+    },
+    {
       k: "Guest editorship",
       v: "(In)visible AI: What We See, What We Do Not, and Why It Matters",
       meta: "Special issue of Information Matters, January 2027 · call for papers open",
@@ -554,19 +559,19 @@ const PUBLICATIONS = [
     links: [ { label: "Read", url: "http://digitalhumanities.org/dhq/vol/16/3/000624/000624.html" } ],
   },
   {
-    year: 2027, kind: "Peer-Reviewed Conference Proceedings",
-    status: "Under review",
-    title: "Absorbed and Neutralized: Trasformismo in Linked Open Data",
-    authors: ["Santachiara, P."],
-    venue: "Information Research, 32(iConf 2027)",
-    links: [],
-  },
-  {
     year: 2026, kind: "Peer-Reviewed Conference Proceedings",
     status: "Under review",
     title: "Four Versions of Barr’s Chart: A Study of Ontology Development",
     authors: ["Santachiara, P.", "Leazer, G."],
     venue: "11th Computational Archival Science (CAS) Workshop, 2026 IEEE Big Data Conference Proceedings",
+    links: [],
+  },
+  {
+    year: 2027, sortYear: 2026, kind: "Peer-Reviewed Conference Proceedings",
+    status: "Forthcoming",
+    title: "Absorbed and Neutralized: Trasformismo in Linked Open Data",
+    authors: ["Santachiara, P."],
+    venue: "Information Research, 32(iConf 2027)",
     links: [],
   },
   {
@@ -601,19 +606,19 @@ const PUB_CATEGORIES = [
 
 const TALKS = [
   {
-    year: 2027, kind: "Conference Presentations",
-    status: "Under review",
-    title: "Absorbed and Neutralized: Trasformismo in Linked Open Data",
-    authors: ["Santachiara, P."],
-    venue: "iConference 2027",
-    links: [],
-  },
-  {
     year: 2026, kind: "Conference Presentations",
     status: "Under review",
     title: "Four Versions of Barr’s Chart: A Study of Ontology Development",
     authors: ["Santachiara, P.", "Leazer, G."],
     venue: "11th Computational Archival Science (CAS) Workshop, 2026 IEEE Big Data Conference",
+    links: [],
+  },
+  {
+    year: 2027, sortYear: 2026, kind: "Conference Presentations",
+    status: "Forthcoming",
+    title: "Absorbed and Neutralized: Trasformismo in Linked Open Data",
+    authors: ["Santachiara, P."],
+    venue: "iConference 2027",
     links: [],
   },
   {
@@ -1224,7 +1229,8 @@ function GroupedList({ items, order, dated }) {
     const cats = ordered.concat(present.filter(c => !ordered.includes(c)));
     return cats.map(c => ({
       name: c,
-      items: items.filter(p => p.kind === c).sort((a, b) => b.year - a.year),
+      items: items.filter(p => p.kind === c)
+        .sort((a, b) => (b.sortYear != null ? b.sortYear : b.year) - (a.sortYear != null ? a.sortYear : a.year)),
     }));
   }, [items, order]);
 
